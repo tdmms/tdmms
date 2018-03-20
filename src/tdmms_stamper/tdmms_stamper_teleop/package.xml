@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+  <name>tdmms_stamper_teleop</name>
+  <version>0.1.0</version>
+  <description>
+     tdmms_stamper_teleop
+  </description>
+  <maintainer email="msatoru@iis.u-tokyo.ac.jp">Satoru Masubuchi, University of Tokyo</maintainer>
+  <author>mlab2DMMS</author>
+  <license>BSD</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>qt_build</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>libqt4-dev</build_depend>
+  <build_depend>keyence_master</build_depend>
+  <run_depend>qt_build</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>libqt4-dev</run_depend>
+  <run_depend>keyence_master</run_depend>
+</package>

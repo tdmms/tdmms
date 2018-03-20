@@ -1,0 +1,15 @@
+#global definition
+std_msgs/UInt32 up_speed
+std_msgs/UInt32 down_speed
+std_msgs/UInt32 stamp_duration
+std_msgs/UInt32 stamp_load
+std_msgs/UInt32 om_position_at_stamp
+geometry_msgs/Point z_stage_position_at_stamp
+std_msgs/String folder
+---
+#result definition
+std_msgs/UInt32 success
+---
+#feedback
+std_msgs/UInt32 z_stage_position
+

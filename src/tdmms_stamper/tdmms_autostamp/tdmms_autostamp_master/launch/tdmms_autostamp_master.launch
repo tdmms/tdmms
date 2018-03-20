@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+  <rosparam command="load" file="$(env HOME)/tdmms_ws/devel/tdmms_parameter.yaml"/>
+  <node pkg="tdmms_autostamp_master" name="tdmms_autostamp_master" type="tdmms_autostamp_master" required="true"/>
+  <node pkg="keyence_master" name="keyence_master" type="keyence_master" respawn="true"/>
+  <node pkg="stamper_nic_100a" name="stamper_nic_100a_master" type="stamper_nic_100a_master" respawn="true"/>
+  <node pkg="stamper_om_xy" name="stamper_om_xy" type="stamper_om_xy" respawn="true"/>
+  <node pkg="stamper_sample_theta" name="stamper_sample_theta" type="stamper_sample_theta" respawn="true"/>
+  <node pkg="stamper_sample_xy" name="stamper_sample_xy" type="stamper_sample_xy" respawn="true"/>
+  <node pkg="stamper_sample_z" name="stamper_sample_z" type="stamper_sample_z" respawn="true"/>
+  <node pkg="stamper_temperature" name="stamper_temperature" type="stamper_temperature" respawn="true"/>
+  <node pkg="stamper_loadcell" name="stamper_loadcell" type="stamper_loadcell" respawn="true"/>
+  <node pkg="stamper_nikon" name="stamper_nikon" type="stamper_nikon" respawn="true"/>
+  <node pkg="stamper_yamaha" name="stamper_yamaha" type="stamper_yamaha_node" respawn="true"/>
+  <node pkg="transfer_valve" name="transfer_valve" type="transfer_valve" respawn="true"/>
+  <node pkg="tdmms_autostamp_flake_positioner_action" name="tdmms_autostamp_flake_positioner_action" type="tdmms_autostamp_flake_positioner_action_node" respawn="true"/>
+  <node pkg="tdmms_autostamp_flake_positioner_action_fast" name="tdmms_autostamp_flake_positioner_action_fast" type="tdmms_autostamp_flake_positioner_action_fast_node" respawn="true"/>
+  <node pkg="tdmms_autostamp_flake_aligner_xy10x_action" name="tdmms_autostamp_flake_aligner_xy10x_action" type="tdmms_autostamp_flake_aligner_xy10x_action_node" respawn="true"/>
+  <node pkg="tdmms_autostamp_flake_aligner_xy10x_fine_action" name="tdmms_autostamp_flake_aligner_xy10x_fine_action" type="tdmms_autostamp_flake_aligner_xy10x_fine_action_node" respawn="true"/>
+  <node pkg="tdmms_autostamp_flake_aligner_xytheta5x_action" name="tdmms_autostamp_flake_aligner_xytheta5x_action" type="tdmms_autostamp_flake_aligner_xytheta5x_action_node" respawn="true"/>
+  <node pkg="tdmms_autostamp_flake_aligner_ncc_action" name="tdmms_autostamp_flake_aligner_ncc_action" type="tdmms_autostamp_flake_aligner_ncc_action_node" respawn="true"/>
+  <node pkg="tdmms_autostamp_chip_transfer_action" name="tdmms_autostamp_chip_transfer_action" type="tdmms_autostamp_chip_transfer_action_node" respawn="true"/>
+  <node pkg="tdmms_autostamp_stamp_action" name="tdmms_autostamp_stamp_action" type="tdmms_autostamp_stamp_action_node" respawn="true"/>
+  <node pkg="tdmms_autostamp_camera_streamer" name="tdmms_autostamp_camera_streamer_node" type="tdmms_autostamp_camera_streamer_node" respawn="true"/>
+  <node pkg="tdmms_autostamp_camera_viewer_guided" name="tdmms_autostamp_camera_viewer_guided" type="tdmms_autostamp_camera_viewer_guided" respawn="true"/>
+  <node pkg="tdmms_autostamp_autofocus_action" name="tdmms_autostamp_autofocus_action" type="tdmms_autostamp_autofocus_action_node" respawn="true"/>
+  <node pkg="tdmms_stamper_teleop" name="tdmms_stamper_teleop" type="tdmms_stamper_teleop"/>
+  <node pkg="transfer_linear_yamaha" name="transfer_linear_yamaha" type="transfer_linear_yamaha_node" respawn="true"/>
+</launch>

@@ -1,0 +1,5 @@
+std_msgs/UInt16 pointno
+std_msgs/UInt16 velocity
+---
+bool success
+

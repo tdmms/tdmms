@@ -1,0 +1,31 @@
+<launch>
+    <!-- Start tilt joint controller -->
+    <rosparam file="$(find dynamixel_gripper)/gripper1.yaml" command="load"/>
+    <node name="tilt1_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+          args="--manager=dxl_manager
+                --port pan_tilt_port
+                gripper1_controller"
+          output="screen"/>
+    <!-- Start tilt joint controller -->
+    <rosparam file="$(find dynamixel_gripper)/gripper2.yaml" command="load"/>
+    <node name="tilt2_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+          args="--manager=dxl_manager
+                --port pan_tilt_port
+                gripper2_controller"
+          output="screen"/>
+    <!-- Start tilt joint controller -->
+    <rosparam file="$(find dynamixel_gripper)/gripper3.yaml" command="load"/>
+    <node name="tilt3_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+          args="--manager=dxl_manager
+                --port pan_tilt_port
+                gripper3_controller"
+          output="screen"/>
+    <!-- Start tilt joint controller -->
+    <rosparam file="$(find dynamixel_gripper)/gripper4.yaml" command="load"/>
+    <node name="tilt4_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+          args="--manager=dxl_manager
+                --port pan_tilt_port
+                gripper4_controller"
+          output="screen"/>
+</launch>
+

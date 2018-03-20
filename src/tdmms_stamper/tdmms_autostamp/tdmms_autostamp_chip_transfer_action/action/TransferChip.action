@@ -1,0 +1,12 @@
+#goal definition
+std_msgs/Bool isLoading
+std_msgs/UInt16 palletNo
+std_msgs/UInt16 pocketNo
+std_msgs/Float32 rotangle_deg
+---
+#result definition
+geometry_msgs/Pose Position_Result
+---
+#feedback
+geometry_msgs/Pose Position_Current
+

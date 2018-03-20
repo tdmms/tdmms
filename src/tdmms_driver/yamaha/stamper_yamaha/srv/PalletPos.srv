@@ -1,0 +1,5 @@
+std_msgs/UInt16 pallet
+std_msgs/UInt16 no
+---
+bool success
+

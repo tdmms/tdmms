@@ -1,0 +1,2 @@
+bool output_status
+uint8 intensity

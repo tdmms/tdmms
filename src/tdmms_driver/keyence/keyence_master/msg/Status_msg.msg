@@ -1,0 +1,14 @@
+bool sample_cool
+bool sample_blow
+bool mask_chuck
+bool sample_chuck
+bool kyumen_chuck
+bool om_forward
+bool om_moving
+bool om_back
+bool mask_forward
+bool mask_moving
+bool mask_back
+bool esd_forward
+bool esd_moving
+bool esd_back

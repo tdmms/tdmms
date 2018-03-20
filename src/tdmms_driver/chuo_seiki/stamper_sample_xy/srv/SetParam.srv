@@ -1,0 +1,6 @@
+uint32 speed_up
+uint32 target_load
+uint32 wait_time
+uint32 speed_down
+---
+uint64 emp

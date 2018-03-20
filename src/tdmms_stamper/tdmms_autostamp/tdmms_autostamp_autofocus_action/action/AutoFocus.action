@@ -1,0 +1,11 @@
+#global definition 
+std_msgs/UInt32 start
+std_msgs/UInt32 delta_z
+std_msgs/UInt32 stepno
+---
+#result definition
+std_msgs/UInt32 focuspos
+---
+#feedback
+std_msgs/UInt32 currentpos
+

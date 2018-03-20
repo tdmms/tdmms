@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+  <rosparam command="load" file="$(env HOME)/tdmms_ws/devel/tdmms_parameter.yaml"/>
+	<node pkg="tdmms_stamper_teleop" name="tdmms_stamper_teleop" type="tdmms_stamper_teleop"/>
+	<node pkg="stamper_nic_100a" name="stamper_nic_100a_master" type="stamper_nic_100a_master"/>
+        <node pkg="stamper_om_xy" name="stamper_om_xy" type="stamper_om_xy"/>
+        <node pkg="stamper_sample_theta" name="stamper_sample_theta" type="stamper_sample_theta"/>
+        <node pkg="stamper_sample_xy" name="stamper_sample_xy" type="stamper_sample_xy"/>
+        <node pkg="stamper_sample_z" name="stamper_sample_z" type="stamper_sample_z"/>
+        <node pkg="stamper_temperature" name="stamper_temperature" type="stamper_temperature"/>
+        <node pkg="stamper_loadcell" name="stamper_loadcell" type="stamper_loadcell"/>
+        <node pkg="keyence_master" name="keyence_master" type="keyence_master"/>
+        <node pkg="stamper_nikon" name="stamper_nikon" type="stamper_nikon"/>
+</launch>
