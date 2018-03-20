@@ -18,7 +18,7 @@ Open-source platform for aunotnomous robotic searching and assembl of van der Wa
 The following software components are required.
 * Ubuntu 14.04 or higher
 * ROS Indigo
-* QT 5.2.1 or higher
+* QT 4.0.0 or higher
 * HALCON12 Image processing library
 * Open CL
 * MySQL
