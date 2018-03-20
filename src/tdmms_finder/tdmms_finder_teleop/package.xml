@@ -7,8 +7,8 @@
      tdmms_finder_teleop
 
   </description>
-  <maintainer email="mlab2DMMS@gmail.com">mlab2DMMS</maintainer>
-  <author>mlab2DMMS</author>
+  <maintainer email="msatoru@iis.u-tokyo.ac.jp">Satoru Masubuchi</maintainer>
+  <author>Satoru Masubuchi</author>
   <license>BSD</license>
   <!-- <url type="bugtracker">https://github.com/stonier/qt_ros/issues</url> -->
   <!-- <url type="repository">https://github.com/stonier/qt_ros</url> -->
