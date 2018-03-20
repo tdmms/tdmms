@@ -1,4 +1,4 @@
-## Welcome to the homepage of 2DMMS
+## Two-dimensional materials manufacturing system (2DMMS)
 Open-source software for automated searching and assembly for van der Waals heterostructures
 
 *Note that this webpage is currently under development.*
