@@ -37,7 +37,7 @@ The detailed descriptions of this system are provided in the paper; "Autonomous 
 
 If the information provided here helps your research, I would be greatful if you could cite the paper in your publications.
 
-## Conclusion
+## Remarks
 I hope to continue developing 2DMMS to become a truly helpful tool for the research community of van der Waals heterostructures. Please feel free to email me with your feedback or any issues at: msatoru@iis.u-tokyo.ac.jp
 
 Satoru Masubuchi
