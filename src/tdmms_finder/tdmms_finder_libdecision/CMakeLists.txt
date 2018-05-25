@@ -123,6 +123,8 @@ catkin_package(
 #   src/${PROJECT_NAME}/tdmms_finder_libdecision.cpp
 #)
 add_library(decgraphene12_ml_8.0.0 src/libgraphene12-mlg-8.0.0.cpp)
+add_library(decgraphene12_bl_8.0.0 src/libgraphene12-blg-8.0.0.cpp)
+add_library(decgraphene12_tl_8.0.0 src/libgraphene12-tlg-8.0.0.cpp)
 add_library(decmultibn12_8.0.0 src/libmultibn12-8.0.0.cpp)
 add_library(decthinbn12_8.0.0 src/libbn_thin-12bit-85nm-8.0.0.cpp)
 add_library(decthickbn12_85nm_8.0.0 src/libbn_thick-12bit-85nm-8.0.0.cpp)
@@ -206,6 +208,8 @@ FIND_LIBRARY(ftdi_LIBRARY ftdi1 /use/lib)
 #  dl
 #)
 target_link_libraries(decgraphene12_ml_8.0.0 ${catkin_LIBRARIES} ${XCLIB_LIBRARY} ${HALCON_LIBRARY} ${HALCONCPP_LIBRARY} ${ftdi_LIBRARY} dl)  
+target_link_libraries(decgraphene12_bl_8.0.0 ${catkin_LIBRARIES} ${XCLIB_LIBRARY} ${HALCON_LIBRARY} ${HALCONCPP_LIBRARY} ${ftdi_LIBRARY} dl)  
+target_link_libraries(decgraphene12_tl_8.0.0 ${catkin_LIBRARIES} ${XCLIB_LIBRARY} ${HALCON_LIBRARY} ${HALCONCPP_LIBRARY} ${ftdi_LIBRARY} dl)  
 target_link_libraries(decmultibn12_8.0.0 ${catkin_LIBRARIES} ${XCLIB_LIBRARY} ${HALCON_LIBRARY} ${HALCONCPP_LIBRARY} ${ftdi_LIBRARY} dl)  
 target_link_libraries(decthinbn12_8.0.0 ${catkin_LIBRARIES} ${XCLIB_LIBRARY} ${HALCON_LIBRARY} ${HALCONCPP_LIBRARY} ${ftdi_LIBRARY} dl)  
 target_link_libraries(decthickbn12_85nm_8.0.0 ${catkin_LIBRARIES} ${XCLIB_LIBRARY} ${HALCON_LIBRARY} ${HALCONCPP_LIBRARY} ${ftdi_LIBRARY} dl)  

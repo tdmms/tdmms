@@ -54,19 +54,19 @@ extern "C" Herror tdmms_finder_Find(bool *dev, int *pos_x, int *pos_y,
   //------------------------------------------
   // Detection Parameters
   //------------------------------------------
-  hv_cent_H = 0;
-  hv_delta_H = 500;
-  hv_cent_S = -250;
-  hv_delta_S = 130;
-  hv_cent_V = -50;
-  hv_delta_V = 40;
-  hv_edge_low = 10;
-  hv_edge_high = 30;
-  hv_edge_alpha = 3;
-  hv_entropy_min = 0;
-  hv_entropy_max = 10;
+  hv_cent_H = -200;
+  hv_delta_H = 300;
+  hv_cent_S = -480;
+  hv_delta_S = 100;
+  hv_cent_V = -300;
+  hv_delta_V = 100;
   hv_area_threshold = 1000;
-  hv_area_holes_threshold = 1000;
+  hv_area_holes_threshold = 500;
+  hv_edge_alpha = 3;
+  hv_edge_low = 20;
+  hv_edge_high = 50;
+  hv_entropy_min = 0;
+  hv_entropy_max = 5;
   //------------------------------------------
   // Detection process
   //-----------------------------------------
@@ -101,7 +101,6 @@ extern "C" Herror tdmms_finder_Find(bool *dev, int *pos_x, int *pos_y,
   Rgb1ToGray(ho_Image, &ho_ImageGrey);
   EdgesImage(ho_ImageGrey, &ho_ImaAmp, &ho_ImaDir, "canny",
              hv_edge_alpha, "nms", hv_edge_low, hv_edge_high);
-  ClosingCircle(ho_ImaAmp, &ho_ImaAmp, 10);
   DilationCircle(ho_ImaAmp, &ho_ImaAmp, 2);
   FillUp(ho_ImaAmp, &ho_ImaAmp);
   ErosionCircle(ho_ImaAmp, &ho_ImaAmp, 5);
@@ -126,8 +125,8 @@ extern "C" Herror tdmms_finder_Find(bool *dev, int *pos_x, int *pos_y,
 
   Connection(ho_RegionIII, &ho_RegionIII);
   ClosingCircle(ho_RegionIII, &ho_RegionIII, 3);
-  ErosionCircle(ho_RegionIII, &ho_RegionIII, 4);
-  DilationCircle(ho_RegionIII, &ho_RegionIII, 1);
+  ErosionCircle(ho_RegionIII, &ho_RegionIII, 5);
+  DilationCircle(ho_RegionIII, &ho_RegionIII, 2);
   if (HDevWindowStack::IsOpen())
     DispObj(ho_RegionIII, HDevWindowStack::GetActive());
 
@@ -196,7 +195,7 @@ extern "C" Herror tdmms_finder_Initialize() {
 
   // Load background image
   TupleEnvironment("HOME", &hv_homedir);
-  hv_bgfile = "/images/masubuchi/Background_Image/SiO2_85nm_20180420_12bit.tiff";
+  hv_bgfile = "/images/masubuchi/Background_Image/SiO2_290nm_20180416_12bit.tiff";
   hv_bgfilepath = hv_homedir+hv_bgfile;
 
   ReadImage(&ho_Image_BG, hv_bgfilepath);

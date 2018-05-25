@@ -59,7 +59,7 @@ class autostamp_flake_positioner_fast_class {
     /////////////////////////////////////////
     /// Activate GPU
     ////////////////////////////////////////
-    QueryAvailableComputeDevices(&hv_DeviceIdentifiers);
+        QueryAvailableComputeDevices(&hv_DeviceIdentifiers);
     {
       HalconCpp::HTuple end_val3 = (hv_DeviceIdentifiers.TupleLength()) - 1;
       HalconCpp::HTuple step_val3 = 1;
@@ -74,7 +74,7 @@ class autostamp_flake_positioner_fast_class {
       }
     }
     ActivateComputeDevice(hv_DeviceHandle);
-
+    
     /*****************************************************************************
      ** Initialize Publisher Nodes
      *****************************************************************************/
@@ -165,7 +165,7 @@ class autostamp_flake_positioner_fast_class {
     std::string initfname_large;
 
     initfname_large = getenv("HOME");
-    initfname_large = initfname_small + "/img2040x1086.jpg";
+    initfname_large = initfname_large + "/img2040x1086.jpg";
     ReadImage(&ho_Image, initfname_large.c_str());
     HalconCpp::SetWindowAttr("window_title", "Template Image");
     HalconCpp::OpenWindow(0, 2560, 744 * 1.5, 480 * 1.5, 0, "", "",
