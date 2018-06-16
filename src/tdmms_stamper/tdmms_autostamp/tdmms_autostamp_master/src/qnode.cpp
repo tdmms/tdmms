@@ -682,6 +682,8 @@ void QNode::on_Stamp_Taihi_clicked(bool check) {
   stamper_om_xy_cmd_vel.publish(vel);
   stamper_sample_xy_cmd_vel.publish(vel);
 
+  ros::Duration(0.5).sleep();
+  
   geometry_msgs::Point pnt;
   pnt.x = 80000;
   pnt.y = 0;
@@ -721,6 +723,9 @@ void QNode::on_Stamp_Fukki_clicked(bool check) {
   vel_sample.velocity_high = 15000;
   vel_sample.accl = 100;
   stamper_sample_xy_cmd_vel.publish(vel_sample);
+
+
+  ros::Duration(0.5).sleep();
 
   geometry_msgs::Point pnt;
   pnt.x = -100000;
