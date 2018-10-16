@@ -27,6 +27,9 @@ The following software components are required.
 The following hardware comopnents are supported.
 
 #### Automated Optical Microscope
+|Component| Parts ID| Manufacturer|
+|:-----------:|:------------:|:------------:|
+| Autofocus Microscope | AF-77VB-N60LP-TDS | Chuo Precision |
 
 
 ## Install dependencies for Ubuntu 14.04
