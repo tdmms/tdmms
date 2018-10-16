@@ -69,6 +69,14 @@ bool QNode::init(const std::string &master_url, const std::string &host_url) {
                                             &QNode::currload_Callback, this);
   stamper_keyence_subscriber =
       n.subscribe("/keyence_master/status", 1, &QNode::keyence_Callback, this);
+
+  stamper_sample_xy_subscriber =
+      n.subscribe("/stamper_sample_xy_master/currpos_stream", 1,
+                  &QNode::currpos_sample_xy_Callback, this);
+  stamper_om_xy_subscriber =
+      n.subscribe("/stamper_om_xy_master/currpos_stream", 1,
+                  &QNode::currpos_om_xy_Callback, this);
+  
   stamper_loadcell_zero_publisher =
       n.advertise<std_msgs::Empty>("/stamper_loadcell/zero", 1);
   stamper_temperature_set_publisher =
@@ -273,6 +281,16 @@ void QNode::currtemp_sv_Callback(const std_msgs::UInt8 &temp) {
 
 void QNode::currload_Callback(const std_msgs::Float32 &load) {
   lcdNumber_Load->display(load.data);
+}
+
+void QNode::currpos_sample_xy_Callback(const geometry_msgs::Point &currpoint){
+  lcdNumber_Sample_X->display(currpoint.x);
+  lcdNumber_Sample_Y->display(currpoint.y);
+}
+
+void QNode::currpos_om_xy_Callback(const geometry_msgs::Point &currpoint){
+  lcdNumber_OM_X->display(currpoint.x);
+  lcdNumber_OM_Y->display(currpoint.y);
 }
 
 void QNode::on_OM_Forward_Button_clicked(bool check) {

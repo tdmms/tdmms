@@ -54,15 +54,15 @@ extern "C" Herror tdmms_finder_Find(bool *dev, int *pos_x, int *pos_y,
   //------------------------------------------
   // Detection Parameters
   //------------------------------------------
-  hv_cent_H = -300;
-  hv_delta_H = 1000;
-  hv_cent_S = -180;
-  hv_delta_S = 200;
-  hv_cent_V = -170;
-  hv_delta_V = 120;
-  hv_area_threshold = 200;
+  hv_cent_H = -1100;
+  hv_delta_H = 6000;
+  hv_cent_S = 1100;
+  hv_delta_S = 5000;
+  hv_cent_V = 1400;
+  hv_delta_V = 1000;
+  hv_area_threshold = 1000;
   hv_area_holes_threshold = 500;
-  hv_edge_alpha = 1;
+  hv_edge_alpha = 3;
   hv_edge_low = 20;
   hv_edge_high = 50;
   hv_entropy_min = 0;

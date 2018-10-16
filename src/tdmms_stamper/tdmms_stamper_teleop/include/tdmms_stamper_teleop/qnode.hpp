@@ -21,6 +21,7 @@
 #include <std_msgs/Byte.h>
 #include <std_msgs/Float32.h>
 #include <std_msgs/UInt8.h>
+#include <geometry_msgs/Point.h>
 #include <keyence_master/Status_msg.h>
 
 #include <QLCDNumber>
@@ -64,6 +65,10 @@ class QNode : public QThread {
   QLCDNumber *lcdNumber_Temperature;
   QLCDNumber *lcdNumber_Load;
   QLCDNumber *lcdNumber_Temperature_sv;
+  QLCDNumber *lcdNumber_Sample_X;
+  QLCDNumber *lcdNumber_Sample_Y;
+  QLCDNumber *lcdNumber_OM_X;
+  QLCDNumber *lcdNumber_OM_Y;
 
   QSpinBox *spinBox_Temperature;
   QSpinBox *spinBox_Light_Inten;
@@ -103,6 +108,8 @@ class QNode : public QThread {
   void currtemp_Callback(const std_msgs::UInt8 &temp);
   void currtemp_sv_Callback(const std_msgs::UInt8 &temp);
   void currload_Callback(const std_msgs::Float32 &load);
+  void currpos_sample_xy_Callback(const geometry_msgs::Point &currpoint);
+  void currpos_om_xy_Callback(const geometry_msgs::Point &currpoint);
   void keyence_Callback(const keyence_master::Status_msg &stat);
 
 Q_SIGNALS:
@@ -214,6 +221,8 @@ public Q_SLOTS:
   ros::Subscriber stamper_currtemp_sv_subscriber;
   ros::Subscriber stamper_currload_subscriber;
   ros::Subscriber stamper_keyence_subscriber;
+  ros::Subscriber stamper_sample_xy_subscriber;
+  ros::Subscriber stamper_om_xy_subscriber;
   ros::Publisher keyence_om_fwd_publisher;
   ros::Publisher keyence_om_back_publisher;
   ros::Publisher keyence_mask_fwd_publisher;
