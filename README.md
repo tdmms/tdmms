@@ -27,7 +27,7 @@ The following software components are required.
 The following hardware comopnents are supported.
 
 #### Automated Optical Microscope
-|Component| Parts ID| Manufacturer|
+|Unit| Component | Parts ID| Manufacturer|
 |:-----------:|:------------:|:------------:|:------------:|
 | Autofocus Microscope | Autofocus System | AF-77VB-N60LP-TDS | Chuo Precision |
 | Illumination Unit    | Halogen Lamp     | LA-150FBU | Hayashi Watch Works|
