@@ -57,11 +57,16 @@ bool QNode::init() {
   ros::start(); // explicitly needed since our nodehandle is going out of scope.
   ros::NodeHandle n;
   
-  nic_100a_on_publisher = n.advertise<std_msgs::Byte>("/nic_100a/cmd_on",1);
-  nic_100a_off_publisher = n.advertise<std_msgs::Byte>("/nic_100a/cmd_off",1);
-  nic_100a_inten_publisher = n.advertise<std_msgs::UInt8>("/nic_100a/cmd_inten",1);
-  lv_ncnt_n_publisher = n.advertise<std_msgs::UInt8>("/lv_ncnt_n_master/cmd_set",1);
-  adm2_step_publisher = n.advertise<geometry_msgs::Point>("/adm2_master/cmd_stp_move",1);
+  nic_100a_on_publisher =
+      n.advertise<std_msgs::Byte>("/nic_100a/cmd_on", 1);
+  nic_100a_off_publisher =
+      n.advertise<std_msgs::Byte>("/nic_100a/cmd_off", 1);
+  nic_100a_inten_publisher =
+      n.advertise<std_msgs::UInt8>("/nic_100a/cmd_inten", 1);
+  lv_ncnt_n_publisher =
+      n.advertise<std_msgs::UInt8>("/lv_ncnt_n_master/cmd_set",1);
+  adm2_step_publisher
+      = n.advertise<geometry_msgs::Point>("/adm2_master/cmd_stp_move",1);
   adm2_vel_publisher = n.advertise<adm2::velocity>("/adm2_master/cmd_vel",1);
   adm2_jog_publisher = n.advertise<geometry_msgs::Point>("/adm2_master/cmd_jog_move",1);
   adm2_stop_publisher = n.advertise<std_msgs::Empty>("/adm2_master/cmd_stop",1);
