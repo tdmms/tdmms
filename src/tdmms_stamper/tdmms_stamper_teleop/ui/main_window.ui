@@ -366,7 +366,7 @@
          <rect>
           <x>210</x>
           <y>30</y>
-          <width>281</width>
+          <width>391</width>
           <height>371</height>
          </rect>
         </property>
@@ -1016,6 +1016,46 @@
           <string>JOG</string>
          </property>
         </widget>
+        <widget class="QLCDNumber" name="lcdNumber_Sample_X">
+         <property name="geometry">
+          <rect>
+           <x>270</x>
+           <y>10</y>
+           <width>111</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="numDigits">
+          <number>8</number>
+         </property>
+        </widget>
+        <widget class="QLCDNumber" name="lcdNumber_Sample_Y">
+         <property name="geometry">
+          <rect>
+           <x>270</x>
+           <y>40</y>
+           <width>111</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="numDigits">
+          <number>8</number>
+         </property>
+        </widget>
        </widget>
        <widget class="QFrame" name="frame_9">
         <property name="geometry">
@@ -1068,9 +1108,9 @@
        <widget class="QFrame" name="frame_5">
         <property name="geometry">
          <rect>
-          <x>500</x>
+          <x>610</x>
           <y>30</y>
-          <width>261</width>
+          <width>411</width>
           <height>301</height>
          </rect>
         </property>
@@ -1498,6 +1538,46 @@
           <string>XY</string>
          </property>
         </widget>
+        <widget class="QLCDNumber" name="lcdNumber_OM_Y">
+         <property name="geometry">
+          <rect>
+           <x>290</x>
+           <y>40</y>
+           <width>111</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="numDigits">
+          <number>8</number>
+         </property>
+        </widget>
+        <widget class="QLCDNumber" name="lcdNumber_OM_X">
+         <property name="geometry">
+          <rect>
+           <x>290</x>
+           <y>10</y>
+           <width>111</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="numDigits">
+          <number>8</number>
+         </property>
+        </widget>
         <zorder>pushButton_OM_Revolv_Next</zorder>
         <zorder>label_26</zorder>
         <zorder>label_12</zorder>
@@ -1524,11 +1604,13 @@
         <zorder>pushButton_OM_XY_X_Plus</zorder>
         <zorder>label_30</zorder>
         <zorder>pushButton_OM_XY_Y_Plus_STP</zorder>
+        <zorder>lcdNumber_OM_Y</zorder>
+        <zorder>lcdNumber_OM_X</zorder>
        </widget>
        <widget class="QFrame" name="frame_10">
         <property name="geometry">
          <rect>
-          <x>500</x>
+          <x>610</x>
           <y>340</y>
           <width>261</width>
           <height>61</height>
@@ -1844,7 +1926,7 @@
        <widget class="QLabel" name="label_34">
         <property name="geometry">
          <rect>
-          <x>500</x>
+          <x>610</x>
           <y>10</y>
           <width>211</width>
           <height>21</height>

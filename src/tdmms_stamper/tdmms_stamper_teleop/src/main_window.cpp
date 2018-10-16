@@ -206,6 +206,10 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
   qnode.lcdNumber_Temperature = ui.lcdNumber_Temperature;
   qnode.lcdNumber_Temperature_sv = ui.lcdNumber_Temperature_sv;
   qnode.lcdNumber_Load = ui.lcdNumber_Loadcell;
+  qnode.lcdNumber_Sample_X = ui.lcdNumber_Sample_X;
+  qnode.lcdNumber_Sample_Y = ui.lcdNumber_Sample_Y;
+  qnode.lcdNumber_OM_X = ui.lcdNumber_OM_X;
+  qnode.lcdNumber_OM_Y = ui.lcdNumber_OM_Y;
   qnode.spinBox_Light_Inten = ui.spinBox_Light_Inten;
   qnode.spinBox_Sample_Theta_Spd = ui.spinBox_Sample_Theta_Spd;
   qnode.spinBox_Sample_Z_Spd = ui.spinBox_Sample_Z_Spd;
