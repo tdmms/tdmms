@@ -57,7 +57,6 @@ bool QNode::init() {
   ros::start(); // explicitly needed since our nodehandle is going out of scope.
   ros::NodeHandle n;
   
-  chatter_publisher = n.advertise<std_msgs::String>("chatter", 1000);
   nic_100a_on_publisher = n.advertise<std_msgs::Byte>("/nic_100a/cmd_on",1);
   nic_100a_off_publisher = n.advertise<std_msgs::Byte>("/nic_100a/cmd_off",1);
   nic_100a_inten_publisher = n.advertise<std_msgs::UInt8>("/nic_100a/cmd_inten",1);
@@ -97,8 +96,6 @@ bool QNode::init(const std::string &master_url, const std::string &host_url) {
   }
   ros::start(); // explicitly needed since our nodehandle is going out of scope.
   ros::NodeHandle n;
-  // Add your ros communications here.
-  chatter_publisher = n.advertise<std_msgs::String>("chatter", 1000);
   start();
   return true;
 }
