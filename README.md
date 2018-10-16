@@ -26,6 +26,13 @@ The following software components are required.
 ### Hardware support
 The following hardware comopnents are supported.
 
+#### Automated Optical Microscope
+|Unit| Component | Parts ID| Manufacturer|
+|:-----------:|:------------:|:------------:|:------------:|
+| Autofocus Microscope | Autofocus System | AF-77VB-N60LP-TDS | Chuo Precision |
+| Illumination Unit    | Halogen Lamp     | LA-150FBU | Chuo Precision/Hayashi Watch Works|
+|                      | LAN Control Unit | NIC-100   | Chuo Precision/Hayashi Watch Works|
+
 ## Install dependencies for Ubuntu 14.04
 `% sudo apt-get install ros-indigo-desktop-full ros-indigo-nmea-msgs ros-indigo-nmea-navsat-driver ros-indigo-sound-play`
 
