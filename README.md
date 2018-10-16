@@ -26,6 +26,9 @@ The following software components are required.
 ### Hardware support
 The following hardware comopnents are supported.
 
+## Automated Optical Microscope
+
+
 ## Install dependencies for Ubuntu 14.04
 `% sudo apt-get install ros-indigo-desktop-full ros-indigo-nmea-msgs ros-indigo-nmea-navsat-driver ros-indigo-sound-play`
 
