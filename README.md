@@ -26,7 +26,7 @@ The following software components are required.
 ### Hardware support
 The following hardware comopnents are supported.
 
-## Automated Optical Microscope
+#### Automated Optical Microscope
 
 
 ## Install dependencies for Ubuntu 14.04
