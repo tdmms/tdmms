@@ -562,7 +562,7 @@ void MainWindow::onButtonAdd_clicked(bool check) {
     material_name = q.value(0).toString();
   else
     material_name = "NA";
-  
+
   {
     int i;
     QTableWidgetItem *item;
