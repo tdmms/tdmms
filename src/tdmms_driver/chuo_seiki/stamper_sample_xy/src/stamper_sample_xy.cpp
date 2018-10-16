@@ -1,5 +1,10 @@
 // Copyright 2016 by S. Masubuchi
 
+// Two-dimensional materials manufacturing system.
+// Device driver for controlling XY sample stage.
+// This program is compatible with 2 axis controller driver
+// QT-ADM2-35 by Chuo Precision Industrial Co., LTD.
+
 #include <arpa/inet.h>
 #include <ros/ros.h>
 #include <geometry_msgs/Point.h>
@@ -23,6 +28,8 @@ class stamper_sample_xy_master {
     int ipport;
 
     strDelimiter = "\r\n";
+
+    // Load IP Address for communication
     parameter_name = "/stamper_sample_xy/ipaddr";
     if (!node.getParam(parameter_name, ipaddr)) {
       ROS_ERROR("Could not retrieve parameter %s in namespace %s.",
@@ -31,6 +38,7 @@ class stamper_sample_xy_master {
     } else {
       ROS_INFO("Parameter %s : %s", parameter_name.c_str(), ipaddr.c_str());
     }
+
     parameter_name = "/stamper_sample_xy/ipport";
     if (!node.getParam(parameter_name, ipport)) {
       ROS_ERROR("Could not retrieve parameter %s in namespace %s.",
@@ -40,6 +48,7 @@ class stamper_sample_xy_master {
       ROS_INFO("Parameter %s : %s", parameter_name.c_str(), ipaddr.c_str());
     }
 
+    // Opening socket communication port
     sock = socket(AF_INET, SOCK_STREAM, 0);
     server.sin_family = AF_INET;
     server.sin_port = htons(ipport);
@@ -93,7 +102,7 @@ class stamper_sample_xy_master {
       ROS_ERROR("Command Write Error");
       exit(-1);
     } else {
-      //ROS_INFO("Sent: %s", strCommand.c_str());
+      // ROS_INFO("Sent: %s", strCommand.c_str());
     }
   }
 
@@ -187,7 +196,7 @@ class stamper_sample_xy_master {
     ros::Duration(0.05).sleep();
     response = readResponse();
     sscanf(response.data(), "%lu,%lu", &res.pos_x, &res.pos_y);
-    ROS_INFO("Recieved Message: %s", response.c_str());
+    // ROS_INFO("Recieved Message: %s", response.c_str());
     return true;
   }
 
@@ -198,7 +207,7 @@ class stamper_sample_xy_master {
     ros::Duration(0.02).sleep();
 
     response = readResponse();
-    sscanf(response.data(), "%lf,%lf", & currpoint.x, &currpoint.y);
+    sscanf(response.data(), "%lu,%lu", & currpoint.x, &currpoint.y);
     currpos_pub_.publish(currpoint);
   }
 
