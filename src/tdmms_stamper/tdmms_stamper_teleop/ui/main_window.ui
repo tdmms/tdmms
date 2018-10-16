@@ -1096,6 +1096,47 @@
           <string>Y</string>
          </property>
         </widget>
+        <widget class="QLCDNumber" name="lcdNumber_Sample_Z">
+         <property name="geometry">
+          <rect>
+           <x>290</x>
+           <y>180</y>
+           <width>111</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="numDigits">
+          <number>8</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_40">
+         <property name="geometry">
+          <rect>
+           <x>270</x>
+           <y>180</y>
+           <width>71</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Z</string>
+         </property>
+        </widget>
+        <zorder>label_40</zorder>
         <zorder>label_23</zorder>
         <zorder>spinBox_Sample_Theta_Spd</zorder>
         <zorder>label_14</zorder>
@@ -1140,6 +1181,7 @@
         <zorder>label_37</zorder>
         <zorder>lcdNumber_Sample_X</zorder>
         <zorder>lcdNumber_Sample_Y</zorder>
+        <zorder>lcdNumber_Sample_Z</zorder>
        </widget>
        <widget class="QFrame" name="frame_9">
         <property name="geometry">

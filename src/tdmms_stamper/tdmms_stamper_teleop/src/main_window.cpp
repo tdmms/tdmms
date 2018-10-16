@@ -208,6 +208,7 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
   qnode.lcdNumber_Load = ui.lcdNumber_Loadcell;
   qnode.lcdNumber_Sample_X = ui.lcdNumber_Sample_X;
   qnode.lcdNumber_Sample_Y = ui.lcdNumber_Sample_Y;
+  qnode.lcdNumber_Sample_Z = ui.lcdNumber_Sample_Z;
   qnode.lcdNumber_OM_X = ui.lcdNumber_OM_X;
   qnode.lcdNumber_OM_Y = ui.lcdNumber_OM_Y;
   qnode.spinBox_Light_Inten = ui.spinBox_Light_Inten;

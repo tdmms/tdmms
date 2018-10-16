@@ -73,6 +73,10 @@ bool QNode::init(const std::string &master_url, const std::string &host_url) {
   stamper_sample_xy_subscriber =
       n.subscribe("/stamper_sample_xy_master/currpos_stream", 1,
                   &QNode::currpos_sample_xy_Callback, this);
+  stamper_sample_z_subscriber =
+      n.subscribe("/stamper_sample_z_master/currpos_stream", 1,
+                  &QNode::currpos_sample_z_Callback, this);
+    
   stamper_om_xy_subscriber =
       n.subscribe("/stamper_om_xy_master/currpos_stream", 1,
                   &QNode::currpos_om_xy_Callback, this);
@@ -286,6 +290,10 @@ void QNode::currload_Callback(const std_msgs::Float32 &load) {
 void QNode::currpos_sample_xy_Callback(const geometry_msgs::Point &currpoint){
   lcdNumber_Sample_X->display(currpoint.x);
   lcdNumber_Sample_Y->display(currpoint.y);
+}
+
+void QNode::currpos_sample_z_Callback(const geometry_msgs::Point &currpoint){
+  lcdNumber_Sample_Z->display(currpoint.x);
 }
 
 void QNode::currpos_om_xy_Callback(const geometry_msgs::Point &currpoint){
