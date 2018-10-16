@@ -131,7 +131,7 @@ class tdmms_autostamp_chip_transfer_action_class {
     const int vel_high = 20;
     const int vel_low = 2;
     const int vel_linear = 100;
-    
+
     if (goalparam->rotangle_deg.data < -180)
       moveto.request.targetPose.orientation.w =
           goalparam->rotangle_deg.data + 360;
