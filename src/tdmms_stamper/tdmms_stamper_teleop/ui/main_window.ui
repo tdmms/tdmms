@@ -366,7 +366,7 @@
          <rect>
           <x>210</x>
           <y>30</y>
-          <width>391</width>
+          <width>411</width>
           <height>371</height>
          </rect>
         </property>
@@ -1019,7 +1019,7 @@
         <widget class="QLCDNumber" name="lcdNumber_Sample_X">
          <property name="geometry">
           <rect>
-           <x>270</x>
+           <x>290</x>
            <y>10</y>
            <width>111</width>
            <height>31</height>
@@ -1039,7 +1039,7 @@
         <widget class="QLCDNumber" name="lcdNumber_Sample_Y">
          <property name="geometry">
           <rect>
-           <x>270</x>
+           <x>290</x>
            <y>40</y>
            <width>111</width>
            <height>31</height>
@@ -1056,6 +1056,90 @@
           <number>8</number>
          </property>
         </widget>
+        <widget class="QLabel" name="label_36">
+         <property name="geometry">
+          <rect>
+           <x>270</x>
+           <y>10</y>
+           <width>71</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>X</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_37">
+         <property name="geometry">
+          <rect>
+           <x>270</x>
+           <y>40</y>
+           <width>71</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Y</string>
+         </property>
+        </widget>
+        <zorder>label_23</zorder>
+        <zorder>spinBox_Sample_Theta_Spd</zorder>
+        <zorder>label_14</zorder>
+        <zorder>label_29</zorder>
+        <zorder>pushButton_Sample_Z_Home</zorder>
+        <zorder>pushButton_Sample_Theta_Plus</zorder>
+        <zorder>pushButton_Sample_Z_Minus</zorder>
+        <zorder>label_28</zorder>
+        <zorder>label_27</zorder>
+        <zorder>pushButton_Sample_Z_Plus</zorder>
+        <zorder>pushButton_Sample_XY_X_Plus</zorder>
+        <zorder>pushButton_Sample_Z_Minus_STP</zorder>
+        <zorder>pushButton_Sample_Theta_Minus</zorder>
+        <zorder>pushButton_Sample_XY_Y_Plus_STP</zorder>
+        <zorder>pushButton_Sample_XY_Center</zorder>
+        <zorder>pushButton_Sample_XY_Y_Plus</zorder>
+        <zorder>spinBox_Sample_XY_STP</zorder>
+        <zorder>pushButton_Sample_XY_X_Minus_STP</zorder>
+        <zorder>pushButton_Sample_XY_X_Plus_STP</zorder>
+        <zorder>label_24</zorder>
+        <zorder>pushButton_Sample_Z_Plus_STP</zorder>
+        <zorder>spinBox_Sample_XY_Spd</zorder>
+        <zorder>pushButton_Sample_XY_Home</zorder>
+        <zorder>label_15</zorder>
+        <zorder>pushButton_Sample_XY_Y_Minus</zorder>
+        <zorder>pushButton_Sample_XY_Y_Minus_STP</zorder>
+        <zorder>pushButton_Sample_XY_X_Minus</zorder>
+        <zorder>label_8</zorder>
+        <zorder>label_7</zorder>
+        <zorder>lcdNumber_Loadcell</zorder>
+        <zorder>pushButton_Loadcell_ZeroSet</zorder>
+        <zorder>label_9</zorder>
+        <zorder>label_10</zorder>
+        <zorder>lcdNumber_Temperature</zorder>
+        <zorder>spinBox_Temperature</zorder>
+        <zorder>lcdNumber_Temperature_sv</zorder>
+        <zorder>spinBox_Sample_Z_Spd</zorder>
+        <zorder>spinBox_Sample_Z_STP</zorder>
+        <zorder>pushButton_Sample_Theta_Center</zorder>
+        <zorder>label_35</zorder>
+        <zorder>label_36</zorder>
+        <zorder>label_37</zorder>
+        <zorder>lcdNumber_Sample_X</zorder>
+        <zorder>lcdNumber_Sample_Y</zorder>
        </widget>
        <widget class="QFrame" name="frame_9">
         <property name="geometry">
@@ -1108,7 +1192,7 @@
        <widget class="QFrame" name="frame_5">
         <property name="geometry">
          <rect>
-          <x>610</x>
+          <x>630</x>
           <y>30</y>
           <width>411</width>
           <height>301</height>
@@ -1578,6 +1662,46 @@
           <number>8</number>
          </property>
         </widget>
+        <widget class="QLabel" name="label_38">
+         <property name="geometry">
+          <rect>
+           <x>270</x>
+           <y>40</y>
+           <width>71</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Y</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_39">
+         <property name="geometry">
+          <rect>
+           <x>270</x>
+           <y>10</y>
+           <width>71</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>X</string>
+         </property>
+        </widget>
         <zorder>pushButton_OM_Revolv_Next</zorder>
         <zorder>label_26</zorder>
         <zorder>label_12</zorder>
@@ -1604,13 +1728,15 @@
         <zorder>pushButton_OM_XY_X_Plus</zorder>
         <zorder>label_30</zorder>
         <zorder>pushButton_OM_XY_Y_Plus_STP</zorder>
+        <zorder>label_38</zorder>
         <zorder>lcdNumber_OM_Y</zorder>
+        <zorder>label_39</zorder>
         <zorder>lcdNumber_OM_X</zorder>
        </widget>
        <widget class="QFrame" name="frame_10">
         <property name="geometry">
          <rect>
-          <x>610</x>
+          <x>630</x>
           <y>340</y>
           <width>261</width>
           <height>61</height>
@@ -1926,7 +2052,7 @@
        <widget class="QLabel" name="label_34">
         <property name="geometry">
          <rect>
-          <x>610</x>
+          <x>630</x>
           <y>10</y>
           <width>211</width>
           <height>21</height>

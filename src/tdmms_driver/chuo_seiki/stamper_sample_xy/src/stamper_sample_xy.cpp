@@ -207,7 +207,7 @@ class stamper_sample_xy_master {
     ros::Duration(0.02).sleep();
 
     response = readResponse();
-    sscanf(response.data(), "%lu,%lu", & currpoint.x, &currpoint.y);
+    sscanf(response.data(), "%lf,%lf", & currpoint.x, &currpoint.y);
     currpos_pub_.publish(currpoint);
   }
 
@@ -235,7 +235,7 @@ int main(int argc, char *argv[]) {
   ros::init(argc, argv, "stamper_sample_xy_master");
   stamper_sample_xy_master stamper_sample_xy_master_;
 
-  ros::Rate loop_rate(2);
+  ros::Rate loop_rate(10);
   while(ros::ok()) {
     stamper_sample_xy_master_.currpos_stream();
     ros::spinOnce();
