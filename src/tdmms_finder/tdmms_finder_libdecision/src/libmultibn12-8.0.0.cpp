@@ -196,7 +196,7 @@ extern "C" Herror tdmms_finder_Initialize() {
   // Load background image
 
   TupleEnvironment("HOME", &hv_homedir);
-  hv_bgfile = "/images/masubuchi/Background_Image/SiO2_290nm_20180927_12bit.tiff";
+  hv_bgfile = "/images/masubuchi/Background_Image/SiO2_290nm_20181011_12bit.tiff";
   hv_bgfilepath = hv_homedir+hv_bgfile;
 
   ReadImage(&ho_Image_BG, hv_bgfilepath);

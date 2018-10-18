@@ -225,7 +225,7 @@ int main(int argc, char *argv[]) {
   ros::init(argc, argv, "stamper_sample_z_master");
   stamper_sample_z_master stamper_sample_z_master_;
 
-  ros::Rate loop_rate(1);
+  ros::Rate loop_rate(100);
   while(ros::ok()) {
     stamper_sample_z_master_.currpos_stream();
     ros::spinOnce();
