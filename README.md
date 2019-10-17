@@ -39,6 +39,18 @@ The following hardware comopnents are supported.
 |                      |                  | AF-61ZA Movement module           | Chuo Precision |
 |                      |                  | Motor Cables 3m for each          | Chuo Precision |
 |                      |                  |Optical Microsocpe Pole (Original) | Designed in-house|
+|                      |                  |LV-UEPI-N Universal Bright Field   | Nikon|
+|                      |                  |Illuminaiton Unit                  | Nikon|
+|                      |                  |LV-HGFA Light Guide Adapter         | Nikon|
+|                      |                  |LV-NU5A Motorized Universal Revolver| Nikon|
+|                      |                  |LV-NCNT-N Revolver Controller       | Nikon|
+|                      |                  |Revolver Controller cable 2.8 m    | Nikon|
+|                      |                  |TU Plan Fluor EPI 5×               | Nikon|
+|                      |                  |TU Plan Fluor EPI 10×              | Nikon|
+|                      |                  |TU Plan Fluor EPI 20×              | Nikon|
+|                      |                  |TU Plan Fluor EPI 50×              | Nikon|
+|                      |                  |TU Plan Fluor EPI 100×             | Nikon|
+|                      |                  |LU Adapter M32-25                  | Nikon|
 | Illumination Unit    | Autofocus part   |TKG-3780-500 AF Illumination Source| Hayashi Watch Works|
 |                      |                  | Red (780nm)                       | Hayashi Watch Works|
 |                      |                  |LP-0805RA LED Power Module         | Hayashi Watch Works|
@@ -48,7 +60,11 @@ The following hardware comopnents are supported.
 |                      |                  |NIC-100 LAN Control Unit           | Hayashi Watch Works|
 |                      |                  |NC-10E Connection Cable            | Hayashi Watch Works|
 |                      |                  |LAN Cable 3m                       | Hayashi Watch Works|
-
+| XY-Stage             | Motorized stage  |MSS-H200AD Scanning Stage          | Chuo Precision| 
+|                      | Stage Controller |QT-ADM2(K) 2-axis control driver   | Chuo Precision|
+| Optical bench        |                  |TT-D6060 Optical Bench             | JVI|
+|                      |                  |TT-DR Anti-bivration pad           | JVI|
+| 
 
 Halogen Lamp     | LA-150FBU | Chuo Precision/Hayashi Watch Works|
 |                      | LAN Control Unit | NIC-100   | Chuo Precision/Hayashi Watch Works|
