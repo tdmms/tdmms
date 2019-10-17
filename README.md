@@ -66,8 +66,12 @@ The following hardware comopnents are supported.
 |                      |                  |TT-DR Anti-bivration pad           | JVI|
 | Image Acquisition    | Framegrabber board | PIXCI-E4 Frame Grabber Board    | EPIX|
 | Interface            |                    |XCLIB-LNX Frame Grabber Board SDK| EPIX|
-|                       | |CBL-CL-3M Camera Link Cable|EPIX|
-    
+|                       | CBL-CL-3M Camera Link Cable|EPIX|
+|RS-232C Cable		    | RS-232C Cable 8m	3|Chuo Precision| 
+|RS-232C Interface      |COM-8(PCI)H RS232C PCI |Contec|
+|PC		              |HP Z640 2xIntel Xeon Processor, 4TB HDD, 64 GB Memory, NVIDIA Quadro M4000 | HP |
+|Software               |HALCON 13 Image Processing Library|MVTec.|
+
 ## Install dependencies for Ubuntu 14.04
 `% sudo apt-get install ros-indigo-desktop-full ros-indigo-nmea-msgs ros-indigo-nmea-navsat-driver ros-indigo-sound-play`
 
