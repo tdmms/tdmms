@@ -31,8 +31,26 @@ The following hardware comopnents are supported.
 #### Automated Optical Microscope
 |Unit| Component | Parts ID| Manufacturer|
 |:-----------:|:------------:|:------------:|:------------:|
-| Autofocus Microscope | Autofocus System | AF-77VB-N60LP-TDS | Chuo Precision |
-| Illumination Unit    | Halogen Lamp     | LA-150FBU | Chuo Precision/Hayashi Watch Works|
+| Autofocus Microscope | Autofocus System | AF-77VB-N60LP-TDS                 | Chuo Precision |
+|                      |                  | AF-77VB                           | Chuo Precision |
+|                      | CMOS Camera      | Basler ACE acA2000-340kc          | Basler         |
+|                      |                  | AF Pattern Positioner             | Chuo Precision |
+|                      |                  | AFC-5 Autofocus Controller        | Chuo Precision |
+|                      |                  | AF-61ZA Movement module           | Chuo Precision |
+|                      |                  | Motor Cables 3m for each          | Chuo Precision |
+|                      |                  |Optical Microsocpe Pole (Original) | Designed in-house|
+| Illumination Unit    | Autofocus part   |TKG-3780-500 AF Illumination Source| Hayashi Watch Works|
+|                      |                  | Red (780nm)                       | Hayashi Watch Works|
+|                      |                  |LP-0805RA LED Power Module         | Hayashi Watch Works|
+|                      |                  |TKG-3790-400 Robot Cable 3m        | Hayashi Watch Works|
+|                      | Imaging          |LA-150FBU Halogen Lamp             | Hayashi Watch Works|
+|                      |                  |FB-LGB1-5L1000 Light Guide 1m      | Hayashi Watch Works|
+|                      |                  |NIC-100 LAN Control Unit           | Hayashi Watch Works|
+|                      |                  |NC-10E Connection Cable            | Hayashi Watch Works|
+|                      |                  |LAN Cable 3m                       | Hayashi Watch Works|
+
+
+Halogen Lamp     | LA-150FBU | Chuo Precision/Hayashi Watch Works|
 |                      | LAN Control Unit | NIC-100   | Chuo Precision/Hayashi Watch Works|
 
 ## Install dependencies for Ubuntu 14.04
