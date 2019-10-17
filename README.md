@@ -65,10 +65,10 @@ The following hardware comopnents are supported.
 | Optical bench        |                  |TT-D6060 Optical Bench             | JVI|
 |                      |                  |TT-DR Anti-bivration pad           | JVI|
 | 
-
-Halogen Lamp     | LA-150FBU | Chuo Precision/Hayashi Watch Works|
-|                      | LAN Control Unit | NIC-100   | Chuo Precision/Hayashi Watch Works|
-
+| Image Acquisition    | Framegrabber board | PIXCI-E4 Frame Grabber Board    | EPIX|
+| Interface            | |XCLIB-LNX Frame Grabber Board SDK| EPIX|
+|                       |CBL-CL-3M Camera Link Cable|EPIX|
+    
 ## Install dependencies for Ubuntu 14.04
 `% sudo apt-get install ros-indigo-desktop-full ros-indigo-nmea-msgs ros-indigo-nmea-navsat-driver ros-indigo-sound-play`
 
