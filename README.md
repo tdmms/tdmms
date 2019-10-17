@@ -22,6 +22,8 @@ The following software components are required.
 * HALCON12 Image processing library
 * Open CL
 * MySQL
+* Tensorflow
+* Keras
 
 ### Hardware support
 The following hardware comopnents are supported.
