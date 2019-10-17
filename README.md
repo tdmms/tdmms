@@ -25,6 +25,26 @@ The following software components are required.
 * Tensorflow
 * Keras
 
+## Install dependencies for Ubuntu 14.04
+`% sudo apt-get install ros-indigo-desktop-full ros-indigo-nmea-msgs ros-indigo-nmea-navsat-driver ros-indigo-sound-play`
+
+## Changes
+* **beta-1** initial public release.
+* **beta-2** support for deep learning inference
+
+## Citations
+The detailed descriptions of this system are provided in the paper;
+* "Autonomous robotic searching and assembly of two-dimensional crystals to build van der Waals superlattices", Satoru Masubuchi *et al.*, Nature Communications (2018). 
+* "Classifying optical microscope images of exfoliated graphene flakes by data-driven machine learning", Satoru Masubuchi and Tomoki Machida, npj 2D Materials and Applications volume **3**, Article number: 4 (2019) 
+
+If the information provided helps your research, it would be appreciated if you could cite the paper in your publications. 
+
+## Remarks
+I hope to continue developing 2DMMS to become a truly helpful tool for the research community of van der Waals heterostructures. Please feel free to email me with your feedback or any issues at: msatoru@iis.u-tokyo.ac.jp
+
+Satoru Masubuchi
+Institute of Industrial Science, University of Tokyo
+
 ### Hardware support
 The following hardware comopnents are supported.
 
@@ -73,21 +93,3 @@ The following hardware comopnents are supported.
 |                   |                      |64 GB Memory, NVIDIA Quadro M4000 | HP |
 |Software              |                  |HALCON 13 Image Processing Library|MVTec.|
 
-## Install dependencies for Ubuntu 14.04
-`% sudo apt-get install ros-indigo-desktop-full ros-indigo-nmea-msgs ros-indigo-nmea-navsat-driver ros-indigo-sound-play`
-
-## Changes
-* **beta-1** initial public release.
-* **beta-2** support for deep learning inference
-
-## Citations
-The detailed descriptions of this system are provided in the paper;
-* "Autonomous robotic searching and assembly of two-dimensional crystals to build van der Waals superlattices", Satoru Masubuchi *et al.*, Nature Communications (2018). 
-* "Classifying optical microscope images of exfoliated graphene flakes by data-driven machine learning", Satoru Masubuchi and Tomoki Machida, npj 2D Materials and Applications volume **3**, Article number: 4 (2019) 
-
-If the information provided helps your research, it would be appreciated if you could cite the paper in your publications. 
-
-## Remarks
-I hope to continue developing 2DMMS to become a truly helpful tool for the research community of van der Waals heterostructures. Please feel free to email me with your feedback or any issues at: msatoru@iis.u-tokyo.ac.jp
-
-Satoru Masubuchi
