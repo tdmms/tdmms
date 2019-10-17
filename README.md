@@ -4,7 +4,7 @@ Open-source software for automated searching and assembly for van der Waals hete
 *Note that this webpage is currently under development.*
 
 ### About 2DMMS
-Open-source platform for aunotnomous robotic searching and assembl of van der Waals heterostructures. The following functionalities are supported:
+Open-source platform for aunotnomous robotic searching and assembly of van der Waals heterostructures. The softwre is dedicated to minimize the human intervention involved in fabrication of van der Waals heterostructures. Using the software in combination with the hardware provides the following functionalities:
 
 * Automated searching for atomically thin exfoliated 2D crystals on SiO2/Si substrate
 * Building the database of opitcal microscope images of detected 2D crystals
