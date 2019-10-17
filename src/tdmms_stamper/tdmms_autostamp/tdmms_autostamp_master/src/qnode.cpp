@@ -27,6 +27,7 @@
 #include <std_srvs/Empty.h>
 
 #include <tdmms_autostamp_flake_positioner_action_fast/PositionFlakeFastAction.h>
+#include <tdmms_autostamp_flake_positioner_action_fast2/PositionFlakeFast2Action.h>
 #include <tdmms_autostamp_flake_positioner_action/PositionFlakeAction.h>
 #include <tdmms_autostamp_flake_aligner_xy10x_action/AlignFlakeXY10xAction.h>
 #include <tdmms_autostamp_flake_aligner_xytheta5x_action/AlignFlakeXYTheta5xAction.h>
@@ -74,12 +75,18 @@ QNode::QNode(int argc, char **argv)
       init_argv(argv),
       ac_flake_positioner_fast("/tdmms_autostamp_flake_positioner_action_fast",
                                true),
+      ac_flake_positioner_fast2("/tdmms_autostamp_flake_positioner_action_fast2",
+                               true),
       ac_flake_positioner("/tdmms_autostamp_flake_positioner_action", true),
       ac_chip_transfer("/tdmms_autostamp_chip_transfer_action", true),
       ac_flake_aligner_xy10x("/tdmms_autostamp_flake_aligner_xy10x_action",
                              true),
+      ac_flake_aligner_xy10x2("/tdmms_autostamp_flake_aligner_xy10x2_action",
+                             true),
       ac_flake_aligner_xytheta5x(
           "/tdmms_autostamp_flake_aligner_xytheta5x_action", true),
+      ac_flake_aligner_xytheta5x2(
+          "/tdmms_autostamp_flake_aligner_xytheta5x2_action", true),
       ac_flake_aligner_xy10x_fine(
           "/tdmms_autostamp_flake_aligner_xy10x_fine_action", true),
       ac_stamp("/tdmms_autostamp_stamp_action", true),
@@ -89,17 +96,22 @@ QNode::QNode(int argc, char **argv)
   //// Waiting for action server to start
   /////////////////////////////////////////////////////////////
   ROS_INFO("Waiting for action server to start.");
+
   ac_flake_positioner_fast.waitForServer();
+  ac_flake_positioner_fast2.waitForServer();
   ac_flake_positioner.waitForServer();
   ac_chip_transfer.waitForServer();
   ac_flake_aligner_xy10x.waitForServer();
+  ac_flake_aligner_xy10x2.waitForServer();
   ac_flake_aligner_xytheta5x.waitForServer();
+  ac_flake_aligner_xytheta5x2.waitForServer();
   ac_flake_aligner_xy10x_fine.waitForServer();
   ac_stamp.waitForServer();
   ac_autofocus.waitForServer();
   ac_flake_aligner_ncc.waitForServer();
   ROS_INFO("Action server started");
   skip_requested = false;
+  fileVer = 1;
 }
 
 QNode::~QNode() {
@@ -215,7 +227,7 @@ bool QNode::init(const std::string &master_url, const std::string &host_url) {
           "/autostamp_camera_streamer/capture_timestamp");
 
   /*****************************************************************************
-   ** Connect to MySQL Database
+   ** Connect to MySQL Database (localhost)
    *****************************************************************************/
   QSqlError err;
   if (QSqlDatabase::drivers().isEmpty()) {
@@ -241,6 +253,34 @@ bool QNode::init(const std::string &master_url, const std::string &host_url) {
     ROS_INFO("connected to MYSQL Server");
   }
 
+  /*****************************************************************************
+   ** Connect to MySQL Database (AWS Cloud)
+   *****************************************************************************/
+  //QSqlError err;
+  if (QSqlDatabase::drivers().isEmpty()) {
+    ROS_ERROR(
+        "No database drivers found"
+        "This program requires at least one Qt database driver. "
+        "Please check the documentation how to build the "
+        "Qt SQL plugins.");
+  }
+
+  db2 =
+      QSqlDatabase::addDatabase(QString("QMYSQL"), QString("Browser%1").arg(2));
+  db2.setDatabaseName(QString("2dmms_db"));
+  db2.setHostName(QProcessEnvironment::systemEnvironment().value("AWS_DB_URL","default"));
+  db2.setPort(3306);
+  if (!db2.open(QProcessEnvironment::systemEnvironment().value("AWS_DB_USER","default"),
+                QProcessEnvironment::systemEnvironment().value("AWS_DB_PW","default"))) {
+    err = db2.lastError();
+    db2 = QSqlDatabase();
+    QSqlDatabase::removeDatabase(QString("Browser%1").arg(2));
+    ROS_ERROR("Error connecting to MySQL Server");
+    return false;
+  } else {
+    ROS_INFO("connected to MYSQL Server");
+  }
+  
   start();
   return true;
 }
@@ -322,6 +362,11 @@ bool QNode::on_AutoFocus_clicked(bool check) {
       return false;
     }
   }
+}
+
+bool QNode::setFileVer(int _fileVer) {
+  fileVer = _fileVer;
+  return true;
 }
 
 void QNode::doneAutoFocusCb(
@@ -542,81 +587,109 @@ bool QNode::on_AutoAlign_clicked(bool check) {
       return false;
     }
   }
+  ROS_INFO("%d", fileVer);
+  
+  if(fileVer == 1) { 
+    ////////////////////
+    //// Address Flake Fast
+    ////////////////////
+    if (!this->on_AddressFlakeFast_clicked(true)) {
+      ROS_WARN("Error_AddressFlake");
+      ///////////////////////////////////
+      //// If failed, Switch to Conventional Addressing Algorithm
+      ////////////////////////////////////
+      skip_requested = false;
+      if (!this->on_AddressFlake_clicked(true)) {
+        if (skip_requested) {
+          skip_requested = false;
+        } else {
+          ROS_ERROR("AddressFlakeXY5X");
+          return false;
+        }
+      }
+    }
 
-  ////////////////////
-  //// Address Flake Fast
-  ////////////////////
-  if (!this->on_AddressFlakeFast_clicked(true)) {
-    ROS_WARN("Error_AddressFlake");
-    ///////////////////////////////////
-    //// If failed, Switch to Conventional Addressing Algorithm
-    ////////////////////////////////////
-    skip_requested = false;
-    if (!this->on_AddressFlake_clicked(true)) {
+    ////////////////////////
+    //// Align xytheta
+    /////////////////////////
+    if (!this->on_AlignFLakeTheta5x_clicked(true)) {
       if (skip_requested) {
         skip_requested = false;
       } else {
-        ROS_ERROR("AddressFlakeXY5X");
+        ROS_ERROR("AlignFlakeTheta5x");
         return false;
       }
     }
-  }
 
-  ////////////////////////
-  //// Align xytheta
-  /////////////////////////
-  if (!this->on_AlignFLakeTheta5x_clicked(true)) {
-    if (skip_requested) {
-      skip_requested = false;
-    } else {
-      ROS_ERROR("AlignFlakeTheta5x");
-      return false;
+    //////////////////////
+    //// Align XY
+    //////////////////////
+    if (!this->on_ALignFlakeXY10x_clicked(true)) {
+      if (skip_requested) {
+        skip_requested = false;
+      } else {
+        ROS_ERROR("AlignFlakeXY10x");
+        return false;
+      }
     }
-  }
 
-  //////////////////////
-  //// Align XY
-  //////////////////////
-  if (!this->on_ALignFlakeXY10x_clicked(true)) {
-    if (skip_requested) {
-      skip_requested = false;
-    } else {
-      ROS_ERROR("AlignFlakeXY10x");
-      return false;
+    /////////////////////
+    /// Align XY Fine
+    ////////////////////
+    if (!this->on_AlignFlakeXY10x_Fine_clicked(true)) {
+      if (skip_requested) {
+        skip_requested = false;
+      } else {
+        ROS_ERROR("AlignFLakeXY10x_Fine");
+        return false;
+      }
     }
-  }
 
-  /////////////////////
-  /// Align XY Fine
-  ////////////////////
-  if (!this->on_AlignFlakeXY10x_Fine_clicked(true)) {
-    if (skip_requested) {
-      skip_requested = false;
-    } else {
-      ROS_ERROR("AlignFLakeXY10x_Fine");
-      return false;
+    /////////
+    /// Capture Image
+    /////////
+    tdmms_autostamp_camera_streamer::CaptureImageTimestamp cap_timestamp;
+    cap_timestamp.request.folder = static_cast<const char *>(
+        lineEdit_picFolder->text().toStdString().c_str());
+    ros::Duration(1).sleep();
+    autostamp_camera_streamer_capture_timestamp.call(cap_timestamp);
+    ros::Duration(1).sleep();
+
+    //////////
+    //// Align by NCC
+    //////////
+    if (!this->on_AlignFlakeNCC_clicked(true)) {
+      if (skip_requested) {
+        skip_requested = false;
+      } else {
+        ROS_ERROR("AlignFLakeNCC");
+        return false;
+      }
     }
-  }
-
-  /////////
-  /// Capture Image
-  /////////
-  tdmms_autostamp_camera_streamer::CaptureImageTimestamp cap_timestamp;
-  cap_timestamp.request.folder = static_cast<const char *>(
-      lineEdit_picFolder->text().toStdString().c_str());
-  ros::Duration(1).sleep();
-  autostamp_camera_streamer_capture_timestamp.call(cap_timestamp);
-  ros::Duration(1).sleep();
-
-  //////////
-  //// Align by NCC
-  //////////
-  if (!this->on_AlignFlakeNCC_clicked(true)) {
-    if (skip_requested) {
-      skip_requested = false;
-    } else {
-      ROS_ERROR("AlignFLakeNCC");
-      return false;
+  } else if (fileVer == 2) {
+    if (!this->on_AddressFlake2_clicked(true)) {
+      if (skip_requested) {
+        skip_requested = false;
+      } else {
+        ROS_ERROR("AddressFlakeFast");
+        return false;
+      }
+    }
+    if (!this->on_AlignFlakeTheta5x2_clicked(true)) {
+      if (skip_requested) {
+        skip_requested = false;
+      } else {
+        ROS_ERROR("AddressFlakeTheta5x2");
+        return false;
+      }
+    }
+    if (!this->on_AlignFlakeXY10x2_clicked(true)) {
+      if (skip_requested) {
+        skip_requested = false;
+      } else {
+        ROS_ERROR("AddressFlakeXY10x2");
+        return false;
+      }
     }
   }
 
@@ -645,7 +718,7 @@ bool QNode::on_LoadChip_clicked(bool check) {
   goal.rotangle_deg.data = -doubleSpinBox_Rotangle->value() - 180.0;
   ac_chip_transfer.sendGoal(goal);
   while (true) {
-    qApp->processEvents();
+    // qApp->processEvents();
     ros::Duration(0.1).sleep();
     actionlib::SimpleClientGoalState state = ac_chip_transfer.getState();
     if (state == actionlib::SimpleClientGoalState::SUCCEEDED) {
@@ -683,7 +756,7 @@ void QNode::on_Stamp_Taihi_clicked(bool check) {
   stamper_sample_xy_cmd_vel.publish(vel);
 
   ros::Duration(0.5).sleep();
-  
+
   geometry_msgs::Point pnt;
   pnt.x = 80000;
   pnt.y = 0;
@@ -754,7 +827,7 @@ void QNode::on_Stamp_Fukki_clicked(bool check) {
   ros::Duration(1).sleep();
 }
 
-bool QNode::on_Alignment_Pos_clicked(bool check) {
+bool QNode::move_Alignment_Pos(int zpos) {
   int pos_sample_xy_x, pos_sample_xy_y;
   pos_sample_xy_x = 750000;
   pos_sample_xy_y = 650000;
@@ -813,7 +886,7 @@ bool QNode::on_Alignment_Pos_clicked(bool check) {
   pnt.y = pos_sample_xy_y;
   stamper_sample_xy_cmd_abs.publish(pnt);
 
-  pnt.x = 585000;
+  pnt.x = zpos;//485000;//585000;//585000;//585000;
   pnt.y = 0;
   stamper_sample_z_cmd_abs.publish(pnt);
   stamper_sample_z_wait_for_stop_client.call(emp_srv);
@@ -821,6 +894,16 @@ bool QNode::on_Alignment_Pos_clicked(bool check) {
   ros::Duration(1).sleep();
   keyence_sample_vacuum_on_publisher.publish(emp);
 
+  return true;
+}
+
+bool QNode::on_Alignment_Pos_clicked(bool check) {
+  move_Alignment_Pos(585000);
+  return true;
+}
+
+bool QNode::on_Alignment_Pos_Low_clicked(bool check) {
+  move_Alignment_Pos(485000);
   return true;
 }
 
@@ -914,7 +997,7 @@ bool QNode::on_UnloadChip_clicked(bool check) {
   goal.rotangle_deg.data = -doubleSpinBox_Rotangle->value() - 180.0;
   ac_chip_transfer.sendGoal(goal);
   while (true) {
-    qApp->processEvents();
+    // qApp->processEvents();
     ros::Duration(0.1).sleep();
     actionlib::SimpleClientGoalState state = ac_chip_transfer.getState();
     if (state == actionlib::SimpleClientGoalState::SUCCEEDED) {
@@ -924,6 +1007,66 @@ bool QNode::on_UnloadChip_clicked(bool check) {
       return false;
     }
   }
+  return true;
+}
+
+
+int QNode::SQLSelectSearchID2(unsigned long long id_image) {
+  QSqlQuery q("", db2);
+  q.prepare(
+      "select idsearch_fk from 2dmms_db.image where "
+      "idimage = ?");
+  q.addBindValue(id_image);
+  if (!q.exec()) {
+    ROS_ERROR("QUERY ERROR, ERROR:%s SENT:%s",
+              q.lastError().text().toStdString().c_str(),
+              q.lastQuery().toStdString().c_str());
+    return false;
+  } else {
+    ROS_DEBUG("QUERY SUCCESS, SENT:%s", q.lastQuery().toStdString().c_str());
+  }
+  q.next();
+
+  return q.value(0).toInt();
+}
+
+int QNode::SQLSelectChipID2(unsigned long long id_image) {
+  QSqlQuery q("", db2);
+  q.prepare(
+      "select idchip_fk from 2dmms_db.image where "
+      "idimage = ?");
+  q.addBindValue(id_image);
+  if (!q.exec()) {
+    ROS_ERROR("QUERY ERROR, ERROR:%s SENT:%s",
+              q.lastError().text().toStdString().c_str(),
+              q.lastQuery().toStdString().c_str());
+    return false;
+  } else {
+    ROS_DEBUG("QUERY SUCCESS, SENT:%s", q.lastQuery().toStdString().c_str());
+  }
+  q.next();
+
+  return q.value(0).toInt();
+}
+
+bool QNode::SQLSelectPositionXY2(int *point_x_target, int *point_y_target,
+                                 unsigned long long id_image) {
+  QSqlQuery q("", db2);
+  q.prepare(
+      "select point_x, point_y from 2dmms_db.image where "
+      "idimage = ?");
+  q.addBindValue(id_image);
+  if (!q.exec()) {
+    ROS_ERROR("QUERY ERROR, ERROR:%s SENT:%s",
+              q.lastError().text().toStdString().c_str(),
+              q.lastQuery().toStdString().c_str());
+    return false;
+  } else {
+    ROS_DEBUG("QUERY SUCCESS, SENT:%s", q.lastQuery().toStdString().c_str());
+  }
+  q.next();
+  *point_x_target = q.value(0).toInt();
+  *point_y_target = q.value(1).toInt();
   return true;
 }
 
@@ -943,6 +1086,7 @@ bool QNode::SQLSelectPositionXY(int *point_x_target, int *point_y_target,
     ROS_DEBUG("QUERY SUCCESS, SENT:%s", q.lastQuery().toStdString().c_str());
   }
   q.next();
+  
   *point_x_target = q.value(0).toInt();
   *point_y_target = q.value(1).toInt();
   return true;
@@ -969,6 +1113,32 @@ QString QNode::SQLSelectFilenameFlakeImage(int position_x, int position_y,
 
   return q.value(0).toString();
 }
+
+QString QNode::SQLSelectFilenameFlakeImage2(int position_x, int position_y,
+                                            int search_id, int chip_id, int objective_lens) {
+  QSqlQuery q("", db2);
+  q.prepare(
+      "select point_x, point_y, s3_url"
+      " from 2dmms_db.image_align where "
+      " idchip_fk = ? and idsearch_fk = ? and idlens_fk = ?"
+      " order by (Pow(point_x-(?), 2) + pow(point_y- (?), 2)) asc"
+            );
+  q.addBindValue(chip_id);
+  q.addBindValue(search_id);
+  q.addBindValue(objective_lens);
+  q.addBindValue(position_x);
+  q.addBindValue(position_y);
+  if (!q.exec())
+    ROS_ERROR("QUERY ERROR, ERROR:%s SENT:%s",
+              q.lastError().text().toStdString().c_str(),
+              q.lastQuery().toStdString().c_str());
+  else
+    ROS_DEBUG("QUERY SUCCESS, SENT:%s", q.lastQuery().toStdString().c_str());
+  q.next();
+
+  return q.value(2).toString();
+}
+
 
 int QNode::SQLSelectSearchID(QString filename) {
   QSqlQuery q("", db);
@@ -1015,6 +1185,54 @@ bool QNode::on_AddressFlakeFast_clicked(bool check) {
     ros::Duration(0.1).sleep();
     actionlib::SimpleClientGoalState state =
         ac_flake_positioner_fast.getState();
+    if (state == actionlib::SimpleClientGoalState::SUCCEEDED) {
+      return true;
+    } else if (state == actionlib::SimpleClientGoalState::PREEMPTED) {
+      return false;
+    } else if (state == actionlib::SimpleClientGoalState::ABORTED) {
+      ROS_ERROR("Failed to Address Flake Fast, continue processing...");
+      return true;
+    }
+  }
+  return false;
+}
+bool QNode::on_AddressFlake2_clicked(bool check) {
+  if (lineEdit_Filename->text() == tr("")) {
+    return false;
+  }
+  QString filename_target;
+  unsigned long long id_image;
+  int id_search;
+  int id_chip;
+  
+  filename_target = lineEdit_Filename->text();
+  id_image = spinBox_ImageID->value();
+  id_search = SQLSelectSearchID2(id_image);
+  id_chip = SQLSelectChipID2(id_image);
+  int point_x_target, point_y_target;
+  SQLSelectPositionXY2(&point_x_target, &point_y_target, id_image);
+
+  ////////////////////////////////////////////////////////
+  /// Goal Status
+  ///////////////////////////////////////////////////////
+  tdmms_autostamp_flake_positioner_action_fast2::PositionFlakeFast2Goal goal;
+  goal.filename_target.data = filename_target.toStdString();
+  goal.point_target.x = point_x_target;
+  goal.point_target.y = point_y_target;
+  goal.id_chiptray.data = spinBox_ChiptrayNo->value();
+  goal.pos_in_chiptray.data = spinBox_PosinChiptray->value();
+  goal.focuspos.data = spinBox_AutoFocus_Zpos->value();
+  goal.id_image.data = id_image;
+  goal.id_search.data = id_search;
+  goal.id_chip.data = id_chip;
+  /// idoukaishi
+  ac_flake_positioner_fast2.sendGoal(goal);
+
+  while (true) {
+    qApp->processEvents();
+    ros::Duration(0.1).sleep();
+    actionlib::SimpleClientGoalState state =
+        ac_flake_positioner_fast2.getState();
     if (state == actionlib::SimpleClientGoalState::SUCCEEDED) {
       return true;
     } else if (state == actionlib::SimpleClientGoalState::PREEMPTED) {
@@ -1391,6 +1609,61 @@ bool QNode::on_ALignFlakeXY10x_clicked(bool check) {
   return false;
 }
 
+bool QNode::on_AlignFlakeXY10x2_clicked(bool check) {
+  ROS_INFO("A");
+  /*****************************************************************************
+   ** Extract Filename
+   *****************************************************************************/
+  if (lineEdit_Filename->text() == tr("")) {
+    return false;
+  }
+  int point_x_target, point_y_target;
+  QString filename_target, filename_target_align;
+  unsigned long long id_image;
+  int id_search;
+  int id_chip;
+  ROS_INFO("AlignFlake");
+  filename_target = lineEdit_Filename->text();
+  id_image = spinBox_ImageID->value();
+  id_search = SQLSelectSearchID2(id_image);
+  id_chip = SQLSelectChipID2(id_image);
+  SQLSelectPositionXY2(&point_x_target, &point_y_target, id_image);
+  filename_target_align =
+      SQLSelectFilenameFlakeImage2(point_x_target, point_y_target, id_search, id_chip, 1);
+
+  /*filename_target = lineEdit_Filename->text();
+  SQLSelectPositionXY(&point_x_target, &point_y_target, filename_target);
+  search_id = SQLSelectSearchID(filename_target);
+  filename_target_align =
+      SQLSelectFilenameFlakeImage(point_x_target, point_y_target, search_id, 1);
+  */
+  /*****************************************************************************
+   ** Preparing Action Library
+   *****************************************************************************/
+  tdmms_autostamp_flake_aligner_xy10x2_action::AlignFlakeXY10x2Goal goal;
+
+  goal.filename_target.data = filename_target_align.toStdString();
+  goal.point_offset.x = lineEdit_Xofs->text().toInt();
+  goal.point_offset.y = lineEdit_Yofs->text().toInt();
+  goal.focuspos.data = spinBox_AutoFocus_Zpos->value();
+  ac_flake_aligner_xy10x2.sendGoal(goal);
+  while (true) {
+    qApp->processEvents();
+    ros::Duration(0.1).sleep();
+    actionlib::SimpleClientGoalState state = ac_flake_aligner_xy10x2.getState();
+    if (state == actionlib::SimpleClientGoalState::SUCCEEDED) {
+      return true;
+    } else if (state == actionlib::SimpleClientGoalState::PREEMPTED) {
+      ROS_WARN("Flake Alignment at 10x preempted");
+      return false;
+    } else if (state == actionlib::SimpleClientGoalState::ABORTED) {
+      ROS_WARN("Flake Alignment at 10x aborted, continue processing...");
+      return true;
+    }
+  }
+  return false;
+}
+
 bool QNode::on_AlignFLakeTheta5x_clicked(bool check) {
   /*****************************************************************************
    ** Extract Filename
@@ -1424,6 +1697,68 @@ bool QNode::on_AlignFLakeTheta5x_clicked(bool check) {
     ros::Duration(0.1).sleep();
     actionlib::SimpleClientGoalState state =
         ac_flake_aligner_xytheta5x.getState();
+    if (state == actionlib::SimpleClientGoalState::SUCCEEDED) {
+      return true;
+    } else if (state == actionlib::SimpleClientGoalState::PREEMPTED) {
+      ROS_WARN("Align XYtheta, preempted");
+      return false;
+    } else if (state == actionlib::SimpleClientGoalState::ABORTED) {
+      ROS_WARN("Failed to Align XYtheta, continue process..");
+      return true;
+    }
+  }
+  return false;
+}
+
+bool QNode::on_AlignFlakeTheta5x2_clicked(bool check) {
+  /*****************************************************************************
+   ** Extract Filename
+   *****************************************************************************/
+  if (lineEdit_Filename->text() == tr("")) {
+    return false;
+  }
+  /*int point_x_target, point_y_target;
+  int search_id;
+  QString filename_target, filename_target_align;*/
+
+  QString filename_target, filename_target_align;
+  unsigned long long id_image;
+  int id_search;
+  int id_chip;
+  ROS_INFO("AlignFlake");
+  filename_target = lineEdit_Filename->text();
+  id_image = spinBox_ImageID->value();
+  id_search = SQLSelectSearchID2(id_image);
+  id_chip = SQLSelectChipID2(id_image);
+  int point_x_target, point_y_target;
+  SQLSelectPositionXY2(&point_x_target, &point_y_target, id_image);
+  filename_target_align =
+      SQLSelectFilenameFlakeImage2(point_x_target, point_y_target, id_search, id_chip, 0);
+
+  /*
+  filename_target = lineEdit_Filename->text();
+  SQLSelectPositionXY(&point_x_target, &point_y_target, filename_target);
+  search_id = SQLSelectSearchID(filename_target);
+  filename_target_align =
+      SQLSelectFilenameFlakeImage(point_x_target, point_y_target, search_id, 0);
+  */
+  ROS_INFO("%s", filename_target_align.toStdString().c_str());
+  /*****************************************************************************
+   ** Preparing Action Library
+   *****************************************************************************/
+  tdmms_autostamp_flake_aligner_xytheta5x2_action::AlignFlakeXYTheta5x2Goal goal;
+  goal.filename_target.data = filename_target_align.toStdString();
+  goal.point_offset.x = lineEdit_Xofs->text().toInt();
+  goal.point_offset.y = lineEdit_Yofs->text().toInt();
+  goal.theta_rad.data =
+      static_cast<double>(doubleSpinBox_Rotangle->value() / 180 * 3.141592);
+  goal.focuspos.data = spinBox_AutoFocus_Zpos->value();
+  ac_flake_aligner_xytheta5x2.sendGoal(goal);
+  while (true) {
+    qApp->processEvents();
+    ros::Duration(0.1).sleep();
+    actionlib::SimpleClientGoalState state =
+        ac_flake_aligner_xytheta5x2.getState();
     if (state == actionlib::SimpleClientGoalState::SUCCEEDED) {
       return true;
     } else if (state == actionlib::SimpleClientGoalState::PREEMPTED) {

@@ -548,7 +548,7 @@
          <property name="geometry">
           <rect>
            <x>150</x>
-           <y>130</y>
+           <y>110</y>
            <width>41</width>
            <height>41</height>
           </rect>
@@ -642,7 +642,7 @@
          <property name="geometry">
           <rect>
            <x>70</x>
-           <y>50</y>
+           <y>30</y>
            <width>41</width>
            <height>41</height>
           </rect>
@@ -655,7 +655,7 @@
          <property name="geometry">
           <rect>
            <x>150</x>
-           <y>50</y>
+           <y>30</y>
            <width>41</width>
            <height>41</height>
           </rect>
@@ -776,7 +776,7 @@
          <property name="geometry">
           <rect>
            <x>70</x>
-           <y>130</y>
+           <y>110</y>
            <width>41</width>
            <height>41</height>
           </rect>
@@ -1136,6 +1136,55 @@
           <string>Z</string>
          </property>
         </widget>
+        <widget class="QLabel" name="label_41">
+         <property name="geometry">
+          <rect>
+           <x>270</x>
+           <y>260</y>
+           <width>71</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>θ</string>
+         </property>
+        </widget>
+        <widget class="QLCDNumber" name="lcdNumber_Sample_Theta">
+         <property name="geometry">
+          <rect>
+           <x>290</x>
+           <y>260</y>
+           <width>111</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="smallDecimalPoint">
+          <bool>false</bool>
+         </property>
+         <property name="numDigits">
+          <number>8</number>
+         </property>
+         <property name="value" stdset="0">
+          <double>0.000000000000000</double>
+         </property>
+         <property name="intValue" stdset="0">
+          <number>0</number>
+         </property>
+        </widget>
         <zorder>label_40</zorder>
         <zorder>label_23</zorder>
         <zorder>spinBox_Sample_Theta_Spd</zorder>
@@ -1182,6 +1231,8 @@
         <zorder>lcdNumber_Sample_X</zorder>
         <zorder>lcdNumber_Sample_Y</zorder>
         <zorder>lcdNumber_Sample_Z</zorder>
+        <zorder>label_41</zorder>
+        <zorder>lcdNumber_Sample_Theta</zorder>
        </widget>
        <widget class="QFrame" name="frame_9">
         <property name="geometry">
@@ -1303,7 +1354,7 @@
          <property name="geometry">
           <rect>
            <x>60</x>
-           <y>130</y>
+           <y>110</y>
            <width>41</width>
            <height>41</height>
           </rect>
@@ -1418,7 +1469,7 @@
          <property name="geometry">
           <rect>
            <x>140</x>
-           <y>50</y>
+           <y>30</y>
            <width>41</width>
            <height>41</height>
           </rect>
@@ -1510,7 +1561,7 @@
          <property name="geometry">
           <rect>
            <x>60</x>
-           <y>50</y>
+           <y>30</y>
            <width>41</width>
            <height>41</height>
           </rect>
@@ -1615,7 +1666,7 @@
          <property name="geometry">
           <rect>
            <x>140</x>
-           <y>130</y>
+           <y>110</y>
            <width>41</width>
            <height>41</height>
           </rect>

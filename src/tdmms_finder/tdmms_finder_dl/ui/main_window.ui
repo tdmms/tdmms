@@ -1,0 +1,3050 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindowDesign</class>
+ <widget class="QMainWindow" name="MainWindowDesign">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1264</width>
+    <height>483</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QRosApp</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../resources/images.qrc">
+    <normaloff>:/images/icon.png</normaloff>:/images/icon.png</iconset>
+  </property>
+  <property name="locale">
+   <locale language="English" country="Australia"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout">
+    <item>
+     <widget class="QTabWidget" name="tab_manager">
+      <property name="minimumSize">
+       <size>
+        <width>100</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="locale">
+       <locale language="English" country="Australia"/>
+      </property>
+      <property name="currentIndex">
+       <number>4</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Deep Learning</string>
+       </attribute>
+       <widget class="QCheckBox" name="checkBox_TestMode_DL">
+        <property name="geometry">
+         <rect>
+          <x>1110</x>
+          <y>140</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Test mode</string>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="tableWidget_SearchArea_DL">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>1211</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <column>
+         <property name="text">
+          <string>P1.X</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>P1.Y</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>P2.X</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>P2.Y</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>P3.X</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>P3.Y</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>P4.X</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>P4.Y</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>FILE</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Prog.</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Pos</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>ChipID</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QSpinBox" name="spinBox_ChiptrayID_DL">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>110</y>
+          <width>61</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>1000</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_8">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>110</y>
+          <width>71</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>1．Tray ID</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_CaptureEdge_DL">
+        <property name="geometry">
+         <rect>
+          <x>520</x>
+          <y>150</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>E．Cap. edges</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_CaptureAlignmentImage_DL">
+        <property name="geometry">
+         <rect>
+          <x>650</x>
+          <y>150</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>F．Cap. align. image</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_StartFind_DL">
+        <property name="geometry">
+         <rect>
+          <x>780</x>
+          <y>150</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>G．Start search</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_CaptureChiptray_DL">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>150</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>A．Capture chiptray</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_DetectSiChips_DL">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>150</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>B．Detect Si chips</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_StartSequence_DL">
+        <property name="geometry">
+         <rect>
+          <x>830</x>
+          <y>110</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>4. Start</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_SetP3_DL">
+        <property name="geometry">
+         <rect>
+          <x>970</x>
+          <y>150</y>
+          <width>31</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>P3</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_SetP1_DL">
+        <property name="geometry">
+         <rect>
+          <x>910</x>
+          <y>150</y>
+          <width>31</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>P1</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_SetP2_DL">
+        <property name="geometry">
+         <rect>
+          <x>940</x>
+          <y>150</y>
+          <width>31</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>P2</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_SetP4_DL">
+        <property name="geometry">
+         <rect>
+          <x>1000</x>
+          <y>150</y>
+          <width>31</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>P4</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_Delete_DL">
+        <property name="geometry">
+         <rect>
+          <x>1070</x>
+          <y>150</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ー</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_Add_DL">
+        <property name="geometry">
+         <rect>
+          <x>1030</x>
+          <y>150</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>＋</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_InsertSearchRecord_DL">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>150</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>C. Search record</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_Folder_DL">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>110</y>
+          <width>351</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="readOnly">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_9">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>110</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>2. S3 Parent Key</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_SetKey_DL">
+        <property name="geometry">
+         <rect>
+          <x>400</x>
+          <y>150</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>D. Set key</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="spinBox_AreaThresh_DL">
+        <property name="geometry">
+         <rect>
+          <x>740</x>
+          <y>110</y>
+          <width>81</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>50000</number>
+        </property>
+        <property name="singleStep">
+         <number>100</number>
+        </property>
+        <property name="value">
+         <number>2000</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_10">
+        <property name="geometry">
+         <rect>
+          <x>630</x>
+          <y>110</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>3. Area thresh.</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_ManualRegistration_DL">
+        <property name="geometry">
+         <rect>
+          <x>1110</x>
+          <y>110</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Man. Reg.</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_PrepareManualRegistration_DL">
+        <property name="geometry">
+         <rect>
+          <x>970</x>
+          <y>110</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Prepare Man. Reg.</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_Enhance_DL">
+        <property name="geometry">
+         <rect>
+          <x>1110</x>
+          <y>160</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Enhance</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Rule based (Search)</string>
+       </attribute>
+       <widget class="QTableWidget" name="tableWidget_SearchArea_RB">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>1211</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <column>
+         <property name="text">
+          <string>P1.X</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>P1.Y</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>P2.X</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>P2.Y</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>P3.X</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>P3.Y</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>P4.X</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>P4.Y</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>FILE</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Prog.</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Pos</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>ChipID</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QSpinBox" name="spinBox_ChiptrayID_RB">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>110</y>
+          <width>61</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>1000</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_17">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>110</y>
+          <width>71</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>1．Tray ID</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_18">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>110</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>2. S3 Parent Key</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_Folder_RB">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>110</y>
+          <width>421</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="readOnly">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_StartSequence_RB">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>110</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>3. Start</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_SetP3_RB">
+        <property name="geometry">
+         <rect>
+          <x>1170</x>
+          <y>150</y>
+          <width>31</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>P3</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_SetP4_RB">
+        <property name="geometry">
+         <rect>
+          <x>1200</x>
+          <y>150</y>
+          <width>31</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>P4</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_SetP1_RB">
+        <property name="geometry">
+         <rect>
+          <x>1110</x>
+          <y>150</y>
+          <width>31</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>P1</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_Add_RB">
+        <property name="geometry">
+         <rect>
+          <x>1140</x>
+          <y>110</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>＋</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_Delete_RB">
+        <property name="geometry">
+         <rect>
+          <x>1180</x>
+          <y>110</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ー</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_SetP2_RB">
+        <property name="geometry">
+         <rect>
+          <x>1140</x>
+          <y>150</y>
+          <width>31</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>P2</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_CaptureChiptray_RB">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>150</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>A．Capture chiptray</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_DetectSiChips_RB">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>150</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>B．Detect Si chips</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_SetKey_RB">
+        <property name="geometry">
+         <rect>
+          <x>490</x>
+          <y>150</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>D. Set key</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_CaptureAlignmentImage_RB">
+        <property name="geometry">
+         <rect>
+          <x>790</x>
+          <y>150</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>F．Cap. align. images</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_CaptureEdge_RB">
+        <property name="geometry">
+         <rect>
+          <x>630</x>
+          <y>150</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>E．Cap. edges</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_StartFind_RB">
+        <property name="geometry">
+         <rect>
+          <x>950</x>
+          <y>150</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>G．Start search</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_InsertSearchRecord_RB">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>150</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>C. Insert search record</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_PrepareManualRegistration_RB">
+        <property name="geometry">
+         <rect>
+          <x>860</x>
+          <y>110</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Prepare Man. Reg.</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_ManualRegistration_RB">
+        <property name="geometry">
+         <rect>
+          <x>1000</x>
+          <y>110</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Man. Reg.</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_6">
+       <attribute name="title">
+        <string>Rule based (Parameters)</string>
+       </attribute>
+       <widget class="QTableWidget" name="tableWidget_DetectionParams_RB">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>1211</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <column>
+         <property name="text">
+          <string>class</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>class_label</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>exposure</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>cent_h</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>delta_h</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>cent_s</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>delta_s</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>cent_v</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>delta_v</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>edge_low</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>edge_high</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>edge_alpha</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>entropy_min</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>entropy_max</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>area_threshold</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>area_holes_threshold</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>close_edges_min_amp</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>close_edges_max_gap</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>dilation</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>erosion</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>bg_image</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>edge_detect</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>dilation2</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>erosion2</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QToolButton" name="Button_OpenTestWindows_RB">
+        <property name="geometry">
+         <rect>
+          <x>1090</x>
+          <y>170</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Open Windows</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_CloseTestWindows_RB">
+        <property name="geometry">
+         <rect>
+          <x>1090</x>
+          <y>200</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Close Windows</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_SaveSettings_RB">
+        <property name="geometry">
+         <rect>
+          <x>1090</x>
+          <y>140</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Save Settings</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_LoadSettings_RB">
+        <property name="geometry">
+         <rect>
+          <x>1090</x>
+          <y>110</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Load Settings</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+       <widget class="QFrame" name="frame">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>110</y>
+          <width>1021</width>
+          <height>281</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLabel" name="label_20">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Cent_h</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_CentS_RB">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>70</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>-4000</number>
+         </property>
+         <property name="maximum">
+          <number>4000</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_AreaThresh_RB">
+         <property name="geometry">
+          <rect>
+           <x>900</x>
+           <y>50</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>50000</number>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_EntropyMax_RB">
+         <property name="geometry">
+          <rect>
+           <x>660</x>
+           <y>30</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_AreaThresh_RB">
+         <property name="geometry">
+          <rect>
+           <x>660</x>
+           <y>50</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>50000</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_HoleThresh_RB">
+         <property name="geometry">
+          <rect>
+           <x>660</x>
+           <y>70</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>50000</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_EdgeLow_RB">
+         <property name="geometry">
+          <rect>
+           <x>380</x>
+           <y>150</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_EntropyMin_RB">
+         <property name="geometry">
+          <rect>
+           <x>900</x>
+           <y>10</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="maximum">
+          <number>1000</number>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_DeltaV_RB">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>130</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>4000</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_26">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>150</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Edge_low</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_EntropyMin_RB">
+         <property name="geometry">
+          <rect>
+           <x>660</x>
+           <y>10</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_27">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>170</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Edge_high</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_29">
+         <property name="geometry">
+          <rect>
+           <x>530</x>
+           <y>30</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Entropy_max</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_CentV_RB">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>110</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>-4000</number>
+         </property>
+         <property name="maximum">
+          <number>4000</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_CentS_RB">
+         <property name="geometry">
+          <rect>
+           <x>380</x>
+           <y>70</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>-4000</number>
+         </property>
+         <property name="maximum">
+          <number>4000</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_EdgeHigh_RB">
+         <property name="geometry">
+          <rect>
+           <x>380</x>
+           <y>170</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_Exposure_RB">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>10</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="maximum">
+          <number>10000</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_28">
+         <property name="geometry">
+          <rect>
+           <x>530</x>
+           <y>10</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Entropy_min</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_30">
+         <property name="geometry">
+          <rect>
+           <x>530</x>
+           <y>50</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Area_threshold</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_CentH_RB">
+         <property name="geometry">
+          <rect>
+           <x>380</x>
+           <y>30</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>-4000</number>
+         </property>
+         <property name="maximum">
+          <number>4000</number>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_EdgeLow_RB">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>150</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_EdgeHigh_RB">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>170</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_DeltaH_RB">
+         <property name="geometry">
+          <rect>
+           <x>380</x>
+           <y>50</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>4000</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_19">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>11</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Exposure</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_DeltaH_RB">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>50</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>4000</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_24">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>110</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Cent_v</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_22">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>70</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Cent_s</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_DeltaS_RB">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>90</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>4000</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_Exposure_RB">
+         <property name="geometry">
+          <rect>
+           <x>380</x>
+           <y>10</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="maximum">
+          <number>10000</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_23">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>90</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Delta_s</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_CentH_RB">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>30</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>-4000</number>
+         </property>
+         <property name="maximum">
+          <number>4000</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_31">
+         <property name="geometry">
+          <rect>
+           <x>530</x>
+           <y>70</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Hole_threshold</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_21">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>50</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Delta_h</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_25">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>130</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Delta_v</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_CentV_RB">
+         <property name="geometry">
+          <rect>
+           <x>380</x>
+           <y>110</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>-4000</number>
+         </property>
+         <property name="maximum">
+          <number>4000</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_EntropyMax_RB">
+         <property name="geometry">
+          <rect>
+           <x>900</x>
+           <y>30</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_DeltaV_RB">
+         <property name="geometry">
+          <rect>
+           <x>380</x>
+           <y>130</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="maximum">
+          <number>4000</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_DeltaS_RB">
+         <property name="geometry">
+          <rect>
+           <x>380</x>
+           <y>90</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>4000</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_HoleThresh_RB">
+         <property name="geometry">
+          <rect>
+           <x>900</x>
+           <y>70</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>50000</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_32">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>250</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>BG_Image</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_BGImage">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>250</y>
+           <width>671</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>/home/e-kagaku/images/masubuchi/Background_Image/SiO2_290nm_20190610_12bit.tiff</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QToolButton" name="Button_SaveBG_RB">
+         <property name="geometry">
+          <rect>
+           <x>830</x>
+           <y>240</y>
+           <width>91</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Save BG</string>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextBesideIcon</enum>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_EdgeAlpha_RB">
+         <property name="geometry">
+          <rect>
+           <x>380</x>
+           <y>190</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_34">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>190</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Edge_alpha</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_EdgeAlpha_RB">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>190</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_Dilation_RB">
+         <property name="geometry">
+          <rect>
+           <x>660</x>
+           <y>130</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_CloseEdgeMinAmp_RB">
+         <property name="geometry">
+          <rect>
+           <x>660</x>
+           <y>90</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_Erosion_RB">
+         <property name="geometry">
+          <rect>
+           <x>660</x>
+           <y>150</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_CloseEdgeMaxGap_RB">
+         <property name="geometry">
+          <rect>
+           <x>660</x>
+           <y>110</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_35">
+         <property name="geometry">
+          <rect>
+           <x>530</x>
+           <y>150</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>erosion</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_36">
+         <property name="geometry">
+          <rect>
+           <x>490</x>
+           <y>90</y>
+           <width>161</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>close_edge_min_amp</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_37">
+         <property name="geometry">
+          <rect>
+           <x>490</x>
+           <y>110</y>
+           <width>161</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>close_edge_max_gap</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_38">
+         <property name="geometry">
+          <rect>
+           <x>530</x>
+           <y>130</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>dilation</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_CloseEdgeMaxGap_RB">
+         <property name="geometry">
+          <rect>
+           <x>900</x>
+           <y>110</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_CloseEdgeMinAmp_RB">
+         <property name="geometry">
+          <rect>
+           <x>900</x>
+           <y>90</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_Dilation_RB">
+         <property name="geometry">
+          <rect>
+           <x>900</x>
+           <y>130</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_Erosion_RB">
+         <property name="geometry">
+          <rect>
+           <x>900</x>
+           <y>150</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QToolButton" name="Button_LoadBG_RB">
+         <property name="geometry">
+          <rect>
+           <x>920</x>
+           <y>240</y>
+           <width>91</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Load BG</string>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextBesideIcon</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_39">
+         <property name="geometry">
+          <rect>
+           <x>530</x>
+           <y>170</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Edge Detection</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_EdgeDetect_RB">
+         <property name="geometry">
+          <rect>
+           <x>660</x>
+           <y>170</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>1</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_EdgeDetect_RB">
+         <property name="geometry">
+          <rect>
+           <x>900</x>
+           <y>170</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_Dilation2_RB">
+         <property name="geometry">
+          <rect>
+           <x>660</x>
+           <y>190</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_Dilation2_RB">
+         <property name="geometry">
+          <rect>
+           <x>900</x>
+           <y>190</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_40">
+         <property name="geometry">
+          <rect>
+           <x>530</x>
+           <y>190</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Dilation2</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_41">
+         <property name="geometry">
+          <rect>
+           <x>530</x>
+           <y>210</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Erosion2</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_Erosion2_RB">
+         <property name="geometry">
+          <rect>
+           <x>660</x>
+           <y>210</y>
+           <width>231</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox_Erosion2_RB">
+         <property name="geometry">
+          <rect>
+           <x>900</x>
+           <y>210</y>
+           <width>111</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QToolButton" name="Button_DeleteParams_RB">
+        <property name="geometry">
+         <rect>
+          <x>1050</x>
+          <y>150</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ー</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="Button_AddParams_RB">
+        <property name="geometry">
+         <rect>
+          <x>1050</x>
+          <y>110</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>＋</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_TestMode_RB">
+        <property name="geometry">
+         <rect>
+          <x>1090</x>
+          <y>230</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Test mode</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_Enhance_RB">
+        <property name="geometry">
+         <rect>
+          <x>1090</x>
+          <y>250</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Enhance</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Manual Registration</string>
+       </attribute>
+       <widget class="QSpinBox" name="spinBox_pic_count">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>40</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>1000</number>
+        </property>
+        <property name="value">
+         <number>1</number>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_SetPicFolder">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>10</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Local Folder</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_picFolder">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>251</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Button_SaveImage">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>40</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>SaveImage</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_33">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>80</y>
+          <width>71</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>1．Tray ID</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="spinBox_ChiptrayID_MR">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>80</y>
+          <width>61</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>1000</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Settings</string>
+       </attribute>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>70</y>
+          <width>61</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Step Y</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_12">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>100</y>
+          <width>101</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Shutter speed</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="spinBox_StepY">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>70</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>1000</number>
+        </property>
+        <property name="value">
+         <number>50</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_6">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>16</y>
+          <width>81</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Delay (ms)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="Exposure_SpinBox">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>100</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>500000</number>
+        </property>
+        <property name="value">
+         <number>5000</number>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="spinBox_Delay">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>10</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>1000</number>
+        </property>
+        <property name="value">
+         <number>150</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_4">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>39</y>
+          <width>61</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>StepX</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="spinBox_StepX">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>40</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>1000</number>
+        </property>
+        <property name="value">
+         <number>100</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_16">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>20</y>
+          <width>81</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>S3 Bucket</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_S3Bucket">
+        <property name="geometry">
+         <rect>
+          <x>360</x>
+          <y>20</y>
+          <width>491</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QFrame" name="frame_2">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>10</y>
+          <width>621</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+       </widget>
+       <widget class="QFrame" name="frame_3">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>100</y>
+          <width>621</width>
+          <height>141</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLineEdit" name="lineEdit_DBHostName">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>40</y>
+           <width>491</width>
+           <height>29</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_14">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>70</y>
+           <width>81</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>DB User</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_DBPassword">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>100</y>
+           <width>491</width>
+           <height>29</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>mlab2dmms</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_15">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>100</y>
+           <width>81</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>DB Passwd</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_DBUserName">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>70</y>
+           <width>491</width>
+           <height>29</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_13">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>40</y>
+           <width>71</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>DB Host</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_DBName">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>10</y>
+           <width>491</width>
+           <height>29</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>2dmms_db</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_11">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>10</y>
+           <width>71</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>DB</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </widget>
+       <zorder>frame_2</zorder>
+       <zorder>label_5</zorder>
+       <zorder>label_12</zorder>
+       <zorder>spinBox_StepY</zorder>
+       <zorder>label_6</zorder>
+       <zorder>Exposure_SpinBox</zorder>
+       <zorder>spinBox_Delay</zorder>
+       <zorder>label_4</zorder>
+       <zorder>spinBox_StepX</zorder>
+       <zorder>label_16</zorder>
+       <zorder>lineEdit_S3Bucket</zorder>
+       <zorder>frame_3</zorder>
+      </widget>
+      <widget class="QWidget" name="tab_status">
+       <attribute name="title">
+        <string>Ros Communications</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QGroupBox" name="groupBox_12">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="title">
+           <string>Logging</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="0" column="0">
+            <widget class="QListView" name="view_logging"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>CommandPanel</string>
+       </attribute>
+       <widget class="QPushButton" name="quit_button">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>350</y>
+          <width>307</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Quit</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="button_connect">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>320</y>
+          <width>85</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Set the target to the current joint trajectory state.</string>
+        </property>
+        <property name="statusTip">
+         <string>Clear all waypoints and set the target to the current joint trajectory state.</string>
+        </property>
+        <property name="text">
+         <string>Connect</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>287</width>
+          <height>303</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Ros Master</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="text">
+            <string>Ros Master Url</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QLineEdit" name="line_edit_master">
+           <property name="text">
+            <string>http://192.168.1.2:11311/</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="text">
+            <string>Ros IP</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0" colspan="2">
+          <widget class="QLineEdit" name="line_edit_host">
+           <property name="text">
+            <string>192.168.1.67</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="text">
+            <string>Ros Hostname</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0" colspan="2">
+          <widget class="QLineEdit" name="line_edit_topic">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>unused</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0" colspan="2">
+          <widget class="QCheckBox" name="checkbox_use_environment">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
+           <property name="text">
+            <string>Use environment variables</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0" colspan="2">
+          <widget class="QCheckBox" name="checkbox_remember_settings">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
+           <property name="text">
+            <string>Remember settings on startup</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>170</width>
+             <height>21</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1264</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;App</string>
+    </property>
+    <addaction name="action_Preferences"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
+    <addaction name="actionAbout_Qt"/>
+    <addaction name="separator"/>
+    <addaction name="action_Quit"/>
+   </widget>
+   <addaction name="menu_File"/>
+  </widget>
+  <action name="action_Quit">
+   <property name="text">
+    <string>&amp;Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="action_Preferences">
+   <property name="text">
+    <string>&amp;Preferences</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>&amp;About</string>
+   </property>
+  </action>
+  <action name="actionAbout_Qt">
+   <property name="text">
+    <string>About &amp;Qt</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../resources/images.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>action_Quit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindowDesign</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>quit_button</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindowDesign</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1976</x>
+     <y>452</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>469</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

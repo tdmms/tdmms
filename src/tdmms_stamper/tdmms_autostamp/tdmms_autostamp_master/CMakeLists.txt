@@ -43,7 +43,7 @@ include_directories(
 
 # this comes from qt_build's qt-ros.cmake which is automatically 
 # included via the dependency call in package.xml
-rosbuild_prepare_qt4(QtCore QtGui QtSql QtDialog QtWidgets) # Add the appropriate components to the component list here
+rosbuild_prepare_qt4(QtCore QtGui QtSql QtDialog QtWidgets QtNetwork) # Add the appropriate components to the component list here
 
 ##############################################################################
 # Sections

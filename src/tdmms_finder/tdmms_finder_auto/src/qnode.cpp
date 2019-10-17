@@ -115,7 +115,7 @@ bool QNode::init() {
   QStringList exfoliator_names = SQLGetExfoliatorName();
   for (int i = 0; i < exfoliator_names.size(); i++)
     comboBox_Exfoliator->addItem(exfoliator_names[i]);
-  
+
   on_Button_Add_clicked();
   ros::start();
 
@@ -184,6 +184,12 @@ void QNode::joy_Callback(const sensor_msgs::Joy& joy_msg) {
             static_cast<int>(currpoint.x), static_cast<int>(currpoint.y),
             0000000);
     fp_tdmms_finder_SaveImage(filename);
+    /*
+      sprintf(filename, "%s/m_%010d_%010d_%010d_%010d.tiff",
+            (char*)lineEdit_picFolder->text().toStdString().c_str(), piccount,
+            static_cast<int>(currpoint.x), static_cast<int>(currpoint.y),
+            0000000);
+            fp_tdmms_finder_SaveImage_raw(filename);*/
     piccount++;
     spinBox_pic_count->setValue(piccount);
   }
@@ -1059,18 +1065,36 @@ void QNode::on_Button_StartFind_clicked() {
         fp_tdmms_finder_Find(&result, &pos_x, &pos_y, &score);
 
         if (checkBox_SaveAll->isChecked()) {
-          snprintf(
+          /*snprintf(
               filename, sizeof(filename), "%s/a_%010d_%010d_%010d_%010d.tiff",
               SearchAreaTableWidget->item(row, 8)->text().toStdString().c_str(),
               flakecount, static_cast<int>(itr->x), static_cast<int>(itr->y),
               score);
-          fp_tdmms_finder_SaveImage_raw(filename);
+          */
+          //fp_tdmms_finder_SaveImage_raw(filename);
+          snprintf(
+              filename, sizeof(filename), "%s/a_%010d_%010d_%010d_%010d.jpg",
+              SearchAreaTableWidget->item(row, 8)->text().toStdString().c_str(),
+              flakecount, static_cast<int>(itr->x), static_cast<int>(itr->y),
+              score);
+          fp_tdmms_finder_SaveImage(filename);
+
           SQLInsertMetaImage(flakecount, filename, static_cast<int>(itr->x),
                              static_cast<int>(itr->y), id_search, id_chip);
           flakecount++;
         }
 
         if (result == true) {
+          // Save OM Image for DL training
+          snprintf(
+              filename, sizeof(filename), "%s/dl_%010d_%010d_%010d_%010d.jpg",
+              SearchAreaTableWidget->item(row, 8)->text().toStdString().c_str(),
+              flakecount, static_cast<int>(itr->x), static_cast<int>(itr->y),
+              score);
+          fp_tdmms_finder_SaveImage(filename);
+          flakecount++;
+          ////////////////////////////////
+          
           geometry_msgs::Point point_new;
           ObjectFeatures feature;
           point_new.x = itr->x + 120.0 / 2000.0 * (pos_x - 1000);

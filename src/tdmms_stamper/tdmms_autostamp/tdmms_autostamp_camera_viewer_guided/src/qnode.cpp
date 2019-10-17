@@ -118,19 +118,21 @@ void QNode::imageStreamCallback(const sensor_msgs::Image::ConstPtr &Image) {
   hv_Width = 744;
   hv_Height = 480;
   hv_Offset = 55;
-  w.SetColor("red");
-  w.DispLine((HTuple)0, hv_Width / 2, hv_Height, hv_Width / 2);
-  w.DispLine(hv_Height / 2, (HTuple)0, hv_Height / 2, hv_Width);
-  w.SetColor("green");
-  w.DispLine((HTuple)0, hv_Width / 2 - hv_Offset, hv_Height,
-             hv_Width / 2 - hv_Offset);
-  w.DispLine(hv_Height / 2 - hv_Offset, (HTuple)0, hv_Height / 2 - hv_Offset,
-             hv_Width);
-  w.DispLine((HTuple)0, hv_Width / 2 + hv_Offset, hv_Height,
-             hv_Width / 2 + hv_Offset);
-  w.DispLine(hv_Height / 2 + hv_Offset, (HTuple)0, hv_Height / 2 + hv_Offset,
-             hv_Width);
 
+  if (checkBox_DisplayGrid->isChecked()) {
+    w.SetColor("red");
+    w.DispLine((HTuple)0, hv_Width / 2, hv_Height, hv_Width / 2);
+    w.DispLine(hv_Height / 2, (HTuple)0, hv_Height / 2, hv_Width);
+    w.SetColor("red");
+    w.DispLine((HTuple)0, hv_Width / 2 - hv_Offset, hv_Height,
+               hv_Width / 2 - hv_Offset);
+    w.DispLine(hv_Height / 2 - hv_Offset, (HTuple)0, hv_Height / 2 - hv_Offset,
+               hv_Width);
+    w.DispLine((HTuple)0, hv_Width / 2 + hv_Offset, hv_Height,
+               hv_Width / 2 + hv_Offset);
+    w.DispLine(hv_Height / 2 + hv_Offset, (HTuple)0, hv_Height / 2 + hv_Offset,
+               hv_Width);
+  }
   /////////////////////////
   // Extract Edge if Checkbox is enabled
   ////////////////////////
@@ -358,6 +360,7 @@ void QNode::reloadEdgeInformation() {
 }
 
 void QNode::drawEdge() {
+  w.SetColor("white");
   for (int i = 0; i < tableWidget_Edges->rowCount(); i++) {
     if (tableWidget_Edges->item(i, 0)->checkState() == Qt::Checked) {
       HObject ho_Edges_transformed;

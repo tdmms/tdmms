@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+	<node pkg="tdmms_finder_dl" name="tdmms_finder_dl" type="tdmms_finder_dl"/>
+        <node pkg="tdmms_dbmanager" name="tdmms_dbmanager" type="tdmms_dbmanager"/>
+        <node pkg="tdmms_finder_network_support" name="tdmms_finder_network_support" type="nwsupport.py"/>
+        <node pkg="tdmms_finder_teleop" name="tdmms_finder_teleop" type="tdmms_finder_teleop"/>
+	<node pkg="nic_100a" name="nic_100a_master" type="nic_100a_master"/>
+	<node pkg="adm2" name="adm2_master" type="adm2_master"/>
+	<node pkg="joy" name="joy_node" type="joy_node"/>
+	<node pkg="lv_ncnt_n" name="lv_ncnt_n_master" type="lv_ncnt_n_master" />
+        <node pkg="afc_5" name="afc_5_master" type="afc_5_master"/>
+        <node pkg="ace2000" name="ace2000_node" type="ace2000_node"/>
+        <node name="soundplay_node" pkg="sound_play" type="soundplay_node.py"/>
+</launch>

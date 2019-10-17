@@ -342,6 +342,19 @@
          </rect>
         </property>
        </widget>
+       <widget class="QCheckBox" name="checkBox_DisplayGrid">
+        <property name="geometry">
+         <rect>
+          <x>310</x>
+          <y>440</y>
+          <width>121</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>DisplayGrid</string>
+        </property>
+       </widget>
        <zorder>label_6</zorder>
        <zorder>label_8</zorder>
        <zorder>label_7</zorder>
@@ -363,6 +376,7 @@
        <zorder>pushButton_SaveFile</zorder>
        <zorder>tableWidget_Edges</zorder>
        <zorder>lineEdit_DataFolder</zorder>
+       <zorder>checkBox_DisplayGrid</zorder>
       </widget>
       <widget class="QWidget" name="tab_status">
        <attribute name="title">

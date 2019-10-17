@@ -68,6 +68,7 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
   qnode.lineEdit_DataFolder = ui.lineEdit_DataFolder;
   qnode.tableWidget_Edges = ui.tableWidget_Edges;
   qnode.checkBox_ExtractEdge = ui.checkBox_ExtractEdge;
+  qnode.checkBox_DisplayGrid = ui.checkBox_DisplayGrid;
   qnode.horizontalSlider_Xofs = ui.horizontalSlider_Xofs;
   qnode.horizontalSlider_Yofs = ui.horizontalSlider_Yofs;
 

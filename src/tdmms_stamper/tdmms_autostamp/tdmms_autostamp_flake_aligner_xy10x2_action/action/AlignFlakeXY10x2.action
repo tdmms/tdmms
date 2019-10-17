@@ -1,0 +1,12 @@
+#global definition 
+std_msgs/String filename_reference
+std_msgs/String filename_target
+geometry_msgs/Point point_offset
+std_msgs/UInt32 focuspos
+---
+#result definition
+geometry_msgs/Point point_result
+---
+#feedback
+std_msgs/Byte currentState
+geometry_msgs/Point currentPosition

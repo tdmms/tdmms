@@ -357,11 +357,11 @@ void MainWindow::dropEvent(QDropEvent* event){
     bool success;
     int row, col, topIndex;
     success = dropOn(&row, &col, &topIndex);
-    if(success){
+    if(success) {
       int selRow = ui.tdmtableWidget->currentRow();
       int top = selRow;
       int dropRow = row;
-      if(dropRow  == -1){
+      if(dropRow  == -1) {
         dropRow = ui.tdmtableWidget->rowCount();
       }
       int offset = dropRow - top;

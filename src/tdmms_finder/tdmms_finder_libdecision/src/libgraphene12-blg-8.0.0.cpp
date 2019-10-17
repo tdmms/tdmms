@@ -56,13 +56,13 @@ extern "C" Herror tdmms_finder_Find(bool *dev, int *pos_x, int *pos_y,
   //------------------------------------------
   hv_cent_H = -300;
   hv_delta_H = 600;
-  hv_cent_S = -230;
-  hv_delta_S = 150;
-  hv_cent_V = -310;
-  hv_delta_V = 100;
-  hv_area_threshold = 1000;
+  hv_cent_S = -200;
+  hv_delta_S = 200;
+  hv_cent_V = -285;
+  hv_delta_V = 270;
+  hv_area_threshold = 5000;
   hv_area_holes_threshold = 500;
-  hv_edge_alpha = 3;
+  hv_edge_alpha = 1;
   hv_edge_low = 20;
   hv_edge_high = 50;
   hv_entropy_min = 0;
@@ -174,7 +174,7 @@ extern "C" Herror tdmms_finder_Initialize() {
     HTuple step_val3 = 1;
     for (hv_Index = 0; hv_Index.Continue(end_val3, step_val3);
          hv_Index += step_val3) {
-      GetComputeDeviceInfo(HTuple(hv_DeviceIdentifiers[hv_Index]), "name",
+      GetComputeDeviceInfo(HTuple(hv_DeviceIdentifiers[hv_Index]), "name,
                            &hv_DeviceName);
       GetComputeDeviceInfo(HTuple(hv_DeviceIdentifiers[hv_Index]), "vendor",
                            &hv_DeviceVendor);
@@ -195,7 +195,7 @@ extern "C" Herror tdmms_finder_Initialize() {
 
   // Load background image
   TupleEnvironment("HOME", &hv_homedir);
-  hv_bgfile = "/images/masubuchi/Background_Image/SiO2_290nm_20180927_12bit.tiff";
+  hv_bgfile = "/images/masubuchi/Background_Image/SiO2_290nm_20190604_12bit.tiff";
   hv_bgfilepath = hv_homedir+hv_bgfile;
 
   ReadImage(&ho_Image_BG, hv_bgfilepath);

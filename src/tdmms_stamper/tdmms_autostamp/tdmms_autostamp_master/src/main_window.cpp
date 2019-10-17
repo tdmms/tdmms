@@ -19,6 +19,7 @@
 #include <QtGui>
 #include <QMessageBox>
 #include <QDir>
+#include <QtNetwork>
 #include <iostream>
 #include "../include/tdmms_autostamp_master/main_window.hpp"
 
@@ -66,6 +67,7 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
                                        // qt-designer should have this already
                                        // hardwired, but often loses it
                                        // (settings?).
+  fileVer = 1;
   QObject::connect(&qnode, SIGNAL(rosShutdown()), this, SLOT(close()));
 
   QObject::connect(ui.pushButton_SetPicFolder, SIGNAL(clicked(bool)), this,
@@ -82,14 +84,20 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
                    SLOT(on_AddressFlake_clicked(bool)));
   QObject::connect(ui.pushButton_AddressFlakeFast, SIGNAL(clicked(bool)),
                    &qnode, SLOT(on_AddressFlakeFast_clicked(bool)));
+  QObject::connect(ui.pushButton_AddressFlake2, SIGNAL(clicked(bool)),
+                   &qnode, SLOT(on_AddressFlake2_clicked(bool)));
   QObject::connect(ui.pushButton_AlignFlakeXY10x, SIGNAL(clicked(bool)), &qnode,
                    SLOT(on_ALignFlakeXY10x_clicked(bool)));
+  QObject::connect(ui.pushButton_AlignFlakeXY10x2, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_AlignFlakeXY10x2_clicked(bool)));
   QObject::connect(ui.pushButton_AlignFlakeXY10x_Fine, SIGNAL(clicked(bool)),
                    &qnode, SLOT(on_AlignFlakeXY10x_Fine_clicked(bool)));
   QObject::connect(ui.pushButton_AlignFlakeNCC, SIGNAL(clicked(bool)), &qnode,
                    SLOT(on_AlignFlakeNCC_clicked(bool)));
   QObject::connect(ui.pushButton_AlignFlakeTheta5x, SIGNAL(clicked(bool)),
                    &qnode, SLOT(on_AlignFLakeTheta5x_clicked(bool)));
+  QObject::connect(ui.pushButton_AlignFlakeTheta5x2, SIGNAL(clicked(bool)),
+                   &qnode, SLOT(on_AlignFlakeTheta5x2_clicked(bool)));
   QObject::connect(ui.pushButton_AlignFlakeTheta10x, SIGNAL(clicked(bool)),
                    &qnode, SLOT(on_AlignFlakeTheta10x_clicked(bool)));
   QObject::connect(ui.pushButton_Stamp, SIGNAL(clicked(bool)), &qnode,
@@ -116,6 +124,8 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
                    SLOT(on_SetZstage_clicked(bool)));
   QObject::connect(ui.pushButton_Alignment_Pos, SIGNAL(clicked(bool)), &qnode,
                    SLOT(on_Alignment_Pos_clicked(bool)));
+  QObject::connect(ui.pushButton_Alignment_Pos_Low, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Alignment_Pos_Low_clicked(bool)));
   QObject::connect(ui.pushButton_Exchange_Pos, SIGNAL(clicked(bool)), &qnode,
                    SLOT(on_Exchange_Pos_clicked(bool)));
   QObject::connect(ui.pushButton_Stamp_Fukki, SIGNAL(clicked(bool)), &qnode,
@@ -158,6 +168,8 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
   qnode.spinBox_AutoFocus_Count = ui.spinBox_Autofocus_Count;
   qnode.spinBox_AutoFocus_Zpos = ui.spinBox_Autofocus_Zpos;
   qnode.spinBox_AutoFocus_Start = ui.spinBox_Autofocus_Start;
+  qnode.spinBox_ImageID = ui.spinBox_ImageID;
+  qnode.spinBox_ChipID = ui.spinBox_ChipID;
   qnode.doubleSpinBox_Align_NCC_Scale_X = ui.doubleSpinBox_Align_NCC_Scale_X;
   qnode.doubleSpinBox_Align_NCC_Scale_Y = ui.doubleSpinBox_Align_NCC_Scale_Y;
   qnode.spinBox_pic_count = ui.spinBox_pic_count;
@@ -185,7 +197,7 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
   }
   QString ImageInit;
   ImageInit = QDir::homePath() +
-      "/tdmms_data/images/01/o_0000000001_-000019992_0000014657_0000000000.jpg";
+      "/tdmms_ws/src/tdmms_stamper/tdmms_autostamp/tdmms_autostamp_master/resources/images/default_OM_image.jpg";
   ReadImage(&ho_ImagePreview, ImageInit.toLatin1().data());
 
   GetImageSize(ho_ImagePreview, &hv_Width, &hv_Height);
@@ -205,7 +217,7 @@ MainWindow::~MainWindow() {
 void MainWindow::on_LoadFile_clicked(bool check) {
   QString fileName = QFileDialog::getOpenFileName(
       this, ("Open File"), QDir::homePath() + "/tdmms_data/design/",
-      ("vdwh design file (*.vdwh)"));
+      ("vdwh design file (*.vdwh *.vdwh2)"));
   if (!fileName.isEmpty()) {
     QFile file(fileName);
     QString data;
@@ -234,6 +246,19 @@ void MainWindow::on_LoadFile_clicked(bool check) {
       }
     }
   }
+  QFileInfo fi(fileName);
+  QString ext = fi.suffix();
+  if (ext == "vdwh2") {
+    fileVer = 2;
+    qnode.setFileVer(fileVer);
+  }
+  if (ext == "vdwh") {
+    fileVer = 1;
+    qnode.setFileVer(fileVer);
+  }
+
+  ROS_INFO("Open File Ver: %d", fileVer);
+
   ui.tdmtableWidget->resizeColumnsToContents();
   ui.tdmtableWidget->resizeRowsToContents();
 }
@@ -241,27 +266,74 @@ void MainWindow::on_LoadFile_clicked(bool check) {
 void MainWindow::selectionChangedSlot_stack() {
   int row = ui.tdmtableWidget->currentRow();
 
-  ui.spinBox_PosinChiptray->setValue(
-      ui.tdmtableWidget->item(row, 4)->text().toInt());
-  ui.lineEdit_Xofs->setText(ui.tdmtableWidget->item(row, 5)->text());
-  ui.lineEdit_Yofs->setText(ui.tdmtableWidget->item(row, 6)->text());
-  ui.doubleSpinBox_Rotangle->setValue(
-      ui.tdmtableWidget->item(row, 7)->text().toDouble() / 10);
-  ui.lineEdit_Filename->setText(ui.tdmtableWidget->item(row, 9)->text());
-  ui.spinBox_ChiptrayNo->setValue(
-      ui.tdmtableWidget->item(row, 2)->text().toInt());
-  try {
-    ReadImage(&ho_ImagePreview,
-              ui.tdmtableWidget->item(row, 9)->text().toStdString().c_str());
-    HDevWindowStack::SetActive(hv_WindowHandle);
-    if (HDevWindowStack::IsOpen())
-      DispObj(ho_ImagePreview, HDevWindowStack::GetActive());
-  }
-  catch (HalconCpp::HException &HDevExpDefaultException) {
-    HTuple hv_message;
-    GetErrorText((long)(HDevExpDefaultException.ErrorCode()), &hv_message);
-    ROS_ERROR("Halcon exception caught");
-    std::cout << hv_message << "\n";
+  if (fileVer == 1) {
+    ui.spinBox_PosinChiptray->setValue(
+        ui.tdmtableWidget->item(row, 4)->text().toInt());
+    ui.lineEdit_Xofs->setText(ui.tdmtableWidget->item(row, 5)->text());
+    ui.lineEdit_Yofs->setText(ui.tdmtableWidget->item(row, 6)->text());
+    ui.doubleSpinBox_Rotangle->setValue(
+        ui.tdmtableWidget->item(row, 7)->text().toDouble() / 10);
+    ui.lineEdit_Filename->setText(ui.tdmtableWidget->item(row, 9)->text());
+    ui.spinBox_ChiptrayNo->setValue(
+        ui.tdmtableWidget->item(row, 2)->text().toInt());
+    try {
+      ReadImage(&ho_ImagePreview,
+                ui.tdmtableWidget->item(row, 9)->text().toStdString().c_str());
+      HDevWindowStack::SetActive(hv_WindowHandle);
+      if (HDevWindowStack::IsOpen())
+        DispObj(ho_ImagePreview, HDevWindowStack::GetActive());
+    }
+    catch (HalconCpp::HException &HDevExpDefaultException) {
+      HTuple hv_message;
+      GetErrorText((long)(HDevExpDefaultException.ErrorCode()), &hv_message);
+      ROS_ERROR("Halcon exception caught");
+      std::cout << hv_message << "\n";
+    }
+  } else if (fileVer == 2) {
+    ui.spinBox_PosinChiptray->setValue(
+        ui.tdmtableWidget->item(row, 3)->text().toInt());
+    ui.lineEdit_Xofs->setText(ui.tdmtableWidget->item(row, 6)->text());
+    ui.lineEdit_Yofs->setText(ui.tdmtableWidget->item(row, 7)->text());
+    ui.doubleSpinBox_Rotangle->setValue(
+        ui.tdmtableWidget->item(row, 8)->text().toDouble() / 10);
+    ui.lineEdit_Filename->setText(ui.tdmtableWidget->item(row, 10)->text());
+    ui.spinBox_ChiptrayNo->setValue(
+        ui.tdmtableWidget->item(row, 2)->text().toInt());
+    ui.spinBox_ChipID->setValue(
+        ui.tdmtableWidget->item(row, 4)->text().toInt());
+    ui.spinBox_ImageID->setValue(
+        ui.tdmtableWidget->item(row, 5)->text().toLong());
+    //ROS_INFO("%d", ui.tdmtableWidget->item(row, 5)->text().toLong());
+    try {
+      QUrl imageURL(ui.lineEdit_Filename->text());
+      QNetworkRequest request(imageURL);
+      QNetworkAccessManager m_WebCtrl;
+      QEventLoop eventLoop;
+
+      connect(&m_WebCtrl, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+      QNetworkReply *reply = m_WebCtrl.get(request);
+      eventLoop.exec();
+
+      QByteArray downloadedData;
+      downloadedData = reply->readAll();
+
+      QString tempfname = "/ramdisk/tmp_stamper.jpg";
+      QFile file(tempfname);
+      file.open(QIODevice::WriteOnly);
+      file.write(downloadedData);
+      file.close();
+
+      ReadImage(&ho_ImagePreview, tempfname.toStdString().c_str());
+      HDevWindowStack::SetActive(hv_WindowHandle);
+      if (HDevWindowStack::IsOpen())
+        DispObj(ho_ImagePreview, HDevWindowStack::GetActive());
+    }
+    catch (HalconCpp::HException &HDevExpDefaultException) {
+      HTuple hv_message;
+      GetErrorText((long)(HDevExpDefaultException.ErrorCode()), &hv_message);
+      ROS_ERROR("Halcon exception caught");
+      std::cout << hv_message << "\n";
+    }
   }
 }
 

@@ -32,10 +32,13 @@
 #include <actionlib/client/terminal_state.h>
 #include <tdmms_autostamp_flake_positioner_action/PositionFlakeAction.h>
 #include <tdmms_autostamp_flake_positioner_action_fast/PositionFlakeFastAction.h>
+#include <tdmms_autostamp_flake_positioner_action_fast2/PositionFlakeFast2Action.h>
 #include <tdmms_autostamp_chip_transfer_action/TransferChipAction.h>
 #include <tdmms_autostamp_flake_aligner_xy10x_action/AlignFlakeXY10xAction.h>
+#include <tdmms_autostamp_flake_aligner_xy10x2_action/AlignFlakeXY10x2Action.h>
 #include <tdmms_autostamp_flake_aligner_xy10x_fine_action/AlignFlakeXY10x_FineAction.h>
 #include <tdmms_autostamp_flake_aligner_xytheta5x_action/AlignFlakeXYTheta5xAction.h>
+#include <tdmms_autostamp_flake_aligner_xytheta5x2_action/AlignFlakeXYTheta5x2Action.h>
 #include <tdmms_autostamp_flake_aligner_ncc_action/AlignFlakeNCCAction.h>
 #include <tdmms_autostamp_stamp_action/StampAction.h>
 #include <tdmms_autostamp_autofocus_action/AutoFocusAction.h>
@@ -68,7 +71,7 @@ class QNode : public QThread {
   void feedbackAutoFocusCb(
       const tdmms_autostamp_autofocus_action::AutoFocusActionFeedbackConstPtr &
           feedback);
-
+  bool setFileVer(int _fileVer);
   QSpinBox *spinBox_Auto_Stamp_Up_Speed;
   QSpinBox *spinBox_Auto_Stamp_Time;
   QSpinBox *spinBox_Auto_Stamp_Load;
@@ -99,10 +102,13 @@ class QNode : public QThread {
   QSpinBox *spinBox_AutoFocus_Step;
   QSpinBox *spinBox_AutoFocus_Zpos;
   QSpinBox *spinBox_AutoFocus_Start;
+  QSpinBox *spinBox_ImageID;
+  QSpinBox *spinBox_ChipID;
   QDoubleSpinBox *doubleSpinBox_Align_NCC_Scale_X;
   QDoubleSpinBox *doubleSpinBox_Align_NCC_Scale_Y;
   QLineEdit *lineEdit_picFolder;
   QSpinBox *spinBox_pic_count;
+  
   /*********************
   ** Logging
   **********************/
@@ -130,9 +136,12 @@ Q_SLOTS:
   void on_LoadTray_clicked(bool check);
   bool on_LoadChip_clicked(bool check);
   bool on_AddressFlake_clicked(bool check);
+  bool on_AddressFlake2_clicked(bool check);
   bool on_ALignFlakeXY10x_clicked(bool check);
+  bool on_AlignFlakeXY10x2_clicked(bool check);
   bool on_AlignFlakeXY10x_Fine_clicked(bool check);
   bool on_AlignFLakeTheta5x_clicked(bool check);
+  bool on_AlignFlakeTheta5x2_clicked(bool check);
   bool on_AlignFlakeNCC_clicked(bool check);
   void on_AlignFlakeTheta10x_clicked(bool check);
   bool on_Stamp_clicked(bool check);
@@ -151,9 +160,11 @@ Q_SLOTS:
   void on_Stamp_Taihi_clicked(bool check);
   bool on_Exchange_Pos_clicked(bool check);
   bool on_Alignment_Pos_clicked(bool check);
+  bool on_Alignment_Pos_Low_clicked(bool check);
   bool on_AddressFlakeFast_clicked(bool check);
   bool on_CaptureImage(bool check);
   bool on_Skip_clicked(bool check);
+  bool move_Alignment_Pos(int zpos);
 
  private:
   bool SQLSelectPositionXY(int *point_x_target, int *point_y_target,
@@ -161,7 +172,13 @@ Q_SLOTS:
   int SQLSelectSearchID(QString filename);
   QString SQLSelectFilenameFlakeImage(int position_x, int position_y,
                                       int search_id, int objective_lens);
-
+  int SQLSelectSearchID2(unsigned long long id_image);
+  bool SQLSelectPositionXY2(int *point_x_target, int *point_y_target,
+                            unsigned long long id_image);
+  int SQLSelectChipID2(unsigned long long id_image);
+  QString SQLSelectFilenameFlakeImage2(int position_x, int position_y,
+                                       int search_id, int chip_id, int objective_lens);
+  int fileVer;
   int init_argc;
   int sample_z_stage_pos_w_alignment;
   char **init_argv;
@@ -170,6 +187,7 @@ Q_SLOTS:
   QStringListModel logging_model;
   QString currentDb;
   QSqlDatabase db;
+  QSqlDatabase db2;
   ros::Subscriber designer_filename_subscriber;
   ros::ServiceClient transfer_linear_cmd_abs_move;
   ros::Publisher stamper_sample_z_cmd_vel;
@@ -206,6 +224,9 @@ Q_SLOTS:
       tdmms_autostamp_flake_positioner_action_fast::PositionFlakeFastAction>
       ac_flake_positioner_fast;
   actionlib::SimpleActionClient<
+      tdmms_autostamp_flake_positioner_action_fast2::PositionFlakeFast2Action>
+      ac_flake_positioner_fast2;
+  actionlib::SimpleActionClient<
       tdmms_autostamp_flake_positioner_action::PositionFlakeAction>
       ac_flake_positioner;
   actionlib::SimpleActionClient<
@@ -215,8 +236,14 @@ Q_SLOTS:
       tdmms_autostamp_flake_aligner_xy10x_action::AlignFlakeXY10xAction>
       ac_flake_aligner_xy10x;
   actionlib::SimpleActionClient<
+      tdmms_autostamp_flake_aligner_xy10x2_action::AlignFlakeXY10x2Action>
+      ac_flake_aligner_xy10x2;
+  actionlib::SimpleActionClient<
       tdmms_autostamp_flake_aligner_xytheta5x_action::AlignFlakeXYTheta5xAction>
       ac_flake_aligner_xytheta5x;
+  actionlib::SimpleActionClient<
+      tdmms_autostamp_flake_aligner_xytheta5x2_action::AlignFlakeXYTheta5x2Action>
+      ac_flake_aligner_xytheta5x2;
   actionlib::SimpleActionClient<
       tdmms_autostamp_flake_aligner_xy10x_fine_action::
           AlignFlakeXY10x_FineAction> ac_flake_aligner_xy10x_fine;

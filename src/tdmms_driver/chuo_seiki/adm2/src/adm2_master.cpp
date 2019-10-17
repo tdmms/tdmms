@@ -7,6 +7,7 @@
 #include <std_msgs/UInt8.h>
 #include <std_msgs/Empty.h>
 #include <std_srvs/Empty.h>
+#include <adm2/GetCurrentPos.h>
 
 #define BAUDRATE B9600
 #define SERIAL_DATA_LENGTH 4097
@@ -34,7 +35,10 @@ class adm2_master {
     stat_pub_ = node.advertise<geometry_msgs::Point>("/adm2_master/status", 1);
     service = node.advertiseService("/adm2_master/wait_for_stop",
                                     &adm2_master::wait_for_stop, this);
-
+    service_getcurpos = node.advertiseService(
+        "/adm2_master/get_currpos",
+        &adm2_master::get_currpos, this);
+    
     Send_Fd = open(Send_Dev, O_RDWR | O_NOCTTY);  // Open device
     if (Send_Fd < 0) {
       ROS_ERROR("Cannot Open Serial Port: %s", Send_Dev);
@@ -245,6 +249,24 @@ class adm2_master {
     } while ((Read_Buf[0] != 'K') || (Read_Buf[2] != 'K'));
     return true;
   }
+  
+  bool get_currpos(adm2::GetCurrentPos::Request &req,
+                   adm2::GetCurrentPos::Response &res) {
+    int Send_Res;
+    std::string response;
+
+    snprintf(Send_Buf, sizeof(Send_Buf), "Q:1\r\n");
+
+    tcflush(Send_Fd, TCIFLUSH);
+    tcflush(Send_Fd, TCOFLUSH);
+
+    Send_Res = write(Send_Fd, Send_Buf, strlen(Send_Buf));
+    ros::Duration(0.02).sleep();
+    Send_Res = read(Send_Fd, Read_Buf, sizeof(Read_Buf));
+    sscanf(Read_Buf, "%lu,%lu", &res.pos_x, &res.pos_y);
+    ROS_INFO("Recieved Message: %s", response.c_str());
+    return true;
+  }
 
  private:
   ros::Subscriber cmd_stp_move_;
@@ -256,6 +278,8 @@ class adm2_master {
   ros::Subscriber cmd_vel_;
   ros::Publisher stat_pub_;
   ros::ServiceServer service;
+  ros::ServiceServer service_getcurpos;
+
   int Send_Fd;
   char Send_Dev[100];
   char Send_Buf[256];

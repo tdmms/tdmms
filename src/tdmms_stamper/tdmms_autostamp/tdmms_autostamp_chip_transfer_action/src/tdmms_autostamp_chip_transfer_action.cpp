@@ -204,7 +204,7 @@ class tdmms_autostamp_chip_transfer_action_class {
       if (checkPreempt()) {as_.setPreempted(); return;}
 
       transfer_valve_close_publisher.publish(emp);
-      ros::Duration(6).sleep();
+      ros::Duration(10).sleep();
       if (checkPreempt()) {as_.setPreempted(); return;}
 
       //  Mask Aligner Stage

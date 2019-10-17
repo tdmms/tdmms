@@ -59,6 +59,16 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
   qnode.Vel_High_SpinBox = ui.Vel_High_SpinBox;
   qnode.Accl_SpinBox = ui.Accl_SpinBox;
 
+  qnode.radioButton_LeftTop = ui.radioButton_LeftTop;
+  qnode.radioButton_CenterTop = ui.radioButton_CenterTop;
+  qnode.radioButton_RightTop = ui.radioButton_RightTop;
+  qnode.radioButton_LeftCenter = ui.radioButton_LeftCenter;
+  qnode.radioButton_Center = ui.radioButton_Center;
+  qnode.radioButton_RightCenter = ui.radioButton_RightCenter;
+  qnode.radioButton_LeftBottom = ui.radioButton_LeftBottom;
+  qnode.radioButton_CenterBottom = ui.radioButton_CenterBottom;
+  qnode.radioButton_RightBottom = ui.radioButton_RightBottom;
+
   qnode.Filter_Pos_SpinBox = ui.Filter_Pos_SpinBox;
   // qnode.Exposure_SpinBox = ui.Exposure_SpinBox;
 
@@ -96,7 +106,83 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
 
   QObject::connect(ui.Light_OFF_pushButton, SIGNAL(clicked(bool)), &qnode,
                    SLOT(on_Light_OFF_Button_clicked(bool)));
-
+  
+  QObject::connect(ui.pushButton_Move_01, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_01_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_02, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_02_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_03, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_03_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_04, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_04_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_05, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_05_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_06, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_06_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_07, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_07_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_08, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_08_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_09, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_09_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_10, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_10_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_11, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_11_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_12, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_12_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_13, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_13_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_14, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_14_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_15, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_15_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_16, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_16_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_17, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_17_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_18, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_18_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_19, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_19_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_20, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_20_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_21, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_21_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_22, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_22_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_23, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_23_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_24, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_24_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_25, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_25_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_26, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_26_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_27, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_27_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_28, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_28_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_29, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_29_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_30, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_30_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_31, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_31_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_32, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_32_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_33, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_33_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_34, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_34_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_35, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_35_clicked(bool)));
+  QObject::connect(ui.pushButton_Move_36, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Move_36_clicked(bool)));
+  QObject::connect(ui.pushButton_HP, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_HP_clicked(bool)));
+  QObject::connect(ui.Intensity_Descend_pushButton, SIGNAL(clicked(bool)), &qnode,
+                   SLOT(on_Intensity_Descend_Button_clicked(bool)));
   /*********************
    ** Auto Start
    **********************/

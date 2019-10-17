@@ -15,7 +15,7 @@
 #include <sensor_msgs/Joy.h>
 #include <geometry_msgs/Point.h>
 #include <QSpinBox>
-
+#include <QRadioButton>
 
 /*****************************************************************************
 ** Namespaces
@@ -40,6 +40,15 @@ class QNode : public QThread {
   QSpinBox *Vel_High_SpinBox;
   QSpinBox *Vel_Low_SpinBox;
   QSpinBox *Accl_SpinBox;
+  QRadioButton *radioButton_LeftTop;
+  QRadioButton *radioButton_CenterTop;
+  QRadioButton *radioButton_RightTop;
+  QRadioButton *radioButton_LeftCenter;
+  QRadioButton *radioButton_Center;
+  QRadioButton *radioButton_RightCenter;
+  QRadioButton *radioButton_LeftBottom;
+  QRadioButton *radioButton_CenterBottom;
+  QRadioButton *radioButton_RightBottom;
 
   QNode(int argc, char** argv );
   virtual ~QNode();
@@ -73,7 +82,47 @@ class QNode : public QThread {
   void on_Step_SpinBox_valueChanged();
   void on_Exposure_SpinBox_valueChanged();
   void on_Vel_SpinBox_valueChanged();
+  void on_Intensity_Descend_Button_clicked(bool check);
+  
+  void on_Move_01_clicked(bool check);
+  void on_Move_02_clicked(bool check);
+  void on_Move_03_clicked(bool check);
+  void on_Move_04_clicked(bool check);
+  void on_Move_05_clicked(bool check);
+  void on_Move_06_clicked(bool check);
+  void on_Move_07_clicked(bool check);
+  void on_Move_08_clicked(bool check);
+  void on_Move_09_clicked(bool check);
+  void on_Move_10_clicked(bool check);
+  void on_Move_11_clicked(bool check);
+  void on_Move_12_clicked(bool check);
+  void on_Move_13_clicked(bool check);
+  void on_Move_14_clicked(bool check);
+  void on_Move_15_clicked(bool check);
+  void on_Move_16_clicked(bool check);
+  void on_Move_17_clicked(bool check);
+  void on_Move_18_clicked(bool check);
+  void on_Move_19_clicked(bool check);
+  void on_Move_20_clicked(bool check);
+  void on_Move_21_clicked(bool check);
+  void on_Move_22_clicked(bool check);
+  void on_Move_23_clicked(bool check);
+  void on_Move_24_clicked(bool check);
+  void on_Move_25_clicked(bool check);
+  void on_Move_26_clicked(bool check);
+  void on_Move_27_clicked(bool check);
+  void on_Move_28_clicked(bool check);
+  void on_Move_29_clicked(bool check);
+  void on_Move_30_clicked(bool check);
+  void on_Move_31_clicked(bool check);
+  void on_Move_32_clicked(bool check);
+  void on_Move_33_clicked(bool check);
+  void on_Move_34_clicked(bool check);
+  void on_Move_35_clicked(bool check);
+  void on_Move_36_clicked(bool check);
 
+  void on_HP_clicked(bool check);
+  void MoveTo(int pocketNo);
  private:
   int init_argc;
   char** init_argv;
@@ -87,8 +136,11 @@ class QNode : public QThread {
   ros::Publisher adm2_publisher;
   ros::Publisher adm2_jog_publisher;
   ros::Publisher adm2_step_publisher;
+  ros::Publisher adm2_abs_publisher;
   ros::Publisher adm2_stop_publisher;
   ros::Publisher adm2_vel_publisher;
+  ros::Publisher adm2_home_publisher;
+
   ros::Subscriber adm2_subscriber;
   // Communication Nodes for Autofocus Controller
   ros::Publisher afc_5_publisher;

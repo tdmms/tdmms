@@ -184,7 +184,7 @@ class autostamp_flake_positioner_fast_class {
     ros::Duration(1).sleep();
 
     ////////////////////////////////////////
-    /// Setting Tartlet Position to 5x
+    /// Set Tartlet Position to 5x
     ////////////////////////////////////////
     std_msgs::UInt8 pos;
     pos.data = 1;
@@ -192,7 +192,7 @@ class autostamp_flake_positioner_fast_class {
     ros::Duration(0.1).sleep();
 
     //////////////////////////////////////
-    //// Setting Illumination Intensity to 5
+    //// Set Illumination Intensity to 5
     ///////////////////////////////////////
     std_msgs::UInt8 light_inten;
     light_inten.data = 5;
@@ -303,7 +303,7 @@ class autostamp_flake_positioner_fast_class {
     }
 
     /////////////////////////////////////////////
-    ////  Main Loop: Searchi
+    ////  Main Loop: Search
     ////////////////////////////////////////////
     HDevWindowStack::SetActive(hv_WindowHandle_main);
     if (HDevWindowStack::IsOpen())

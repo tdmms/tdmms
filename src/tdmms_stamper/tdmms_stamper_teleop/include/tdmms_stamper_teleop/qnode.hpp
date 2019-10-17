@@ -68,9 +68,10 @@ class QNode : public QThread {
   QLCDNumber *lcdNumber_Sample_X;
   QLCDNumber *lcdNumber_Sample_Y;
   QLCDNumber *lcdNumber_Sample_Z;
+  QLCDNumber *lcdNumber_Sample_Theta;
   QLCDNumber *lcdNumber_OM_X;
   QLCDNumber *lcdNumber_OM_Y;
-
+ 
   QSpinBox *spinBox_Temperature;
   QSpinBox *spinBox_Light_Inten;
   QSpinBox *spinBox_Sample_Theta_Spd;
@@ -111,6 +112,7 @@ class QNode : public QThread {
   void currload_Callback(const std_msgs::Float32 &load);
   void currpos_sample_xy_Callback(const geometry_msgs::Point &currpoint);
   void currpos_sample_z_Callback(const geometry_msgs::Point &currpoint);
+  void currpos_sample_theta_Callback(const geometry_msgs::Point &currpoint);
   void currpos_om_xy_Callback(const geometry_msgs::Point &currpoint);
   void keyence_Callback(const keyence_master::Status_msg &stat);
 
@@ -225,6 +227,7 @@ public Q_SLOTS:
   ros::Subscriber stamper_keyence_subscriber;
   ros::Subscriber stamper_sample_xy_subscriber;
   ros::Subscriber stamper_sample_z_subscriber;
+  ros::Subscriber stamper_sample_theta_subscriber;
   ros::Subscriber stamper_om_xy_subscriber;
   ros::Publisher keyence_om_fwd_publisher;
   ros::Publisher keyence_om_back_publisher;

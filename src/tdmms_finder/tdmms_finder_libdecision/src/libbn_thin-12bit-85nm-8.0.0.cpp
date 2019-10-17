@@ -55,17 +55,17 @@ extern "C" Herror tdmms_finder_Find(bool *dev, int *pos_x, int *pos_y,
   // Detection Parameters
   //------------------------------------------
   hv_cent_H = 0;
-  hv_delta_H = 600;
-  hv_cent_S = -150;
-  hv_delta_S = 200;
-  hv_cent_V = -70;
-  hv_delta_V = 60;
-  hv_edge_low = 10;
-  hv_edge_high = 30;
+  hv_delta_H = 2000;
+  hv_cent_S = -120;
+  hv_delta_S = 1000;
+  hv_cent_V = -300;
+  hv_delta_V = 300;
+  hv_edge_low = 20;
+  hv_edge_high = 50;
   hv_edge_alpha = 3;
   hv_entropy_min = 0;
-  hv_entropy_max = 10;
-  hv_area_threshold = 4000;
+  hv_entropy_max = 5;
+  hv_area_threshold = 1000;
   hv_area_holes_threshold = 1000;
   //------------------------------------------
   // Detection process
@@ -196,7 +196,7 @@ extern "C" Herror tdmms_finder_Initialize() {
 
   // Load background image
   TupleEnvironment("HOME", &hv_homedir);
-  hv_bgfile = "/images/masubuchi/Background_Image/SiO2_85nm_20181003_12bit.tiff";
+  hv_bgfile = "/images/masubuchi/Background_Image/SiO2_85nm_20190314_12bit.tiff";
   hv_bgfilepath = hv_homedir+hv_bgfile;
 
   ReadImage(&ho_Image_BG, hv_bgfilepath);

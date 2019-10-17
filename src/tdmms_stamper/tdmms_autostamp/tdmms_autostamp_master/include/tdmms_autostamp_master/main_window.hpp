@@ -81,6 +81,7 @@ Q_SLOTS:
   QNode qnode;
   HTuple hv_WindowHandle, hv_Width, hv_Height;
   HObject ho_ImagePreview;
+  int fileVer;
 };
 
 }  // namespace tdmms_autostamp_master

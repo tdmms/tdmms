@@ -129,6 +129,7 @@ add_library(decmultibn12_8.0.0 src/libmultibn12-8.0.0.cpp)
 add_library(decthinbn12_8.0.0 src/libbn_thin-12bit-85nm-8.0.0.cpp)
 add_library(decthickbn12_85nm_8.0.0 src/libbn_thick-12bit-85nm-8.0.0.cpp)
 add_library(decmultigraphene12_8.0.0 src/libmultigraphene12-8.0.0.cpp)
+add_library(decmos2_12_8.0.0 src/libmos2-12-8.0.0.cpp)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -215,6 +216,7 @@ target_link_libraries(decmultibn12_8.0.0 ${catkin_LIBRARIES} ${XCLIB_LIBRARY} ${
 target_link_libraries(decthinbn12_8.0.0 ${catkin_LIBRARIES} ${XCLIB_LIBRARY} ${HALCON_LIBRARY} ${HALCONCPP_LIBRARY} ${ftdi_LIBRARY} dl)  
 target_link_libraries(decthickbn12_85nm_8.0.0 ${catkin_LIBRARIES} ${XCLIB_LIBRARY} ${HALCON_LIBRARY} ${HALCONCPP_LIBRARY} ${ftdi_LIBRARY} dl)  
 target_link_libraries(decmultigraphene12_8.0.0 ${catkin_LIBRARIES} ${XCLIB_LIBRARY} ${HALCON_LIBRARY} ${HALCONCPP_LIBRARY} ${ftdi_LIBRARY} dl)
+target_link_libraries(decmos2_12_8.0.0 ${catkin_LIBRARIES} ${XCLIB_LIBRARY} ${HALCON_LIBRARY} ${HALCONCPP_LIBRARY} ${ftdi_LIBRARY} dl)
 
 #target_link_libraries(
 #  decgraphene_morimoto1.0.0

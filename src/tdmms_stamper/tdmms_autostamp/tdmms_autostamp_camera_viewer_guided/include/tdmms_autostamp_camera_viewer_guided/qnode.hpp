@@ -58,6 +58,7 @@ class QNode : public QThread {
   QLineEdit *lineEdit_DataFolder;
   QTableWidget *tableWidget_Edges;
   QCheckBox *checkBox_ExtractEdge;
+  QCheckBox *checkBox_DisplayGrid;
   QSlider *horizontalSlider_Xofs;
   QSlider *horizontalSlider_Yofs;
   /*********************

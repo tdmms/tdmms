@@ -180,12 +180,12 @@ void disp_message(HTuple hv_WindowHandle, HTuple hv_String,
     // Set shadow color
     SetColor(hv_WindowHandle, hv_ShadowColor);
     if (0 != hv_UseShadow) {
-      DispRectangle1(hv_WindowHandle, hv_R1 + 1, hv_C1 + 1, hv_R2 + 1,
-                     hv_C2 + 1);
+      //DispRectangle1(hv_WindowHandle, hv_R1 + 1, hv_C1 + 1, hv_R2 + 1,
+      //             hv_C2 + 1);
     }
     // Set box color
     SetColor(hv_WindowHandle, HTuple(hv_Box[0]));
-    DispRectangle1(hv_WindowHandle, hv_R1, hv_C1, hv_R2, hv_C2);
+    // DispRectangle1(hv_WindowHandle, hv_R1, hv_C1, hv_R2, hv_C2);
     SetDraw(hv_WindowHandle, hv_DrawMode);
   }
   // Write text.

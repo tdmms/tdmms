@@ -78,6 +78,9 @@ class stamper_sample_theta_master {
     stat_pub_         = node.advertise<geometry_msgs::Point>(
         "/stamper_sample_theta_master/status", 1);
 
+    currpos_pub_      = node.advertise<geometry_msgs::Point>(
+        "/stamper_sample_theta_master/currpos_stream",1);
+
     service           = node.advertiseService(
         "/stamper_sample_theta_master/wait_for_stop",
         &stamper_sample_theta_master::wait_for_stop, this);
@@ -94,7 +97,7 @@ class stamper_sample_theta_master {
       ROS_ERROR("Command Write Error");
       exit(-1);
     } else {
-      ROS_INFO("Sent: %s", strCommand.c_str());
+      ROS_DEBUG("Sent: %s", strCommand.c_str());
     }
   }
 
@@ -167,6 +170,18 @@ class stamper_sample_theta_master {
     return true;
   }
 
+  void currpos_stream(){
+    geometry_msgs::Point currpoint;
+    std::string response;
+    sendCommand("Q:1");
+    ros::Duration(0.02).sleep();
+
+    response = readResponse();
+    sscanf(response.data(), "%lf", & currpoint.x);
+    currpoint.y = 0;
+    currpos_pub_.publish(currpoint);
+  }
+
  private:
   ros::Subscriber cmd_stp_move_;
   ros::Subscriber cmd_jog_move_;
@@ -176,6 +191,7 @@ class stamper_sample_theta_master {
   ros::Subscriber cmd_status_;
   ros::Subscriber cmd_vel_;
   ros::Publisher stat_pub_;
+  ros::Publisher currpos_pub_;
   ros::ServiceServer service;
 
   int sock;
@@ -189,6 +205,11 @@ class stamper_sample_theta_master {
 int main(int argc, char *argv[]) {
   ros::init(argc, argv, "stamper_sample_theta_master");
   stamper_sample_theta_master stamper_sample_theta_master_;
-  ros::spin();
+  ros::Rate loop_rate(100);
+  while(ros::ok()){
+    stamper_sample_theta_master_.currpos_stream();
+    ros::spinOnce();
+    loop_rate.sleep();
+  }
   return 0;
 }

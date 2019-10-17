@@ -104,6 +104,11 @@
           <string>filename</string>
          </property>
         </column>
+        <column>
+         <property name="text">
+          <string>url</string>
+         </property>
+        </column>
        </widget>
        <widget class="QToolButton" name="pushButton_LoadFile">
         <property name="geometry">
@@ -122,7 +127,7 @@
         <property name="geometry">
          <rect>
           <x>520</x>
-          <y>780</y>
+          <y>830</y>
           <width>121</width>
           <height>31</height>
          </rect>
@@ -135,7 +140,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>610</y>
+          <y>680</y>
           <width>161</width>
           <height>41</height>
          </rect>
@@ -155,7 +160,7 @@
         <property name="geometry">
          <rect>
           <x>690</x>
-          <y>750</y>
+          <y>800</y>
           <width>121</width>
           <height>29</height>
          </rect>
@@ -168,7 +173,7 @@
         <property name="geometry">
          <rect>
           <x>560</x>
-          <y>750</y>
+          <y>800</y>
           <width>121</width>
           <height>29</height>
          </rect>
@@ -181,7 +186,7 @@
         <property name="geometry">
          <rect>
           <x>710</x>
-          <y>570</y>
+          <y>630</y>
           <width>101</width>
           <height>41</height>
          </rect>
@@ -201,7 +206,7 @@
         <property name="geometry">
          <rect>
           <x>440</x>
-          <y>750</y>
+          <y>800</y>
           <width>111</width>
           <height>29</height>
          </rect>
@@ -214,7 +219,7 @@
         <property name="geometry">
          <rect>
           <x>300</x>
-          <y>780</y>
+          <y>830</y>
           <width>111</width>
           <height>29</height>
          </rect>
@@ -227,7 +232,7 @@
         <property name="geometry">
          <rect>
           <x>410</x>
-          <y>780</y>
+          <y>830</y>
           <width>111</width>
           <height>29</height>
          </rect>
@@ -243,7 +248,7 @@
         <property name="geometry">
          <rect>
           <x>270</x>
-          <y>750</y>
+          <y>800</y>
           <width>161</width>
           <height>29</height>
          </rect>
@@ -256,9 +261,9 @@
         <property name="geometry">
          <rect>
           <x>520</x>
-          <y>220</y>
+          <y>250</y>
           <width>191</width>
-          <height>271</height>
+          <height>281</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -639,7 +644,7 @@
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>730</y>
+          <y>780</y>
           <width>171</width>
           <height>71</height>
          </rect>
@@ -657,7 +662,7 @@
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>50</y>
+           <y>80</y>
            <width>61</width>
            <height>29</height>
           </rect>
@@ -674,7 +679,7 @@
         <property name="geometry">
          <rect>
           <x>360</x>
-          <y>690</y>
+          <y>710</y>
           <width>211</width>
           <height>51</height>
          </rect>
@@ -845,7 +850,7 @@
         <property name="geometry">
          <rect>
           <x>720</x>
-          <y>420</y>
+          <y>450</y>
           <width>91</width>
           <height>29</height>
          </rect>
@@ -861,7 +866,7 @@
         <property name="geometry">
          <rect>
           <x>720</x>
-          <y>450</y>
+          <y>480</y>
           <width>91</width>
           <height>29</height>
          </rect>
@@ -874,7 +879,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>220</y>
+          <y>250</y>
           <width>161</width>
           <height>111</height>
          </rect>
@@ -1012,9 +1017,9 @@
         <property name="geometry">
          <rect>
           <x>180</x>
-          <y>220</y>
+          <y>250</y>
           <width>331</width>
-          <height>271</height>
+          <height>281</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -1404,14 +1409,59 @@
           <string>NccY</string>
          </property>
         </widget>
+        <widget class="QPushButton" name="pushButton_AddressFlake2">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>190</y>
+           <width>161</width>
+           <height>29</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Address Flake2</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_AlignFlakeTheta5x2">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>220</y>
+           <width>161</width>
+           <height>29</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Align Theta@5x2</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_AlignFlakeXY10x2">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>250</y>
+           <width>161</width>
+           <height>29</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Align XY@10x</string>
+         </property>
+        </widget>
        </widget>
        <widget class="QFrame" name="frame_6">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>340</y>
+          <y>370</y>
           <width>161</width>
-          <height>151</height>
+          <height>161</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -1622,7 +1672,7 @@
         <property name="geometry">
          <rect>
           <x>170</x>
-          <y>610</y>
+          <y>680</y>
           <width>161</width>
           <height>41</height>
          </rect>
@@ -1642,7 +1692,7 @@
         <property name="geometry">
          <rect>
           <x>460</x>
-          <y>660</y>
+          <y>740</y>
           <width>81</width>
           <height>31</height>
          </rect>
@@ -1655,7 +1705,7 @@
         <property name="geometry">
          <rect>
           <x>50</x>
-          <y>660</y>
+          <y>740</y>
           <width>411</width>
           <height>31</height>
          </rect>
@@ -1665,7 +1715,7 @@
         <property name="geometry">
          <rect>
           <x>540</x>
-          <y>660</y>
+          <y>740</y>
           <width>121</width>
           <height>31</height>
          </rect>
@@ -1684,7 +1734,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>660</y>
+          <y>740</y>
           <width>61</width>
           <height>31</height>
          </rect>
@@ -1704,7 +1754,7 @@
         <property name="geometry">
          <rect>
           <x>660</x>
-          <y>660</y>
+          <y>740</y>
           <width>151</width>
           <height>31</height>
          </rect>
@@ -1717,7 +1767,7 @@
         <property name="geometry">
          <rect>
           <x>710</x>
-          <y>530</y>
+          <y>590</y>
           <width>101</width>
           <height>41</height>
          </rect>
@@ -1737,7 +1787,7 @@
         <property name="geometry">
          <rect>
           <x>420</x>
-          <y>820</y>
+          <y>870</y>
           <width>161</width>
           <height>29</height>
          </rect>
@@ -1750,7 +1800,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>490</y>
+          <y>550</y>
           <width>701</width>
           <height>121</height>
          </rect>
@@ -1870,6 +1920,90 @@
          </item>
         </layout>
        </widget>
+       <widget class="QSpinBox" name="spinBox_ChipID">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>210</y>
+          <width>81</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>1000000000</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_Status_9">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>210</y>
+          <width>51</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ChipID</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_Status_10">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>210</y>
+          <width>61</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ImageID</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="spinBox_ImageID">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>210</y>
+          <width>121</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>1000000000</number>
+        </property>
+        <property name="value">
+         <number>10000</number>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_Alignment_Pos_Low">
+        <property name="geometry">
+         <rect>
+          <x>480</x>
+          <y>670</y>
+          <width>229</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>000. Stamp Pos. (Low)</string>
+        </property>
+       </widget>
        <zorder>label_Status</zorder>
        <zorder>frame_5</zorder>
        <zorder>tdmtableWidget</zorder>
@@ -1909,6 +2043,11 @@
        <zorder>pushButton_Skip</zorder>
        <zorder>pushButton_AlignFlakeXY5x</zorder>
        <zorder>gridLayoutWidget</zorder>
+       <zorder>spinBox_ChipID</zorder>
+       <zorder>label_Status_9</zorder>
+       <zorder>label_Status_10</zorder>
+       <zorder>spinBox_ImageID</zorder>
+       <zorder>pushButton_Alignment_Pos_Low</zorder>
       </widget>
       <widget class="QWidget" name="tab_status">
        <attribute name="title">
