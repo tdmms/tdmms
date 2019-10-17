@@ -43,6 +43,7 @@ If the information provided helps your research, it would be appreciated if you 
 I hope to continue developing 2DMMS to become a truly helpful tool for the research community of van der Waals heterostructures. Please feel free to email me with your feedback or any issues at: msatoru@iis.u-tokyo.ac.jp
 
 Satoru Masubuchi
+
 Institute of Industrial Science, University of Tokyo
 
 ### Hardware support
