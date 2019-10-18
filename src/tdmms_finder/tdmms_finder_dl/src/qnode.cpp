@@ -177,6 +177,15 @@ void QNode::SQLInsertSearch(int id_search,
                             const char* search_program,
                             int target_layer_num_min,
                             int target_layer_num_max) {
+  ////////////////////////////////////////////////////////////
+  /// Insert search record to DB
+  ////////////////////////////////////////////////////////////
+  /// int id_search: search id
+  /// int id_chip: chip id
+  /// const char* search program: the name of 2D materials detection program
+  /// int target_layer_num_min: the minimum target thickness of flakes
+  /// int target_layer_num_max: the maximum target thickness of flakes
+  ////////////////////////////////////////////////////////////
   QSqlQuery q("", db);
   q.prepare(
       "INSERT INTO 2dmms_db.search (id_search, id_chip_fk, "
@@ -191,6 +200,11 @@ void QNode::SQLInsertSearch(int id_search,
 }
 
 bool QNode::SQLExecQuery(QSqlQuery *q) {
+  ////////////////////////////////////////////////////
+  //// Common function to execute SQL query
+  ////////////////////////////////////////////////////
+  //// QSqlQuery *q : query to be executed
+  ////////////////////////////////////////////////////
   if (!q->exec()) {
     ROS_ERROR("QUERY ERROR, ERROR:%s SENT:%s",
               q->lastError().text().toStdString().c_str(),
@@ -204,6 +218,11 @@ bool QNode::SQLExecQuery(QSqlQuery *q) {
 }
 
 int QNode::SQLGetNumOfChips(int id_chiptray) {
+  ///////////////////////////////////////////////////////
+  /// returns the number of silicon chips on the designated chiptray
+  ///////////////////////////////////////////////////////
+  /// int id_chiptray: chiptray id
+  ///////////////////////////////////////////////////////
   QSqlQuery q("", db);
   q.prepare(
       "SELECT COUNT(idchip) from 2dmms_db.chip where idchiptray_fk = ?");
