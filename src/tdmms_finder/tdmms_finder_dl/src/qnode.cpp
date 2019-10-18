@@ -308,7 +308,6 @@ int QNode::SQLGetMaximumSearchID(int id_chip) {
   SQLExecQuery(&q);
   q.next();
   id_search = q.value(0).toInt();
-  //ROS_INFO("ID_SEARCH:%d", id_search);
 
   return id_search;
 }
@@ -318,10 +317,8 @@ int QNode::SQLGetMaximumEdgeID() {
   int id_image_edge;
   q.prepare("SELECT MAX(idimage_edge) FROM 2dmms_db.image_edge");
   SQLExecQuery(&q);
-  // q.exec();
   while (q.next()) {
     id_image_edge = q.value(0).toInt();
-    // printf("idimage_edge:%d\n", id_image_edge);
   }
   return id_image_edge;
 }
