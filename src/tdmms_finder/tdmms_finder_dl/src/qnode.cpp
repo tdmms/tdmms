@@ -237,6 +237,12 @@ int QNode::SQLGetNumOfChips(int id_chiptray) {
 
 int QNode::SQLGetChipID(int chiptray_id,
                         int pos_in_chiptray) {
+  ////////////////////////////////////////////////////////
+  /// returns silicon chip id
+  ////////////////////////////////////////////////////////
+  /// int chiptray_id: chiptray id
+  /// int pos_in_chiptray: positoin in chiptray (pocket no)
+  ////////////////////////////////////////////////////////
   QSqlQuery q("", db);
   int id_chip;
   q.prepare(
