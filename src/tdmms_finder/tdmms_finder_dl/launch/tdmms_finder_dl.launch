@@ -10,5 +10,5 @@
 	<node pkg="lv_ncnt_n" name="lv_ncnt_n_master" type="lv_ncnt_n_master" />
         <node pkg="afc_5" name="afc_5_master" type="afc_5_master"/>
         <node pkg="ace2000" name="ace2000_node" type="ace2000_node"/>
-        <node name="soundplay_node" pkg="sound_play" type="soundplay_node.py"/>
+        <!--<node name="soundplay_node" pkg="sound_play" type="soundplay_node.py"/>-->
 </launch>

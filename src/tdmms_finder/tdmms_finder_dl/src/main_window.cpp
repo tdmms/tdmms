@@ -19,7 +19,6 @@
 *****************************************************************************/
 
 namespace tdmms_finder_dl {
-
 using namespace Qt;
 
 /*****************************************************************************
@@ -53,7 +52,6 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
   map_itemColIndx["dilation2"] = 22;
   map_itemColIndx["erosion2"] = 23;
 
-
   ui.setupUi(this);  // Calling this incidentally connects all ui's triggers to
                      // on_...() callbacks in this class.
   QObject::connect(
@@ -75,8 +73,6 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
   QObject::connect(ui.Button_CaptureEdge_RB, SIGNAL(clicked()),
                    &qnode, SLOT(on_Button_CaptureEdge_RB_clicked()));
 
-  //  QObject::connect(ui.Button_SetFolders, SIGNAL(clicked()), &qnode,
-  //               SLOT(on_Button_SetFolders_clicked()));
   QObject::connect(ui.Button_SaveImage, SIGNAL(clicked()), &qnode,
                    SLOT(on_Button_SaveImage_clicked()));
 
@@ -109,10 +105,6 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
                    &qnode, SLOT(on_Button_OpenTestWindows_RB_clicked()));
   QObject::connect(ui.Button_CloseTestWindows_RB, SIGNAL(clicked()),
                    &qnode, SLOT(on_Button_CloseTestWindows_RB_clicked()));
-  /*QObject::connect(ui.Button_LoadBG_RB, SIGNAL(clicked()), &qnode,
-                   SLOT(on_Button_LoadBG_RB_clicked()));
-  QObject::connect(ui.Button_SaveBG_RB, SIGNAL(clicked()), &qnode,
-  SLOT(on_Button_SaveBG_RB_clicked()));*/
   ////////////////////////////////////////////////////
   // Connect spin box and sliders
   ///////////////////////////////////////////////////
@@ -140,7 +132,7 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
                    ui.horizontalSlider_DeltaS_RB, SLOT(setValue(int)));
   QObject::connect(ui.horizontalSlider_DeltaS_RB, SIGNAL(valueChanged(int)),
                    ui.spinBox_DeltaS_RB, SLOT(setValue(int)));
-  
+
   QObject::connect(ui.spinBox_CentV_RB, SIGNAL(valueChanged(int)),
                    ui.horizontalSlider_CentV_RB, SLOT(setValue(int)));
   QObject::connect(ui.horizontalSlider_CentV_RB, SIGNAL(valueChanged(int)),
@@ -188,12 +180,14 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
 
   QObject::connect(ui.spinBox_CloseEdgeMinAmp_RB, SIGNAL(valueChanged(int)),
                    ui.horizontalSlider_CloseEdgeMinAmp_RB, SLOT(setValue(int)));
-  QObject::connect(ui.horizontalSlider_CloseEdgeMinAmp_RB, SIGNAL(valueChanged(int)),
+  QObject::connect(ui.horizontalSlider_CloseEdgeMinAmp_RB,
+                   SIGNAL(valueChanged(int)),
                    ui.spinBox_CloseEdgeMinAmp_RB, SLOT(setValue(int)));
 
   QObject::connect(ui.spinBox_CloseEdgeMaxGap_RB, SIGNAL(valueChanged(int)),
                    ui.horizontalSlider_CloseEdgeMaxGap_RB, SLOT(setValue(int)));
-  QObject::connect(ui.horizontalSlider_CloseEdgeMaxGap_RB, SIGNAL(valueChanged(int)),
+  QObject::connect(ui.horizontalSlider_CloseEdgeMaxGap_RB,
+                   SIGNAL(valueChanged(int)),
                    ui.spinBox_CloseEdgeMaxGap_RB, SLOT(setValue(int)));
 
   QObject::connect(ui.spinBox_Dilation_RB, SIGNAL(valueChanged(int)),
@@ -222,21 +216,23 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
                    ui.spinBox_EdgeDetect_RB, SLOT(setValue(int)));
 
   QObject::connect(ui.horizontalSlider_Exposure_RB, SIGNAL(valueChanged(int)),
-                   this, SLOT(on_horizontalSlider_Exposure_RB_valueChanged(int)));
+                   this,
+                   SLOT(on_horizontalSlider_Exposure_RB_valueChanged(int)));
 
   QObject::connect(ui.Button_DeleteParams_RB, SIGNAL(clicked()),
                    this, SLOT(on_button_DeleteParams_RB_clicked()));
   QObject::connect(ui.Button_AddParams_RB, SIGNAL(clicked()),
                    this, SLOT(on_button_AddParams_RB_clicked()));
 
-  QObject::connect(ui.tableWidget_DetectionParams_RB, SIGNAL(itemSelectionChanged()), this,
+  QObject::connect(ui.tableWidget_DetectionParams_RB,
+                   SIGNAL(itemSelectionChanged()), this,
                    SLOT(selectionChanged_DetectionParams()));
 
   QObject::connect(ui.Button_SaveBG_RB, SIGNAL(clicked()),
                    &qnode, SLOT(on_Button_SaveBG_clicked()));
   QObject::connect(ui.Button_LoadBG_RB, SIGNAL(clicked()),
                    &qnode, SLOT(on_Button_LoadBG_clicked()));
-  
+
   QObject::connect(ui.Button_SaveSettings_RB, SIGNAL(clicked()),
                     this, SLOT(on_Button_SaveSettings_clicked()));
 
@@ -244,14 +240,19 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
                     this, SLOT(on_Button_LoadSettings_clicked()));
 
   QObject::connect(ui.Button_PrepareManualRegistration_RB, SIGNAL(clicked()),
-                   &qnode, SLOT(on_Button_PrepareManualRegistration_RB_clicked()));
+                   &qnode,
+                   SLOT(on_Button_PrepareManualRegistration_RB_clicked()));
   QObject::connect(ui.Button_PrepareManualRegistration_DL, SIGNAL(clicked()),
-                   &qnode, SLOT(on_Button_PrepareManualRegistration_DL_clicked()));
-  QObject::connect(ui.Button_ManualRegistration_RB,SIGNAL(clicked()),
-                   &qnode, SLOT(on_Button_ManualRegistration_RB_clicked()));
-  QObject::connect(ui.Button_ManualRegistration_DL,SIGNAL(clicked()),
+                   &qnode,
+                   SLOT(on_Button_PrepareManualRegistration_DL_clicked()));
+  QObject::connect(ui.Button_ManualRegistration_RB,
+                   SIGNAL(clicked()),
+                   &qnode,
+                   SLOT(on_Button_ManualRegistration_RB_clicked()));
+  QObject::connect(ui.Button_ManualRegistration_DL,
+                   SIGNAL(clicked()),
                    &qnode, SLOT(on_Button_ManualRegistration_DL_clicked()));
-  
+
   ReadSettings();
   setWindowIcon(QIcon(":/images/icon.png"));
   ui.tab_manager->setCurrentIndex(0);  // ensure the first tab is showing -
@@ -271,7 +272,7 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
   qnode.checkBox_TestMode_RB = ui.checkBox_TestMode_RB;
   qnode.checkBox_Enhance_DL = ui.checkBox_Enhance_DL;
   qnode.checkBox_Enhance_RB = ui.checkBox_Enhance_RB;
-  
+
   qnode.tableWidget_SearchArea_DL = ui.tableWidget_SearchArea_DL;
   qnode.tableWidget_SearchArea_RB = ui.tableWidget_SearchArea_RB;
   qnode.tableWidget_DetectionParams_RB = ui.tableWidget_DetectionParams_RB;
@@ -308,7 +309,8 @@ void MainWindow::on_Button_SaveSettings_clicked() {
   QFileDialog::Options options;
   QString strSelectedFilter;
   QString strFName = QFileDialog::getSaveFileName(
-      this, tr("Save File"), QDir::homePath()+"/tdmms_data/detection_params/untitled.prm",
+      this, tr("Save File"),
+      QDir::homePath()+"/tdmms_data/detection_params/untitled.prm",
       tr("vdwh design file (*.prm)"));
 
   if (!strFName.isEmpty()) {
@@ -319,7 +321,9 @@ void MainWindow::on_Button_SaveSettings_clicked() {
       data << ui.lineEdit_BGImage->text() + "\n";
       for (int r = 0; r < ui.tableWidget_DetectionParams_RB->rowCount(); ++r) {
         strList.clear();
-        for (int c = 0; c < ui.tableWidget_DetectionParams_RB->columnCount(); ++c) {
+        for (int c = 0;
+             c < ui.tableWidget_DetectionParams_RB->columnCount();
+             ++c) {
           strList << ui.tableWidget_DetectionParams_RB->item(r, c)->text();
         }
         data << strList.join(";") + "\n";
@@ -352,13 +356,14 @@ void MainWindow::on_Button_LoadSettings_clicked() {
     ui.tableWidget_DetectionParams_RB->clear();
     ui.tableWidget_DetectionParams_RB->setRowCount(0);
     for (int x = 1; x < rowOfData.size() - 1; x++) {
-      ui.tableWidget_DetectionParams_RB->insertRow(ui.tableWidget_DetectionParams_RB->rowCount());
+      ui.tableWidget_DetectionParams_RB->
+          insertRow(ui.tableWidget_DetectionParams_RB->rowCount());
       rowData = rowOfData.at(x).split(";");
       for (int y = 0; y < rowData.size(); y++) {
         QTableWidgetItem *item;
         item = new QTableWidgetItem(QString(rowData[y]));
-        ui.tableWidget_DetectionParams_RB->setItem(ui.tableWidget_DetectionParams_RB->rowCount() - 1, y, item);
-        //if (y == 0) ui.tdmtableWidget->item(x, 0)->setCheckState(Qt::Checked);
+        ui.tableWidget_DetectionParams_RB->
+            setItem(ui.tableWidget_DetectionParams_RB->rowCount() - 1, y, item);
       }
     }
   }
@@ -409,59 +414,78 @@ void MainWindow::on_checkbox_use_environment_stateChanged(int state) {
   }
   ui.line_edit_master->setEnabled(enabled);
   ui.line_edit_host->setEnabled(enabled);
-  // ui.line_edit_topic->setEnabled(enabled);
 }
 
 void MainWindow::selectionChanged_DetectionParams() {
   int row = ui.tableWidget_DetectionParams_RB->currentRow();
   ui.spinBox_Exposure_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["exposure"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["exposure"])->text().toInt());
   ui.spinBox_CentH_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["cent_h"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["cent_h"])->text().toInt());
   ui.spinBox_DeltaH_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["delta_h"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["delta_h"])->text().toInt());
   ui.spinBox_CentS_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["cent_s"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["cent_s"])->text().toInt());
   ui.spinBox_DeltaS_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["delta_s"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["delta_s"])->text().toInt());
   ui.spinBox_CentV_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["cent_v"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["cent_v"])->text().toInt());
   ui.spinBox_DeltaV_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["delta_v"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["delta_v"])->text().toInt());
   ui.spinBox_EdgeLow_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["edge_low"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["edge_low"])->text().toInt());
   ui.spinBox_EdgeHigh_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["edge_high"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["edge_high"])->text().toInt());
   ui.spinBox_EdgeAlpha_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["edge_alpha"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["edge_alpha"])->text().toInt());
   ui.spinBox_EntropyMin_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["entropy_min"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["entropy_min"])->text().toInt());
   ui.spinBox_EntropyMax_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["entropy_max"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["entropy_max"])->text().toInt());
   ui.spinBox_AreaThresh_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["area_thresh"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["area_thresh"])->text().toInt());
   ui.spinBox_HoleThresh_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["hole_thresh"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["hole_thresh"])->text().toInt());
   ui.spinBox_CloseEdgeMinAmp_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["close_edge_min_amp"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["close_edge_min_amp"])->text().toInt());
   ui.spinBox_CloseEdgeMaxGap_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["close_edge_max_gap"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["close_edge_max_gap"])->text().toInt());
   ui.spinBox_Dilation_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["dilation"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["dilation"])->text().toInt());
   ui.spinBox_Erosion_RB->setValue(
-      ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["erosion"])->text().toInt());
+      ui.tableWidget_DetectionParams_RB
+      ->item(row, map_itemColIndx["erosion"])->text().toInt());
 }
 
 void MainWindow::on_button_AddParams_RB_clicked() {
-  ui.tableWidget_DetectionParams_RB->insertRow(ui.tableWidget_DetectionParams_RB->rowCount());
+  ui.tableWidget_DetectionParams_RB
+      ->insertRow(ui.tableWidget_DetectionParams_RB->rowCount());
   ui.tableWidget_DetectionParams_RB->resizeColumnsToContents();
   ui.tableWidget_DetectionParams_RB->resizeRowsToContents();
 
   int i;
   QTableWidgetItem *item;
-  for (i = 0; i < map_itemColIndx.count(); i ++){
+  for (i = 0; i < map_itemColIndx.count(); i ++) {
     item = new QTableWidgetItem(QString("0"));
-    ui.tableWidget_DetectionParams_RB->setItem(ui.tableWidget_DetectionParams_RB->rowCount() - 1, i, item);
+    ui.tableWidget_DetectionParams_RB
+        ->setItem(ui.tableWidget_DetectionParams_RB->rowCount() - 1, i, item);
   }
   int row = ui.tableWidget_DetectionParams_RB->rowCount() - 1;
 
@@ -517,7 +541,8 @@ void MainWindow::on_button_AddParams_RB_clicked() {
 
 void MainWindow::on_button_DeleteParams_RB_clicked() {
   ui.tableWidget_DetectionParams_RB->clearSelection();
-  ui.tableWidget_DetectionParams_RB->removeRow(ui.tableWidget_DetectionParams_RB->currentRow());
+  ui.tableWidget_DetectionParams_RB
+      ->removeRow(ui.tableWidget_DetectionParams_RB->currentRow());
 }
 
 void MainWindow::on_horizontalSlider_Erosion2_RB_valueChanged(int value) {
@@ -624,18 +649,24 @@ void MainWindow::on_horizontalSlider_HoleThresh_RB_valueChanged(int value) {
       ->setText(QString::number(ui.horizontalSlider_HoleThresh_RB->value()));
 }
 
-void MainWindow::on_horizontalSlider_CloseEdgeMinAmp_RB_valueChanged(int value) {
+void MainWindow::
+on_horizontalSlider_CloseEdgeMinAmp_RB_valueChanged(int value) {
   if (ui.tableWidget_DetectionParams_RB->rowCount() == 0) return;
   int row = ui.tableWidget_DetectionParams_RB->currentRow();
-  ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["close_edge_min_amp"])
-      ->setText(QString::number(ui.horizontalSlider_CloseEdgeMinAmp_RB->value()));
+  ui.tableWidget_DetectionParams_RB->item(
+      row, map_itemColIndx["close_edge_min_amp"])
+      ->setText(
+          QString::number(ui.horizontalSlider_CloseEdgeMinAmp_RB->value()));
 }
 
-void MainWindow::on_horizontalSlider_CloseEdgeMaxGap_RB_valueChanged(int value) {
+void MainWindow::
+on_horizontalSlider_CloseEdgeMaxGap_RB_valueChanged(int value) {
   if (ui.tableWidget_DetectionParams_RB->rowCount() == 0) return;
   int row = ui.tableWidget_DetectionParams_RB->currentRow();
-  ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["close_edge_max_gap"])
-      ->setText(QString::number(ui.horizontalSlider_CloseEdgeMaxGap_RB->value()));
+  ui.tableWidget_DetectionParams_RB->item(
+      row, map_itemColIndx["close_edge_max_gap"])
+      ->setText(
+          QString::number(ui.horizontalSlider_CloseEdgeMaxGap_RB->value()));
 }
 
 void MainWindow::on_horizontalSlider_Dilation_RB_valueChanged(int value) {
@@ -651,8 +682,6 @@ void MainWindow::on_horizontalSlider_Erosion_RB_valueChanged(int value) {
   ui.tableWidget_DetectionParams_RB->item(row, map_itemColIndx["erosion"])
       ->setText(QString::number(ui.horizontalSlider_Erosion_RB->value()));
 }
-
-
 
 /*****************************************************************************
 ** Implemenation [Slots][manually connected]
@@ -689,11 +718,8 @@ void MainWindow::ReadSettings() {
           .toString();
   QString host_url =
       settings.value("host_url", QString("192.168.1.3")).toString();
-  // QString topic_name = settings.value("topic_name",
-  // QString("/chatter")).toString();
   ui.line_edit_master->setText(master_url);
   ui.line_edit_host->setText(host_url);
-  // ui.line_edit_topic->setText(topic_name);
   bool remember = settings.value("remember_settings", false).toBool();
   ui.checkbox_remember_settings->setChecked(remember);
   bool checked = settings.value("use_environment_variables", false).toBool();
@@ -701,7 +727,6 @@ void MainWindow::ReadSettings() {
   if (checked) {
     ui.line_edit_master->setEnabled(false);
     ui.line_edit_host->setEnabled(false);
-    // ui.line_edit_topic->setEnabled(false);
   }
   ui.spinBox_ChiptrayID_DL->setValue(settings.value("dl_chiptray_id").toInt());
   ui.spinBox_ChiptrayID_RB->setValue(settings.value("rb_chiptray_id").toInt());
@@ -713,7 +738,6 @@ void MainWindow::WriteSettings() {
                     ui.line_edit_master->text());
   settings.setValue("host_url",
                     ui.line_edit_host->text());
-  // settings.setValue("topic_name",ui.line_edit_topic->text());
   settings.setValue("use_environment_variables",
                     QVariant(ui.checkbox_use_environment->isChecked()));
   settings.setValue("geometry", saveGeometry());

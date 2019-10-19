@@ -68,7 +68,6 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
   db =
       QSqlDatabase::addDatabase(QString("QMYSQL"), QString("Browser%1").arg(1));
   db.setDatabaseName(QString("2dmms_db"));
-  //  db.setHostName(QString("localhost"));
   db.setHostName(QProcessEnvironment::systemEnvironment().value("AWS_DB_URL","default"));
   db.setPort(3306);
   if (!db.open(QProcessEnvironment::systemEnvironment().value("AWS_DB_USER","default"),
@@ -166,7 +165,11 @@ void MainWindow::refreshTableWidget() {
   QSqlQueryModel *model = new QSqlQueryModel(ui.tableView);
 
   model->setQuery(QSqlQuery(
-      "select "
+      "select idchiptray, material, crystal_name, substrate, exfoliator"
+      " ,datetime_exfoliated from 2dmms_db.chiptray"
+      " inner join 2dmms_db.chip on 2dmms_db.chiptray.idchiptray = 2dmms_db.chip.idchiptray_fk"
+      " where position_in_chiptray = 1"
+      /*"select "
       " ChipA.id_chiptray_fk, "
       " ChipA.position_in_chiptray, "
       " ChipA.exfoliated_date, "
@@ -183,7 +186,7 @@ void MainWindow::refreshTableWidget() {
       "GROUP BY "
       " id_chiptray_fk) AS ChipB "
       "ON ChipA.id_chiptray_fk = ChipB.id_chiptray_fk "
-      "AND ChipA.position_in_chiptray = ChipB.NumChip;",
+      "AND ChipA.position_in_chiptray = ChipB.NumChip;"*/,
       db));
   ui.tableView->setModel(model);
 

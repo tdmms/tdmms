@@ -57,6 +57,8 @@ Q_SLOTS:
   void on_horizontalSlider_Exposure_RB_valueChanged(int value);
   void on_button_DeleteParams_RB_clicked();
   void on_button_AddParams_RB_clicked();
+  void on_Button_LoadSettings_clicked();
+  void on_Button_SaveSettings_clicked();
   void on_horizontalSlider_CentH_RB_valueChanged(int value);
   void on_horizontalSlider_DeltaH_RB_valueChanged(int value);
   void on_horizontalSlider_CentS_RB_valueChanged(int value);
@@ -79,8 +81,6 @@ Q_SLOTS:
   void on_horizontalSlider_EdgeDetect_RB_valueChanged(int value);
 
   void selectionChanged_DetectionParams();
-  void on_Button_LoadSettings_clicked();
-  void on_Button_SaveSettings_clicked();
 
  private:
   Ui::MainWindowDesign ui;

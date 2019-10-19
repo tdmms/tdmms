@@ -1249,7 +1249,7 @@ void QNode::runRBDetection(int id_image, char* filename,
   colornames[0] = "orange red";
   colornames[1] = "green yellow";
   colornames[2] = "dark turquoise";
-  
+
   for (int i = 0 ; i < num_classes; i++) {
     ////////////////////////////////////
     // Detection parameters
@@ -1391,16 +1391,6 @@ void QNode::runRBDetection(int id_image, char* filename,
     Threshold(ho_ImageSub_S, &ho_Region_S, hv_lb_S, hv_ub_S);
     Threshold(ho_ImageSub_V, &ho_Region_V, hv_lb_V, hv_ub_V);
 
-    /*Threshold(ho_ImageSub_H, &ho_Region_H,
-              (hv_cent_H - hv_delta_H) + (4096 / 2),
-              (hv_cent_H + hv_delta_H) + (4096 / 2));
-    Threshold(ho_ImageSub_S, &ho_Region_S,
-              (hv_cent_S - hv_delta_S) + (4096 / 2),
-              (hv_cent_S + hv_delta_S) + (4096 / 2));
-    Threshold(ho_ImageSub_V, &ho_Region_V,
-              (hv_cent_V - hv_delta_V) + (4096 / 2),
-              (hv_cent_V + hv_delta_V) + (4096 / 2));
-    */
     Intersection(ho_Region_H, ho_Region_S, &ho_RegionI);
     Intersection(ho_Region_V, ho_RegionI, &ho_RegionI);
 
@@ -2246,38 +2236,52 @@ void QNode::on_Button_DetectSiChips_DL_clicked() {
 
   for (i = 0; i < numchip; i++) {
     on_Button_Add_DL_clicked();
-    tableWidget_SearchArea_DL->item(i, 0)->setText(QString::number(pos_x1[i]));
-    tableWidget_SearchArea_DL->item(i, 1)->setText(QString::number(pos_y1[i]));
-    tableWidget_SearchArea_DL->item(i, 2)->setText(QString::number(pos_x2[i]));
-    tableWidget_SearchArea_DL->item(i, 3)->setText(QString::number(pos_y2[i]));
-    tableWidget_SearchArea_DL->item(i, 4)->setText(QString::number(pos_x3[i]));
-    tableWidget_SearchArea_DL->item(i, 5)->setText(QString::number(pos_y3[i]));
-    tableWidget_SearchArea_DL->item(i, 6)->setText(QString::number(pos_x4[i]));
-    tableWidget_SearchArea_DL->item(i, 7)->setText(QString::number(pos_y4[i]));
-    tableWidget_SearchArea_DL->item(i, 10)->setText(QString::number(pos_in_chiptray[i]));
-    tableWidget_SearchArea_DL->item(i, 11)->setText(QString::number(chipid[i]));
+    tableWidget_SearchArea_DL->item(i, 0)
+        ->setText(QString::number(pos_x1[i]));
+    tableWidget_SearchArea_DL->item(i, 1)
+        ->setText(QString::number(pos_y1[i]));
+    tableWidget_SearchArea_DL->item(i, 2)
+        ->setText(QString::number(pos_x2[i]));
+    tableWidget_SearchArea_DL->item(i, 3)
+        ->setText(QString::number(pos_y2[i]));
+    tableWidget_SearchArea_DL->item(i, 4)
+        ->setText(QString::number(pos_x3[i]));
+    tableWidget_SearchArea_DL->item(i, 5)
+        ->setText(QString::number(pos_y3[i]));
+    tableWidget_SearchArea_DL->item(i, 6)
+        ->setText(QString::number(pos_x4[i]));
+    tableWidget_SearchArea_DL->item(i, 7)
+        ->setText(QString::number(pos_y4[i]));
+    tableWidget_SearchArea_DL->item(i, 10)
+        ->setText(QString::number(pos_in_chiptray[i]));
+    tableWidget_SearchArea_DL->item(i, 11)
+        ->setText(QString::number(chipid[i]));
   }
 }
 
 void QNode::on_Button_InsertSearchRecord_DL_clicked() {
-  int numofchips = SQLGetNumOfChips(static_cast<int>(spinBox_ChiptrayID_DL->value()));
+  int numofchips =
+      SQLGetNumOfChips(static_cast<int>(spinBox_ChiptrayID_DL->value()));
   for (int i = 0; i < numofchips; i++) {
     int id_chip =
         SQLGetChipID(static_cast<int>(spinBox_ChiptrayID_DL->value()),
                      tableWidget_SearchArea_DL->item(i, 10)->text().toInt());
     int id_search = SQLGetMaximumSearchID(id_chip) + 1;
-    SQLInsertSearch(id_search, id_chip, spinBox_StepX->value(), spinBox_StepY->value());
+    SQLInsertSearch(id_search, id_chip,
+                    spinBox_StepX->value(), spinBox_StepY->value());
   }
 }
 
 void QNode::on_Button_InsertSearchRecord_RB_clicked() {
-  int numofchips = SQLGetNumOfChips(static_cast<int>(spinBox_ChiptrayID_RB->value()));
+  int numofchips =
+      SQLGetNumOfChips(static_cast<int>(spinBox_ChiptrayID_RB->value()));
   for (int i = 0; i < numofchips; i++) {
     int id_chip =
         SQLGetChipID(static_cast<int>(spinBox_ChiptrayID_RB->value()),
                      tableWidget_SearchArea_RB->item(i, 10)->text().toInt());
     int id_search = SQLGetMaximumSearchID(id_chip) + 1;
-    SQLInsertSearch(id_search, id_chip, spinBox_StepX->value(), spinBox_StepY->value());
+    SQLInsertSearch(id_search, id_chip,
+                    spinBox_StepX->value(), spinBox_StepY->value());
   }
 }
 
@@ -2432,7 +2436,8 @@ void QNode::on_Button_CaptureEdge_RB_clicked() {
     afc_5_publisher_sc0.publish(emp_msg);
     ros::Duration(1).sleep();
     ROS_INFO("chipno:%d\n", static_cast<int>(hv_chipno[i]));
-    item = tableWidget_SearchArea_RB->item(static_cast<int>(hv_chipno[i]) - 1, 8);
+    item = tableWidget_SearchArea_RB->item(
+        static_cast<int>(hv_chipno[i]) - 1, 8);
 
     /// Grab image and stor grabbed image to ramdisk
     GrabImage(&ho_OMImage, hv_AcqHandle);
@@ -2469,7 +2474,8 @@ void QNode::on_Button_CaptureEdge_RB_clicked() {
     SQLInsertEdgeImage(
         id_origin_image,  /// Origin image id
         id_search,        // Search ID
-        tableWidget_SearchArea_RB->item(static_cast<int>(hv_chipno[i]) - 1, 11)->text().toInt(),  // Chip ID
+        tableWidget_SearchArea_RB->item(
+            static_cast<int>(hv_chipno[i]) - 1, 11)->text().toInt(),  // Chip ID
         0, // Lens ID
         static_cast<int>(pos_x[i]),
         static_cast<int>(pos_y[i]),
@@ -2652,13 +2658,7 @@ void QNode::on_Button_CaptureEdge_DL_clicked() {
     sv.request.keyname = keyname;
     finder_s3_upload_service.call(sv);
 
-    /*
-    snprintf(filename, sizeof(filename), "%s/o_%010d_%010d_%010d_%010d.jpg",
-            item->text().toStdString().c_str(), i, static_cast<int>(pos_x[i]),
-            static_cast<int>(pos_y[i]), static_cast<int>(0));*/
-
     ROS_INFO("Upload edge image to S3 bucket. Keyname: %s\n", keyname);
-    // SaveImage_jpg(filename);
 
     int id_search = SQLGetMaximumSearchID(
         tableWidget_SearchArea_DL->item(static_cast<int>(hv_chipno[i]) - 1, 11)
@@ -2669,7 +2669,8 @@ void QNode::on_Button_CaptureEdge_DL_clicked() {
     SQLInsertEdgeImage(
         id_origin_image,  /// Origin image id
         id_search,        // Search ID
-        tableWidget_SearchArea_DL->item(static_cast<int>(hv_chipno[i]) - 1, 11)->text().toInt(),  // Chip ID
+        tableWidget_SearchArea_DL->item(
+            static_cast<int>(hv_chipno[i]) - 1, 11)->text().toInt(),  // Chip ID
         0, // Lens ID
         static_cast<int>(pos_x[i]),
         static_cast<int>(pos_y[i]),
@@ -2794,7 +2795,7 @@ void QNode::CaptureAlignmentImage(QTableWidget* tableWidget_SearchArea,
 
       ExecuteAutofocus();
       ros::Duration(1).sleep();
-      
+
       ExecuteAutofocus();
       ros::Duration(1).sleep();
 
@@ -2859,186 +2860,12 @@ void QNode::on_Button_CaptureAlignmentImage_RB_clicked() {
   CaptureAlignmentImage(tableWidget_SearchArea_RB,
                         spinBox_ChiptrayID_RB->value(),
                         lineEdit_Folder_RB->text());
-  /*
-  int flakecount = 0;
-  std::list<geometry_msgs::Point> PointList;
-  QTableWidgetItem* item;
-  QTableWidgetItem* item_progress;
-  int row;
-  double delay;
-  tdmms_finder_network_support::UploadS3 sv;
-  currentState = Search;
-
-  int tartlet_pos[] = {0, 1};
-
-  for (int i = 0 ; i < 2 ; i ++) { 
-    for (row = 0; row < tableWidget_SearchArea_RB->rowCount(); row++) {
-      if (tartlet_pos[i] == 0) {
-        ExtractPointListFromTableWidget(tableWidget_SearchArea_RB,
-                                        &PointList, row, spinBox_StepX->value() * 4,
-                                        spinBox_StepY->value() * 4);
-      } else {
-        ExtractPointListFromTableWidget(tableWidget_SearchArea_RB,
-                                        &PointList, row, spinBox_StepX->value() * 2,
-                                        spinBox_StepY->value() * 2);
-      }
-      char filename[4028];
-      double progress = 0.0;
-      double count = 0;
-      int id_chip;
-      int id_search;
-
-      SetObjectiveLensTartlet(tartlet_pos[i]);
-      ros::Duration(0.5).sleep();
-
-      adm2_abs_publisher.publish(*PointList.begin());
-      adm2_wait_for_stop_client.call(emp_srv);
-
-      ExecuteAutofocus();
-      ros::Duration(0.5).sleep();
-
-      item_progress = tableWidget_SearchArea_RB->item(row, 9);
-
-      id_chip =
-          SQLGetChipID(static_cast<int>(spinBox_ChiptrayID_RB->value()),
-                       tableWidget_SearchArea_RB->item(row, 10)->text().toInt());
-      id_search = SQLGetMaximumSearchID(id_chip);
-
-      for (std::list<geometry_msgs::Point>::iterator itr = PointList.begin();
-           itr != PointList.end();) {
-        // Move xy stage to the next position
-        adm2_abs_publisher.publish(*itr);
-
-        // update progress
-        progress = count / PointList.size();
-        item_progress->setText(QString::number(progress * 100));
-
-        // wait until the stagion has been stopped
-        delay = (static_cast<double>(spinBox_Delay->value())) / 100;
-        ros::Duration(delay).sleep();
-
-        //count
-        count++;
-
-        /// Grab image and stor grabbed image to ramdisk
-        GrabImage(&ho_OMImage, hv_AcqHandle);
-        DispObj(ho_OMImage, hv_WindowHandleOM);
-        SaveImage_jpg(temp_filename.toLocal8Bit().data());
-
-        // upload file to S3 server
-        char keyname[4096];
-        snprintf(
-            keyname, sizeof(keyname),
-            "%s/%02d/align_%01d_%06d_%06d_%06d.jpg",
-            lineEdit_Folder_RB->text().toLocal8Bit().data(),
-            row+1,
-            tartlet_pos[i],
-            flakecount,
-            static_cast<int>(itr->x),
-            static_cast<int>(itr->y));
-        sv.request.keyname = keyname;
-        finder_s3_upload_service.call(sv);
-        SQLInsertAlignmentImage(id_search, id_chip, tartlet_pos[i],
-                                static_cast<int>(itr->x),
-                                static_cast<int>(itr->y),
-                                lineEdit_S3Bucket->text().toLocal8Bit().data(),
-                                keyname,
-                                (static_cast<std::string>(sv.response.url)).c_str());
-        flakecount++;
-        itr++;
-        qApp->processEvents();
-      }
-    }
-  }
-  currentState = Live;
-  */
 }
 
 void QNode::on_Button_CaptureAlignmentImage_DL_clicked() {
   CaptureAlignmentImage(tableWidget_SearchArea_DL,
                         spinBox_ChiptrayID_DL->value(),
                         lineEdit_Folder_DL->text());
-  /*
-  int flakecount = 0;
-  std::list<geometry_msgs::Point> PointList;
-  QTableWidgetItem* item;
-  QTableWidgetItem* item_progress;
-  int row;
-  double delay;
-  tdmms_finder_network_support::UploadS3 sv;
-  currentState = Search;
-  for (row = 0; row < tableWidget_SearchArea_DL->rowCount(); row++) {
-    ExtractPointListFromTableWidget(tableWidget_SearchArea_DL,
-                                    &PointList, row, spinBox_StepX->value() * 5,
-                                    spinBox_StepY->value() * 5);
-    char filename[4028];
-    double progress = 0.0;
-    double count = 0;
-    int id_chip;
-    int id_search;
-
-    SetObjectiveLensTartlet(0);
-    ros::Duration(0.5).sleep();
-
-    adm2_abs_publisher.publish(*PointList.begin());
-    adm2_wait_for_stop_client.call(emp_srv);
-
-    ExecuteAutofocus();
-    ros::Duration(0.5).sleep();
-
-    item_progress = tableWidget_SearchArea_DL->item(row, 9);
-
-    id_chip =
-        SQLGetChipID(static_cast<int>(spinBox_ChiptrayID_DL->value()),
-                     tableWidget_SearchArea_DL->item(row, 10)->text().toInt());
-    id_search = SQLGetMaximumSearchID(id_chip);
-
-    for (std::list<geometry_msgs::Point>::iterator itr = PointList.begin();
-         itr != PointList.end();) {
-      // Move xy stage to the next position
-      adm2_abs_publisher.publish(*itr);
-
-      // update progress
-      progress = count / PointList.size();
-      item_progress->setText(QString::number(progress * 100));
-
-      // wait until the stagion has been stopped
-      delay = (static_cast<double>(spinBox_Delay->value())) / 100;
-      ros::Duration(delay).sleep();
-
-      //count
-      count++;
-
-      /// Grab image and stor grabbed image to ramdisk
-      GrabImage(&ho_OMImage, hv_AcqHandle);
-      DispObj(ho_OMImage, hv_WindowHandleOM);
-      SaveImage_jpg(temp_filename.toLocal8Bit().data());
-
-      // upload file to S3 server
-      char keyname[4096];
-      snprintf(
-          keyname, sizeof(keyname),
-          "%s/%02d/align_%06d_%06d_%06d.jpg",
-          lineEdit_Folder_DL->text().toLocal8Bit().data(),
-          row+1,
-          flakecount,
-          static_cast<int>(itr->x),
-          static_cast<int>(itr->y));
-      sv.request.keyname = keyname;
-      finder_s3_upload_service.call(sv);
-      SQLInsertAlignmentImage(id_search, id_chip, 0,
-                              static_cast<int>(itr->x),
-                              static_cast<int>(itr->y),
-                              lineEdit_S3Bucket->text().toLocal8Bit().data(),
-                              keyname,
-                              (static_cast<std::string>(sv.response.url)).c_str());
-      flakecount++;
-      itr++;
-      qApp->processEvents();
-    }
-  }
-  currentState = Live;
-  */
 }
 
 void QNode::on_Button_Add_DL_clicked() {
@@ -3537,7 +3364,6 @@ void QNode::run() {
     if (currentState == Live) {
       GrabImage(&ho_OMImage, hv_AcqHandle);
       if (checkBox_TestMode_DL->isChecked()) {
-        //runDLDetection(0, temp_filename.toLocal8Bit().data(), 0, 0, true);
         runDetection();
       } else if (checkBox_TestMode_RB->isChecked()) {
         runRBDetection(0, NULL, 0, 0, true, issettingMode);

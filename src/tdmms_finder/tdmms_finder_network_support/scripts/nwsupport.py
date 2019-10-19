@@ -47,13 +47,13 @@ from std_msgs.msg import String
 from boto.s3.key import Key
 from boto.s3.connection import S3Connection
 
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_ID")
 AWS_BUCKET_NAME = os.getenv("AWS_BUCKET_NAME")
 temp_filename = '/ramdisk/tmp.jpg'
 
 conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
-bucket = conn.get_bucket(AWS_BUCKET_NAME)
+bucket = conn.get_bucket(AWS_BUCKET_NAME, validate=False)
 bucket_location = bucket.get_location()
 
 k = Key(bucket)
