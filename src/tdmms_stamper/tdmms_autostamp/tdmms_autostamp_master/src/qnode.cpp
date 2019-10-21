@@ -393,6 +393,24 @@ bool QNode::on_StartAutostamp_Full_clicked(bool check) {
 }
 
 void QNode::on_Stop_clicked(bool check) {
+  if (ac_flake_positioner_fast2.getState() ==
+      actionlib::SimpleClientGoalState::ACTIVE) {
+    ac_flake_positioner_fast2.cancelGoal();
+    skip_requested = false;
+  }
+
+  if (ac_flake_aligner_xytheta5x2.getState() ==
+      actionlib::SimpleClientGoalState::ACTIVE) {
+    ac_flake_aligner_xytheta5x2.cancelGoal();
+    skip_requested = false;
+  }
+
+  if (ac_flake_aligner_xy10x2.getState () ==
+      actionlib::SimpleClientGoalState::ACTIVE) {
+    ac_flake_aligner_xy10x2.cancelGoal();
+    skip_requested = false;
+  }
+
   if (ac_flake_positioner.getState() ==
       actionlib::SimpleClientGoalState::ACTIVE) {
     ac_flake_positioner.cancelGoal();
