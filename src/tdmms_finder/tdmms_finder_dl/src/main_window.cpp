@@ -272,7 +272,8 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
   qnode.checkBox_TestMode_RB = ui.checkBox_TestMode_RB;
   qnode.checkBox_Enhance_DL = ui.checkBox_Enhance_DL;
   qnode.checkBox_Enhance_RB = ui.checkBox_Enhance_RB;
-
+  qnode.checkBox_RecordMask_DL = ui.checkBox_RecordMask_DL;
+  
   qnode.tableWidget_SearchArea_DL = ui.tableWidget_SearchArea_DL;
   qnode.tableWidget_SearchArea_RB = ui.tableWidget_SearchArea_RB;
   qnode.tableWidget_DetectionParams_RB = ui.tableWidget_DetectionParams_RB;

@@ -85,10 +85,11 @@ class QNode : public QThread {
     Fatal
   };
   QCheckBox *checkBox_TestMode_DL;
-  QCheckBox *checkBox_TestMode_RB;
   QCheckBox *checkBox_Enhance_DL;
+  QCheckBox *checkBox_RecordMask_DL;
+  QCheckBox *checkBox_TestMode_RB;
   QCheckBox *checkBox_Enhance_RB;
-
+  
   QTableWidget *tableWidget_SearchArea_DL;
   QTableWidget *tableWidget_SearchArea_RB;
   QTableWidget *tableWidget_DetectionParams_RB;

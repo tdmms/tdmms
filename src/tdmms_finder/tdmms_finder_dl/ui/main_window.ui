@@ -34,7 +34,7 @@
        <locale language="English" country="Australia"/>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -46,7 +46,7 @@
           <x>1110</x>
           <y>140</y>
           <width>111</width>
-          <height>31</height>
+          <height>16</height>
          </rect>
         </property>
         <property name="font">
@@ -535,7 +535,7 @@
           <x>1110</x>
           <y>160</y>
           <width>111</width>
-          <height>31</height>
+          <height>16</height>
          </rect>
         </property>
         <property name="font">
@@ -546,6 +546,25 @@
         </property>
         <property name="text">
          <string>Enhance</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_RecordMask_DL">
+        <property name="geometry">
+         <rect>
+          <x>1110</x>
+          <y>180</y>
+          <width>121</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RecordMask</string>
         </property>
        </widget>
       </widget>
