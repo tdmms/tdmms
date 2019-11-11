@@ -275,7 +275,7 @@ int QNode::SQLInsertObject(int id_image,
   SQLExecQuery(&q);
   while (q.next()) {
     id_object = q.value(0).toInt();
-    printf("idobject:%d\n", id_object);
+    printf("id_object:%d\n", id_object);
   }
   id_object++;
 
@@ -1031,9 +1031,13 @@ void QNode::on_Button_StartFind_DL_clicked() {
                                 false,
                                 false);
       flakecount++;
-      runDLDetection(id_image, temp_filename.toLocal8Bit().data(), itr->x, itr->y, false);
+      runDLDetection(id_image,
+                     temp_filename.toLocal8Bit().data(),
+                     itr->x, itr->y,
+                     false);
       recordCentralizedImages(id_image,
-                              spinBox_AreaThresh_DL->value(), row, id_search, id_chip);
+                              spinBox_AreaThresh_DL->value()
+                              row, id_search, id_chip);
       itr++;
       qApp->processEvents();
     }
