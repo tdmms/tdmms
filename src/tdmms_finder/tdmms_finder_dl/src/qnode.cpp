@@ -538,8 +538,7 @@ bool QNode::SaveImage_jpg(char* filename) {
     ConvertImageType(ho_Image_Shifted, &ho_Image_Conv, "byte");
     WriteImage(ho_Image_Conv, "jpeg", 0, filename);
     return true;
-  }
-  catch (HalconCpp::HException& HDevExpDefaultException) {
+  } catch (HalconCpp::HException& HDevExpDefaultException) {
     printf("Error in SaveImage: %d\n", HDevExpDefaultException.ErrorCode());
     return false;
   }
@@ -552,8 +551,7 @@ Herror QNode::SaveImage_raw(char* filename) {
   try {
     WriteImage(ho_OMImage, "tiff lzw", 0, filename);
     return H_MSG_OK;
-  }
-  catch (HalconCpp::HException& HDevExpDefaultException) {
+  } catch (HalconCpp::HException& HDevExpDefaultException) {
     printf("Error in SaveRawImage: %d\n", HDevExpDefaultException.ErrorCode());
     return -1;
   }
@@ -761,8 +759,10 @@ void QNode::on_Button_SaveImage_clicked() {
   char filename[4096];
   int piccount = spinBox_pic_count->value();
   sprintf(filename, "%s/m_%010d_%010d_%010d_%010d.jpg",
-          (char*)lineEdit_picFolder->text().toStdString().c_str(), piccount,
-          static_cast<int>(currpoint.x), static_cast<int>(currpoint.y),
+          (char*)lineEdit_picFolder->text().toStdString().c_str(),
+          piccount,
+          static_cast<int>(currpoint.x),
+          static_cast<int>(currpoint.y),
           0000000);
   currentState = Freeze;
   ros::Duration(0.1).sleep();
@@ -778,7 +778,8 @@ void QNode::on_Button_SaveBG_clicked() {
 
   GrabImage(&ho_OMImage, hv_AcqHandle);
   QString strFName = QFileDialog::getSaveFileName(
-      0, tr("Save File"), QDir::homePath() + "/tdmms_data/background_images/untitled.tiff",
+      0, tr("Save File"),
+      QDir::homePath() + "/tdmms_data/background_images/untitled.tiff",
       tr("BG image file (*.tiff)"));
   if (!strFName.isEmpty()) {
     SaveImage_raw(strFName.toLocal8Bit().data());
@@ -792,7 +793,7 @@ void QNode::on_Button_LoadBG_clicked() {
   QString filename = QFileDialog::getOpenFileName(
       0, ("Open File"), QDir::homePath() + "/tdmms_data/background_images/",
       ("BG image file (*.tiff)"));
-  if(!filename.isEmpty()){
+  if (!filename.isEmpty()) {
     lineEdit_BGImage->setText(filename);
     prepareBGImage(filename);
   }
@@ -1056,7 +1057,7 @@ int QNode::recordCentralizedImages_RB(int id_image, int area_thresh, int row, in
               q.executedQuery().toStdString().c_str());
 
   tdmms_finder_network_support::UploadS3 sv;
-  while(q.next()) {
+  while (q.next()) {
     int pos_x = q.value(0).toInt();
     int pos_y = q.value(1).toInt();
     geometry_msgs::Point pnt;
@@ -1064,7 +1065,7 @@ int QNode::recordCentralizedImages_RB(int id_image, int area_thresh, int row, in
     pnt.y = pos_y;
     ROS_INFO("POS_X:%d, POS_Y:%d", pos_x, pos_y);
 
-    if (SQLCheckDuplicate(id_search, id_chip, pos_x, pos_y, 20)){
+    if (SQLCheckDuplicate(id_search, id_chip, pos_x, pos_y, 20)) {
       ROS_INFO("Duplicate Image Found at (%d, %d)", pos_x, pos_y);
       continue;
     }
@@ -1732,7 +1733,7 @@ void QNode::runDLDetection(int id_image, char* filename, int point_x, int point_
   //////////////////////////////////////////
   /// Insert object record to SQL Sever
   //////////////////////////////////////////
-  if(!test_mode) {
+  if (!test_mode) {
     for (int i = 0; i < roi_x1.size(); i++) {
       int pos_x = static_cast<int>(point_x + 120.0/2000.0 * ((roi_x2.at(i) + roi_x1.at(i))/2 - 1000));
       int pos_y = static_cast<int>(point_y - 120.0/2000.0 * ((roi_y2.at(i) + roi_y2.at(i))/2 - 500));
@@ -1751,12 +1752,6 @@ void QNode::runDLDetection(int id_image, char* filename, int point_x, int point_
   ///////////////////////////////////////
   //// Insert Mask Items
   //////////////////////////////////////
-
-  QSqlQuery q("", db);
-  q.prepare(
-      "INSERT INTO 2dmms_db.mask (idmask, idpoint, idobject_fk, "
-      "point_x, point_y) "
-      "VALUES (?, ?, ?, ?, ?)");
 
   QVariantList idmasks, idpoints, idobject_fks, point_xs, point_ys;
 
@@ -1821,7 +1816,7 @@ void QNode::runDLDetection(int id_image, char* filename, int point_x, int point_
     halcon_bridge::disp_message(hv_WindowHandleOM, oss.str().c_str(), "window",
                                 roi_y1.at(obj_id) - 35, roi_x1.at(obj_id),
                                 "white", "false");
-    if(!test_mode) {
+    if (!test_mode) {
       for (int k=0; k < num_corners; k++) {
         idmasks << mask_id;
         idpoints << k;
@@ -1832,18 +1827,26 @@ void QNode::runDLDetection(int id_image, char* filename, int point_x, int point_
     }
   }
 
-  if(!test_mode) {
-    q.addBindValue(idmasks);
-    q.addBindValue(idpoints);
-    q.addBindValue(idobject_fks);
-    q.addBindValue(point_xs);
-    q.addBindValue(point_ys);
-    if (!q.execBatch())
-      ROS_ERROR("QUERY ERROR, ERROR:%s SENT:%s",
-                q.lastError().text().toStdString().c_str(),
-                q.lastQuery().toStdString().c_str());
-    else
-      ROS_DEBUG("QUERY SUCCESS, SENT:%s", q.lastQuery().toStdString().c_str());
+  if (!test_mode) {
+    if (checkBox_RecordMask_DL->isChecked()) {
+      QSqlQuery q("", db);
+      q.prepare(
+          "INSERT INTO 2dmms_db.mask (idmask, idpoint, idobject_fk, "
+          "point_x, point_y) "
+          "VALUES (?, ?, ?, ?, ?)");
+      q.addBindValue(idmasks);
+      q.addBindValue(idpoints);
+      q.addBindValue(idobject_fks);
+      q.addBindValue(point_xs);
+      q.addBindValue(point_ys);
+
+      if (!q.execBatch())
+        ROS_ERROR("QUERY ERROR, ERROR:%s SENT:%s",
+                  q.lastError().text().toStdString().c_str(),
+                  q.lastQuery().toStdString().c_str());
+      else
+        ROS_DEBUG("QUERY SUCCESS, SENT:%s", q.lastQuery().toStdString().c_str());
+    }
   }
 }
 
