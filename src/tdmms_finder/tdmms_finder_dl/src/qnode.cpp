@@ -449,13 +449,13 @@ void QNode::SQLInsertAlignmentImage(int id_search,
 
 QString QNode::SQLSelectMaterialName(int idchiptray) {
   QString materialname;
-  QSqlQuery q("", db);
-  q.prepare(
+  //QSqlQuery q("", db);
+  p_query->prepare(
       "select material from 2dmms_db.chip where idchiptray_fk = ?");
-  q.addBindValue(idchiptray);
-  SQLExecQuery(&q);
-  q.next();
-  materialname = q.value(0).toString();
+  p_query->addBindValue(idchiptray);
+  SQLExecQuery(p_query);
+  p_query->next();
+  materialname = p_query->value(0).toString();
   return materialname;
 }
 
@@ -485,9 +485,9 @@ bool QNode::SQLCheckDuplicate(int id_search,
   /////////////////////////////////////////////////////
   //// Check if the record at current position is present in database
   ////////////////////////////////////////////////////
-
-  QSqlQuery q("", db);
-  q.prepare(
+  
+  //QSqlQuery q("", db);
+  p_query->prepare(
       "select count(*) from 2dmms_db.image "
       " where"
       " idsearch_fk = ?"
@@ -496,14 +496,14 @@ bool QNode::SQLCheckDuplicate(int id_search,
       " and sqrt(Power(point_x - ?, 2)"
       " + Power(point_y - ?, 2)) < ?");
 
-  q.addBindValue(id_search);
-  q.addBindValue(id_chip);
-  q.addBindValue(point_x);
-  q.addBindValue(point_y);
-  q.addBindValue(thresh);
-  SQLExecQuery(&q);
-  q.next();
-  int duplicate = q.value(0).toInt();
+  p_query->addBindValue(id_search);
+  p_query->addBindValue(id_chip);
+  p_query->addBindValue(point_x);
+  p_query->addBindValue(point_y);
+  p_query->addBindValue(thresh);
+  SQLExecQuery(p_query);
+  p_query->next();
+  int duplicate = p_query->value(0).toInt();
   if (duplicate == 0)
     return false;
 
@@ -1049,23 +1049,23 @@ void QNode::on_Button_StartFind_DL_clicked() {
 
 int QNode::recordCentralizedImages_RB(int id_image, int area_thresh, int row, int id_search, int id_chip) {
   ROS_INFO("Capture Centralized Image");
-  QSqlQuery q("", db);
-  q.prepare(
+  //QSqlQuery q("", db);
+  p_query->prepare(
       "select point_x, point_y from 2dmms_db.object where idimage_fk = ? and area > ?");
-  q.addBindValue(id_image);
-  q.addBindValue(area_thresh);
-  if (!q.exec())
+  p_query->addBindValue(id_image);
+  p_query->addBindValue(area_thresh);
+  if (!p_query->exec())
     ROS_ERROR("QUERY ERROR, ERROR:%s SENT:%s",
-              q.lastError().text().toStdString().c_str(),
-              q.executedQuery().toStdString().c_str());
+              p_query->lastError().text().toStdString().c_str(),
+              p_query->executedQuery().toStdString().c_str());
   else
     ROS_DEBUG("QUERY SUCCESS, SENT:%s",
-              q.executedQuery().toStdString().c_str());
+              p_query->executedQuery().toStdString().c_str());
 
   tdmms_finder_network_support::UploadS3 sv;
-  while (q.next()) {
-    int pos_x = q.value(0).toInt();
-    int pos_y = q.value(1).toInt();
+  while (p_query->next()) {
+    int pos_x = p_query->value(0).toInt();
+    int pos_y = p_query->value(1).toInt();
     geometry_msgs::Point pnt;
     pnt.x = pos_x;
     pnt.y = pos_y;
