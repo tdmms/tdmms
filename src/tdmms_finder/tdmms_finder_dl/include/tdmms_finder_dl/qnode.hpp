@@ -248,6 +248,7 @@ Q_SLOTS:
   HTuple hv_exposure;
   HTuple hv_AcqHandle;
   QSqlDatabase db;
+  QSqlQuery *p_query;
 
   // Local iconic variables
   HObject ho_Image_BG, ho_Image_BG_R, ho_Image_BG_G;
