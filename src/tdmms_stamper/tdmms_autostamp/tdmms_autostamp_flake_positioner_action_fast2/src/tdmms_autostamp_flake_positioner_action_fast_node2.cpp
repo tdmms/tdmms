@@ -75,7 +75,7 @@ class autostamp_flake_positioner_fast2_class {
       }
     }
     ActivateComputeDevice(hv_DeviceHandle);
-    
+
     /*****************************************************************************
      ** Initialize Publisher Nodes
      *****************************************************************************/
