@@ -3077,8 +3077,9 @@ bool QNode::init(const std::string& master_url, const std::string& host_url) {
   adm2_wait_for_stop_client =
       n.serviceClient<std_srvs::Empty>("/adm2_master/wait_for_stop");
   adm2_vel_publisher = n.advertise<adm2::velocity>("/adm2_master/cmd_vel", 1);
-  finder_network_publisher = n.advertise<std_msgs::String>("nw_chatter", 1000);
-  finder_s3_upload_service = n.serviceClient<tdmms_finder_network_support::UploadS3>("upload_s3");
+  finder_network_publisher = n.advertise<std_msgs::String>("/network_support/nw_chatter", 1000);
+  finder_s3_upload_service =
+      n.serviceClient<tdmms_finder_network_support::UploadS3>("/network_support/upload_s3");
   adm2_get_current_pos_client =
       n.serviceClient<adm2::GetCurrentPos>(
           "/adm2_master/get_currpos");
