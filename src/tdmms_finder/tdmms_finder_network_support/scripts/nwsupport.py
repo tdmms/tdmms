@@ -84,9 +84,9 @@ def listener():
     # run simultaneously.
     rospy.init_node('listener', anonymous=True)
 
-    rospy.Subscriber('nw_chatter', String, callback)
-    s = rospy.Service('add_two_ints', AddTwoInts, handle_add_two_ints)
-    s = rospy.Service('upload_s3', UploadS3, handle_upload_s3)
+    rospy.Subscriber('/network_support/nw_chatter', String, callback)
+    s = rospy.Service('/network_support/add_two_ints', AddTwoInts, handle_add_two_ints)
+    s = rospy.Service('/network_support/upload_s3', UploadS3, handle_upload_s3)
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 
