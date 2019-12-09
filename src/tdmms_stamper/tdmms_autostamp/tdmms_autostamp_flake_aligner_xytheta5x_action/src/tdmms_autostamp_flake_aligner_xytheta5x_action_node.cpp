@@ -68,7 +68,7 @@ class autostamp_flake_aligner_xytheta5x_class {
             false),
         action_name_(name) {
     pi_const = 3.14159265358979323846;
-
+    /*
     QueryAvailableComputeDevices(&hv_DeviceIdentifiers);
     {
       HalconCpp::HTuple end_val3 = (hv_DeviceIdentifiers.TupleLength()) - 1;
@@ -84,7 +84,7 @@ class autostamp_flake_aligner_xytheta5x_class {
       }
     }
     ActivateComputeDevice(hv_DeviceHandle);
-
+    */
     stamper_sample_xy_cmd_vel =
         node_.advertise<adm2::velocity>("/stamper_sample_xy_master/cmd_vel", 1);
     stamper_sample_xy_cmd_abs = node_.advertise<geometry_msgs::Point>(

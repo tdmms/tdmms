@@ -516,9 +516,6 @@ bool QNode::SaveImage_affine(char* filename) {
   // Apply affine transformation to the current optical microscope image.
   // Then save transformed image in temporary folder
   ///////////////////////////////////////////////////////////////////
-  HTuple hv_HomMat2DIdentity, hv_HomMat2DScale0125;
-  HObject ho_GrayImage, ho_GrayImageAffinTrans;
-  HObject ho_GrayImage_shift;
 
   HomMat2dIdentity(&hv_HomMat2DIdentity);
   HomMat2dScale(hv_HomMat2DIdentity, 0.125, 0.125, 0, 0, &hv_HomMat2DScale0125);
@@ -535,7 +532,6 @@ bool QNode::SaveImage_jpg(char* filename) {
   //// Save image in jpeg format
   ///////////////////////////////////////////////////////////////////
   try {
-    HObject ho_Image_Shifted, ho_Image_Conv;
     BitRshift(ho_OMImage, &ho_Image_Shifted, 4);
     ConvertImageType(ho_Image_Shifted, &ho_Image_Conv, "byte");
     WriteImage(ho_Image_Conv, "jpeg", 0, filename);
