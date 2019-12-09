@@ -59,6 +59,7 @@ class autostamp_flake_positioner_fast_class {
     /////////////////////////////////////////
     /// Activate GPU
     ////////////////////////////////////////
+    /*
         QueryAvailableComputeDevices(&hv_DeviceIdentifiers);
     {
       HalconCpp::HTuple end_val3 = (hv_DeviceIdentifiers.TupleLength()) - 1;
@@ -74,7 +75,7 @@ class autostamp_flake_positioner_fast_class {
       }
     }
     ActivateComputeDevice(hv_DeviceHandle);
-    
+    */
     /*****************************************************************************
      ** Initialize Publisher Nodes
      *****************************************************************************/
