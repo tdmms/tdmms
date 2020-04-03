@@ -18,9 +18,11 @@
 #include <std_msgs/Float64.h>
 #include <sstream>
 #include "../include/tdmms_transfer_master/qnode.hpp"
+/*
 #include <actionlib/client/simple_action_client.h>
 #include <actionlib/client/terminal_state.h>
 #include <stamper_yamaha_action/TransferChipAction.h>
+*/
 #include <adv_dio/dio_write.h>
 
 /*****************************************************************************

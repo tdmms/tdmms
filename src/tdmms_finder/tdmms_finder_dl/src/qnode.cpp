@@ -104,6 +104,7 @@ QNode::QNode(int argc, char** argv) : init_argc(argc), init_argv(argv) {
   } else {
     ROS_INFO("connected to SQL Server");
   }
+  p_query = new QSqlQuery(db);
 
   ///////////////////////////////////////////////
   /// Activate GPU Processing
@@ -162,6 +163,7 @@ QNode::QNode(int argc, char** argv) : init_argc(argc), init_argv(argv) {
 }
 
 QNode::~QNode() {
+  delete p_query;
   db.close();
   if (ros::isStarted()) {
     ros::shutdown();  // explicitly needed since we use ros::start();
@@ -186,17 +188,17 @@ void QNode::SQLInsertSearch(int id_search,
   /// int target_layer_num_min: the minimum target thickness of flakes
   /// int target_layer_num_max: the maximum target thickness of flakes
   ////////////////////////////////////////////////////////////
-  QSqlQuery q("", db);
-  q.prepare(
+  //QSqlQuery q("", db);
+  p_query->prepare(
       "INSERT INTO 2dmms_db.search (id_search, id_chip_fk, "
       "datetime_search_started, search_program, target_layer_num_min, "
       "target_layer_num_max ) VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?, ?)");
-  q.bindValue(0, id_search);
-  q.bindValue(1, id_chip);
-  q.bindValue(2, search_program);
-  q.bindValue(3, target_layer_num_min);
-  q.bindValue(4, target_layer_num_max);
-  SQLExecQuery(&q);
+  p_query->bindValue(0, id_search);
+  p_query->bindValue(1, id_chip);
+  p_query->bindValue(2, search_program);
+  p_query->bindValue(3, target_layer_num_min);
+  p_query->bindValue(4, target_layer_num_max);
+  SQLExecQuery(p_query);
 }
 
 bool QNode::SQLExecQuery(QSqlQuery *q) {
@@ -223,14 +225,14 @@ int QNode::SQLGetNumOfChips(int id_chiptray) {
   ///////////////////////////////////////////////////////
   /// int id_chiptray: chiptray id
   ///////////////////////////////////////////////////////
-  QSqlQuery q("", db);
-  q.prepare(
+  //QSqlQuery q("", db);
+  p_query->prepare(
       "SELECT COUNT(idchip) from 2dmms_db.chip where idchiptray_fk = ?");
-  q.addBindValue(id_chiptray);
-  SQLExecQuery(&q);
+  p_query->addBindValue(id_chiptray);
+  SQLExecQuery(p_query);
 
-  q.next();
-  int numofchips = q.value(0).toInt();
+  p_query->next();
+  int numofchips = p_query->value(0).toInt();
   ROS_INFO("NumOfChips:%d", numofchips);
   return numofchips;
 }
@@ -243,17 +245,17 @@ int QNode::SQLGetChipID(int chiptray_id,
   /// int chiptray_id: chiptray id
   /// int pos_in_chiptray: positoin in chiptray (pocket no)
   ////////////////////////////////////////////////////////
-  QSqlQuery q("", db);
+  //QSqlQuery q("", db);
   int id_chip;
-  q.prepare(
+  p_query->prepare(
       "select idchip from 2dmms_db.chip where idchiptray_fk = :idchiptray AND "
       "position_in_chiptray = :position_in_chiptray");
-  q.bindValue(":idchiptray", chiptray_id);
-  q.bindValue(":id_position_in_chiptray", pos_in_chiptray);
-  SQLExecQuery(&q);
+  p_query->bindValue(":idchiptray", chiptray_id);
+  p_query->bindValue(":id_position_in_chiptray", pos_in_chiptray);
+  SQLExecQuery(p_query);
 
-  q.next();
-  id_chip = q.value(0).toInt();
+  p_query->next();
+  id_chip = p_query->value(0).toInt();
   ROS_INFO("ID_CHIP:%d", id_chip);
   return id_chip;
 }
@@ -268,72 +270,72 @@ int QNode::SQLInsertObject(int id_image,
                            int area,
                            int point_x,
                            int point_y) {
-  QSqlQuery q("", db);
+  //QSqlQuery q("", db);
   int id_object;
 
-  q.prepare("SELECT MAX(idobject) FROM 2dmms_db.object");
-  SQLExecQuery(&q);
-  while (q.next()) {
-    id_object = q.value(0).toInt();
+  p_query->prepare("SELECT MAX(idobject) FROM 2dmms_db.object");
+  SQLExecQuery(p_query);
+  while (p_query->next()) {
+    id_object = p_query->value(0).toInt();
     printf("id_object:%d\n", id_object);
   }
   id_object++;
 
-  q.prepare(
+  p_query->prepare(
       "INSERT INTO 2dmms_db.object (idobject, idimage_fk, class, "
       "bbox_x1, bbox_y1, bbox_x2, bbox_y2, score, area, point_x, point_y) "
       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-  q.addBindValue(id_object);
-  q.addBindValue(id_image);
-  q.addBindValue(classid);
-  q.addBindValue(roi_x1);
-  q.addBindValue(roi_y1);
-  q.addBindValue(roi_x2);
-  q.addBindValue(roi_y2);
-  q.addBindValue(score);
-  q.addBindValue(area);
-  q.addBindValue(point_x);
-  q.addBindValue(point_y);
+  p_query->addBindValue(id_object);
+  p_query->addBindValue(id_image);
+  p_query->addBindValue(classid);
+  p_query->addBindValue(roi_x1);
+  p_query->addBindValue(roi_y1);
+  p_query->addBindValue(roi_x2);
+  p_query->addBindValue(roi_y2);
+  p_query->addBindValue(score);
+  p_query->addBindValue(area);
+  p_query->addBindValue(point_x);
+  p_query->addBindValue(point_y);
 
-  SQLExecQuery(&q);
+  SQLExecQuery(p_query);
   return id_object;
 }
 
 int QNode::SQLGetMaximumSearchID(int id_chip) {
-  QSqlQuery q("", db);
+  //QSqlQuery q("", db);
   int id_search;
 
-  q.prepare("SELECT MAX(idsearch) FROM 2dmms_db.search where idchip_fk = ?");
-  q.addBindValue(id_chip);
-  SQLExecQuery(&q);
-  q.next();
-  id_search = q.value(0).toInt();
+  p_query->prepare("SELECT MAX(idsearch) FROM 2dmms_db.search where idchip_fk = ?");
+  p_query->addBindValue(id_chip);
+  SQLExecQuery(p_query);
+  p_query->next();
+  id_search = p_query->value(0).toInt();
 
   return id_search;
 }
 
 int QNode::SQLGetMaximumEdgeID() {
-  QSqlQuery q("", db);
+  //QSqlQuery q("", db);
   int id_image_edge;
-  q.prepare("SELECT MAX(idimage_edge) FROM 2dmms_db.image_edge");
-  SQLExecQuery(&q);
-  while (q.next()) {
-    id_image_edge = q.value(0).toInt();
+  p_query->prepare("SELECT MAX(idimage_edge) FROM 2dmms_db.image_edge");
+  SQLExecQuery(p_query);
+  while (p_query->next()) {
+    id_image_edge = p_query->value(0).toInt();
   }
   return id_image_edge;
 }
 
 void QNode::SQLInsertSearch(int id_search, int id_chip, int step_x, int step_y) {
-  QSqlQuery q("", db);
-  q.prepare(
+  //QSqlQuery q("", db);
+  p_query->prepare(
       "INSERT INTO 2dmms_db.search (idsearch, idchip_fk, "
       "datetime_start, step_x, step_y) "
       "VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?)");
-  q.addBindValue(id_search);
-  q.addBindValue(id_chip);
-  q.addBindValue(step_x);
-  q.addBindValue(step_y);
-  q.exec();
+  p_query->addBindValue(id_search);
+  p_query->addBindValue(id_chip);
+  p_query->addBindValue(step_x);
+  p_query->addBindValue(step_y);
+  p_query->exec();
   ROS_INFO("Search Record Added, id_chip:%d, id_search:%d", id_chip, id_search);
 }
 
@@ -348,36 +350,36 @@ int QNode::SQLInsertImage(int id_search,
                           bool send_training,
                           bool centralized,
                           bool manual) {
-  QSqlQuery q("", db);
+  //QSqlQuery q("", db);
   int id_image;
 
-  q.prepare("SELECT MAX(idimage) FROM 2dmms_db.image");
-  SQLExecQuery(&q);
-  while (q.next()) {
-    id_image = q.value(0).toInt();
+  p_query->prepare("SELECT MAX(idimage) FROM 2dmms_db.image");
+  SQLExecQuery(p_query);
+  while (p_query->next()) {
+    id_image = p_query->value(0).toInt();
     printf("idimagealign:%d\n", id_image);
   }
   id_image++;
 
-  q.prepare(
+  p_query->prepare(
       "INSERT INTO 2dmms_db.image (idimage, "
       "idsearch_fk, idchip_fk, "
       "point_x, point_y, "
       "s3_bucket, s3_key, s3_url, idlens_fk, send_training, centralized, manual) "
       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-  q.addBindValue(id_image);
-  q.addBindValue(id_search);
-  q.addBindValue(id_chip);
-  q.addBindValue(pos_x);
-  q.addBindValue(pos_y);
-  q.addBindValue(s3_bucket);
-  q.addBindValue(s3_key);
-  q.addBindValue(s3_url);
-  q.addBindValue(id_lens);
-  q.addBindValue(send_training);
-  q.addBindValue(centralized);
-  q.addBindValue(manual);
-  SQLExecQuery(&q);
+  p_query->addBindValue(id_image);
+  p_query->addBindValue(id_search);
+  p_query->addBindValue(id_chip);
+  p_query->addBindValue(pos_x);
+  p_query->addBindValue(pos_y);
+  p_query->addBindValue(s3_bucket);
+  p_query->addBindValue(s3_key);
+  p_query->addBindValue(s3_url);
+  p_query->addBindValue(id_lens);
+  p_query->addBindValue(send_training);
+  p_query->addBindValue(centralized);
+  p_query->addBindValue(manual);
+  SQLExecQuery(p_query);
   return id_image;
 }
 
@@ -390,22 +392,22 @@ void QNode::SQLInsertEdgeImage(int idimage_edge,
                                char* s3_bucket,
                                char* s3_key,
                                const char* s3_url) {
-  QSqlQuery q("", db);
-  q.prepare(
+  //QSqlQuery q("", db);
+  p_query->prepare(
       "INSERT INTO 2dmms_db.image_edge (idimage_edge, "
       "idsearch_fk, idchip_fk, idlens_fk, point_x, point_y, "
       "s3_bucket, s3_key, s3_url) "
       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-  q.addBindValue(idimage_edge);
-  q.addBindValue(id_search);
-  q.addBindValue(id_chip);
-  q.addBindValue(id_lens);
-  q.addBindValue(pos_x);
-  q.addBindValue(pos_y);
-  q.addBindValue(s3_bucket);
-  q.addBindValue(s3_key);
-  q.addBindValue(s3_url);
-  SQLExecQuery(&q);
+  p_query->addBindValue(idimage_edge);
+  p_query->addBindValue(id_search);
+  p_query->addBindValue(id_chip);
+  p_query->addBindValue(id_lens);
+  p_query->addBindValue(pos_x);
+  p_query->addBindValue(pos_y);
+  p_query->addBindValue(s3_bucket);
+  p_query->addBindValue(s3_key);
+  p_query->addBindValue(s3_url);
+  SQLExecQuery(p_query);
 }
 
 void QNode::SQLInsertAlignmentImage(int id_search,
@@ -417,43 +419,43 @@ void QNode::SQLInsertAlignmentImage(int id_search,
                                     char* s3_key,
                                     const char* s3_url) {
   int id_alignment_image;
-  QSqlQuery q("", db);
+  //QSqlQuery q("", db);
 
-  q.prepare("SELECT MAX(idimagealign) FROM 2dmms_db.image_align");
-  SQLExecQuery(&q);
-  while (q.next()) {
-    id_alignment_image = q.value(0).toInt();
+  p_query->prepare("SELECT MAX(idimagealign) FROM 2dmms_db.image_align");
+  SQLExecQuery(p_query);
+  while (p_query->next()) {
+    id_alignment_image = p_query->value(0).toInt();
     printf("idimagealign:%d\n", id_alignment_image);
   }
   id_alignment_image++;
 
-  q.prepare(
+  p_query->prepare(
       "INSERT INTO 2dmms_db.image_align (idimagealign, "
       "idsearch_fk, idchip_fk, idlens_fk,"
       "point_x, point_y, "
       "s3_bucket, s3_key, s3_url) "
       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-  q.addBindValue(id_alignment_image);
-  q.addBindValue(id_search);
-  q.addBindValue(id_chip);
-  q.addBindValue(id_lens);
-  q.addBindValue(pos_x);
-  q.addBindValue(pos_y);
-  q.addBindValue(s3_bucket);
-  q.addBindValue(s3_key);
-  q.addBindValue(s3_url);
-  SQLExecQuery(&q);
+  p_query->addBindValue(id_alignment_image);
+  p_query->addBindValue(id_search);
+  p_query->addBindValue(id_chip);
+  p_query->addBindValue(id_lens);
+  p_query->addBindValue(pos_x);
+  p_query->addBindValue(pos_y);
+  p_query->addBindValue(s3_bucket);
+  p_query->addBindValue(s3_key);
+  p_query->addBindValue(s3_url);
+  SQLExecQuery(p_query);
 }
 
 QString QNode::SQLSelectMaterialName(int idchiptray) {
   QString materialname;
-  QSqlQuery q("", db);
-  q.prepare(
+  //QSqlQuery q("", db);
+  p_query->prepare(
       "select material from 2dmms_db.chip where idchiptray_fk = ?");
-  q.addBindValue(idchiptray);
-  SQLExecQuery(&q);
-  q.next();
-  materialname = q.value(0).toString();
+  p_query->addBindValue(idchiptray);
+  SQLExecQuery(p_query);
+  p_query->next();
+  materialname = p_query->value(0).toString();
   return materialname;
 }
 
@@ -483,9 +485,9 @@ bool QNode::SQLCheckDuplicate(int id_search,
   /////////////////////////////////////////////////////
   //// Check if the record at current position is present in database
   ////////////////////////////////////////////////////
-
-  QSqlQuery q("", db);
-  q.prepare(
+  
+  //QSqlQuery q("", db);
+  p_query->prepare(
       "select count(*) from 2dmms_db.image "
       " where"
       " idsearch_fk = ?"
@@ -494,14 +496,14 @@ bool QNode::SQLCheckDuplicate(int id_search,
       " and sqrt(Power(point_x - ?, 2)"
       " + Power(point_y - ?, 2)) < ?");
 
-  q.addBindValue(id_search);
-  q.addBindValue(id_chip);
-  q.addBindValue(point_x);
-  q.addBindValue(point_y);
-  q.addBindValue(thresh);
-  SQLExecQuery(&q);
-  q.next();
-  int duplicate = q.value(0).toInt();
+  p_query->addBindValue(id_search);
+  p_query->addBindValue(id_chip);
+  p_query->addBindValue(point_x);
+  p_query->addBindValue(point_y);
+  p_query->addBindValue(thresh);
+  SQLExecQuery(p_query);
+  p_query->next();
+  int duplicate = p_query->value(0).toInt();
   if (duplicate == 0)
     return false;
 
@@ -514,9 +516,6 @@ bool QNode::SaveImage_affine(char* filename) {
   // Apply affine transformation to the current optical microscope image.
   // Then save transformed image in temporary folder
   ///////////////////////////////////////////////////////////////////
-  HTuple hv_HomMat2DIdentity, hv_HomMat2DScale0125;
-  HObject ho_GrayImage, ho_GrayImageAffinTrans;
-  HObject ho_GrayImage_shift;
 
   HomMat2dIdentity(&hv_HomMat2DIdentity);
   HomMat2dScale(hv_HomMat2DIdentity, 0.125, 0.125, 0, 0, &hv_HomMat2DScale0125);
@@ -533,7 +532,6 @@ bool QNode::SaveImage_jpg(char* filename) {
   //// Save image in jpeg format
   ///////////////////////////////////////////////////////////////////
   try {
-    HObject ho_Image_Shifted, ho_Image_Conv;
     BitRshift(ho_OMImage, &ho_Image_Shifted, 4);
     ConvertImageType(ho_Image_Shifted, &ho_Image_Conv, "byte");
     WriteImage(ho_Image_Conv, "jpeg", 0, filename);
@@ -1036,7 +1034,7 @@ void QNode::on_Button_StartFind_DL_clicked() {
                      itr->x, itr->y,
                      false);
       recordCentralizedImages(id_image,
-                              spinBox_AreaThresh_DL->value()
+                              spinBox_AreaThresh_DL->value(),
                               row, id_search, id_chip);
       itr++;
       qApp->processEvents();
@@ -1047,23 +1045,23 @@ void QNode::on_Button_StartFind_DL_clicked() {
 
 int QNode::recordCentralizedImages_RB(int id_image, int area_thresh, int row, int id_search, int id_chip) {
   ROS_INFO("Capture Centralized Image");
-  QSqlQuery q("", db);
-  q.prepare(
+  //QSqlQuery q("", db);
+  p_query->prepare(
       "select point_x, point_y from 2dmms_db.object where idimage_fk = ? and area > ?");
-  q.addBindValue(id_image);
-  q.addBindValue(area_thresh);
-  if (!q.exec())
+  p_query->addBindValue(id_image);
+  p_query->addBindValue(area_thresh);
+  if (!p_query->exec())
     ROS_ERROR("QUERY ERROR, ERROR:%s SENT:%s",
-              q.lastError().text().toStdString().c_str(),
-              q.executedQuery().toStdString().c_str());
+              p_query->lastError().text().toStdString().c_str(),
+              p_query->executedQuery().toStdString().c_str());
   else
     ROS_DEBUG("QUERY SUCCESS, SENT:%s",
-              q.executedQuery().toStdString().c_str());
+              p_query->executedQuery().toStdString().c_str());
 
   tdmms_finder_network_support::UploadS3 sv;
-  while (q.next()) {
-    int pos_x = q.value(0).toInt();
-    int pos_y = q.value(1).toInt();
+  while (p_query->next()) {
+    int pos_x = p_query->value(0).toInt();
+    int pos_y = p_query->value(1).toInt();
     geometry_msgs::Point pnt;
     pnt.x = pos_x;
     pnt.y = pos_y;
@@ -1112,23 +1110,23 @@ int QNode::recordCentralizedImages_RB(int id_image, int area_thresh, int row, in
 
 int QNode::recordCentralizedImages(int id_image, int area_thresh, int row, int id_search, int id_chip) {
   ROS_INFO("Capture Centralized Image");
-  QSqlQuery q("", db);
-  q.prepare(
+  //QSqlQuery q("", db);
+  p_query->prepare(
       "select point_x, point_y from 2dmms_db.object where idimage_fk = ? and area > ?");
-  q.addBindValue(id_image);
-  q.addBindValue(area_thresh);
-  if (!q.exec())
+  p_query->addBindValue(id_image);
+  p_query->addBindValue(area_thresh);
+  if (!p_query->exec())
     ROS_ERROR("QUERY ERROR, ERROR:%s SENT:%s",
-              q.lastError().text().toStdString().c_str(),
-              q.executedQuery().toStdString().c_str());
+              p_query->lastError().text().toStdString().c_str(),
+              p_query->executedQuery().toStdString().c_str());
   else
     ROS_DEBUG("QUERY SUCCESS, SENT:%s",
-              q.executedQuery().toStdString().c_str());
+              p_query->executedQuery().toStdString().c_str());
 
   tdmms_finder_network_support::UploadS3 sv;
-  while(q.next()) {
-    int pos_x = q.value(0).toInt();
-    int pos_y = q.value(1).toInt();
+  while(p_query->next()) {
+    int pos_x = p_query->value(0).toInt();
+    int pos_y = p_query->value(1).toInt();
     geometry_msgs::Point pnt;
     pnt.x = pos_x;
     pnt.y = pos_y;
@@ -1506,22 +1504,22 @@ void QNode::runRBDetection(int id_image, char* filename,
             point_xs << static_cast<int>(hv_Columns[k]);
             point_ys << static_cast<int>(hv_Rows[k]);
           }
-          QSqlQuery q("", db);
-          q.prepare(
+          //QSqlQuery q("", db);
+          p_query->prepare(
               "INSERT INTO 2dmms_db.mask (idmask, idpoint, idobject_fk, "
               "point_x, point_y) "
               "VALUES (?, ?, ?, ?, ?)");
-          q.addBindValue(idmasks);
-          q.addBindValue(idpoints);
-          q.addBindValue(idobject_fks);
-          q.addBindValue(point_xs);
-          q.addBindValue(point_ys);
-          if (!q.execBatch())
+          p_query->addBindValue(idmasks);
+          p_query->addBindValue(idpoints);
+          p_query->addBindValue(idobject_fks);
+          p_query->addBindValue(point_xs);
+          p_query->addBindValue(point_ys);
+          if (!p_query->execBatch())
             ROS_ERROR("QUERY ERROR, ERROR:%s SENT:%s",
-                      q.lastError().text().toStdString().c_str(),
-                      q.lastQuery().toStdString().c_str());
+                      p_query->lastError().text().toStdString().c_str(),
+                      p_query->lastQuery().toStdString().c_str());
           else
-            ROS_DEBUG("QUERY SUCCESS, SENT:%s", q.lastQuery().toStdString().c_str());
+            ROS_DEBUG("QUERY SUCCESS, SENT:%s", p_query->lastQuery().toStdString().c_str());
           //db_object_id.push_back(id_db_object);
         }
       }
@@ -1833,23 +1831,23 @@ void QNode::runDLDetection(int id_image, char* filename, int point_x, int point_
 
   if (!test_mode) {
     if (checkBox_RecordMask_DL->isChecked()) {
-      QSqlQuery q("", db);
-      q.prepare(
+      //QSqlQuery q("", db);
+      p_query->prepare(
           "INSERT INTO 2dmms_db.mask (idmask, idpoint, idobject_fk, "
           "point_x, point_y) "
           "VALUES (?, ?, ?, ?, ?)");
-      q.addBindValue(idmasks);
-      q.addBindValue(idpoints);
-      q.addBindValue(idobject_fks);
-      q.addBindValue(point_xs);
-      q.addBindValue(point_ys);
+      p_query->addBindValue(idmasks);
+      p_query->addBindValue(idpoints);
+      p_query->addBindValue(idobject_fks);
+      p_query->addBindValue(point_xs);
+      p_query->addBindValue(point_ys);
 
-      if (!q.execBatch())
+      if (!p_query->execBatch())
         ROS_ERROR("QUERY ERROR, ERROR:%s SENT:%s",
-                  q.lastError().text().toStdString().c_str(),
-                  q.lastQuery().toStdString().c_str());
+                  p_query->lastError().text().toStdString().c_str(),
+                  p_query->lastQuery().toStdString().c_str());
       else
-        ROS_DEBUG("QUERY SUCCESS, SENT:%s", q.lastQuery().toStdString().c_str());
+        ROS_DEBUG("QUERY SUCCESS, SENT:%s", p_query->lastQuery().toStdString().c_str());
     }
   }
 }
@@ -2777,7 +2775,8 @@ void QNode::CaptureAlignmentImage(QTableWidget* tableWidget_SearchArea,
   double delay[] = {0.6, 0.3};
   currentState = Search;
 
-  for (int i = 0 ; i < 2 ; i ++) {
+  const int alignment_loop_count = 1;
+  for (int i = 0 ; i < alignment_loop_count ; i ++) {
     for (row = 0; row < tableWidget_SearchArea->rowCount(); row++) {
       if (tartlet_pos[i] == 0) {
         ExtractPointListFromTableWidget(tableWidget_SearchArea,
@@ -3074,8 +3073,9 @@ bool QNode::init(const std::string& master_url, const std::string& host_url) {
   adm2_wait_for_stop_client =
       n.serviceClient<std_srvs::Empty>("/adm2_master/wait_for_stop");
   adm2_vel_publisher = n.advertise<adm2::velocity>("/adm2_master/cmd_vel", 1);
-  finder_network_publisher = n.advertise<std_msgs::String>("nw_chatter", 1000);
-  finder_s3_upload_service = n.serviceClient<tdmms_finder_network_support::UploadS3>("upload_s3");
+  finder_network_publisher = n.advertise<std_msgs::String>("/network_support/nw_chatter", 1000);
+  finder_s3_upload_service =
+      n.serviceClient<tdmms_finder_network_support::UploadS3>("/network_support/upload_s3");
   adm2_get_current_pos_client =
       n.serviceClient<adm2::GetCurrentPos>(
           "/adm2_master/get_currpos");

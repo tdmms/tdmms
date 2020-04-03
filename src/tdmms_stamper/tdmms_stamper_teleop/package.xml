@@ -13,6 +13,7 @@
   <build_depend>roscpp</build_depend>
   <build_depend>libqt4-dev</build_depend>
   <build_depend>keyence_master</build_depend>
+  <build_depend>stamper_sample_z</build_depend>
   <run_depend>qt_build</run_depend>
   <run_depend>roscpp</run_depend>
   <run_depend>libqt4-dev</run_depend>

@@ -10,7 +10,7 @@ project(tdmms_finder_auto)
 ##############################################################################
 
 # qt_build provides the qt cmake glue, roscpp the comms for a default talker
-find_package(catkin REQUIRED COMPONENTS qt_build roscpp sound_play)
+find_package(catkin REQUIRED COMPONENTS qt_build roscpp sound_play adm2)
 include_directories(
   ${catkin_INCLUDE_DIRS}
   /opt/halcon/include/halconcpp
@@ -55,6 +55,7 @@ file(GLOB_RECURSE QT_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} FOLLOW_SYMLINK
 ##############################################################################
 
 add_executable(tdmms_finder_auto ${QT_SOURCES} ${QT_RESOURCES_CPP} ${QT_FORMS_HPP} ${QT_MOC_HPP})
+add_dependencies(tdmms_finder_auto ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 FIND_LIBRARY(XCLIB_LIBRARY xclib /usr/local/xclib)
 FIND_LIBRARY(HALCON_LIBRARY halcon /opt/halcon/lib/x64-linux)

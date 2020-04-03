@@ -248,6 +248,7 @@ Q_SLOTS:
   HTuple hv_exposure;
   HTuple hv_AcqHandle;
   QSqlDatabase db;
+  QSqlQuery *p_query;
 
   // Local iconic variables
   HObject ho_Image_BG, ho_Image_BG_R, ho_Image_BG_G;
@@ -256,6 +257,7 @@ Q_SLOTS:
   HObject ho_Image_B, ho_Image_H, ho_Image_S, ho_Image_V;
   HObject ho_ImageGrey, ho_ImaAmp, ho_ImaDir, ho_Region_Edge;
   HObject ho_connectedRegion_Edge, ho_RegionClosed, ho_edgesRegion;
+  HObject ho_Image_Shifted, ho_Image_Conv;
   HObject ho_RegionLine_top, ho_RegionLine_bottom, ho_RegionLine_left;
   HObject ho_RegionLine_right, ho_RegionDifference, ho_ImageGrey_conv;
   HObject ho_ImageGrey_8, ho_RegionS, ho_ImageSub_H, ho_ImageSub_S;
@@ -264,6 +266,9 @@ Q_SLOTS:
   HObject ho_edgesRegion_Scaled, ho_RegionDifference_Scaled;
   HObject ho_Region_H_Scaled, ho_Region_S_Scaled, ho_Region_V_Scaled;
   HObject ho_SelectedRegions_scaled;
+  HTuple hv_HomMat2DIdentity, hv_HomMat2DScale0125;
+  HObject ho_GrayImage, ho_GrayImageAffinTrans;
+  HObject ho_GrayImage_shift;
 
   // Local control variables
   HTuple hv_toolbar_offset;

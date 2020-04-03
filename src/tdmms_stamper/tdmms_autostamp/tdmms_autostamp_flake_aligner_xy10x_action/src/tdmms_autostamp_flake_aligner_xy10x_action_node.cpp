@@ -54,6 +54,7 @@ class autostamp_flake_aligner_xy10x_class {
                         this, _1),
             false),
         action_name_(name) {
+    /*
     QueryAvailableComputeDevices(&hv_DeviceIdentifiers);
     {
       HalconCpp::HTuple end_val3 = (hv_DeviceIdentifiers.TupleLength()) - 1;
@@ -69,7 +70,7 @@ class autostamp_flake_aligner_xy10x_class {
       }
     }
     ActivateComputeDevice(hv_DeviceHandle);
-
+    */
     stamper_sample_xy_cmd_vel =
         node_.advertise<adm2::velocity>("/stamper_sample_xy_master/cmd_vel", 1);
     stamper_sample_xy_cmd_stp = node_.advertise<geometry_msgs::Point>(
