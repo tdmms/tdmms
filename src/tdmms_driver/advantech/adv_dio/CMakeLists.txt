@@ -135,7 +135,9 @@ add_executable(adv_dio_node src/adv_dio.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(tdmms_autostamp_camera_streamer_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+add_dependencies(adv_dio_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 FIND_LIBRARY(COMEDI_LIBRARY comedi ../../../../../comedilib-0.10.2/lib/.libs)
 
 ## Specify libraries to link a library or executable target against

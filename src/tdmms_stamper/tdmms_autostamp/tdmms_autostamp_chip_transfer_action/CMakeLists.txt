@@ -148,7 +148,7 @@ add_executable(tdmms_autostamp_chip_transfer_action_node src/tdmms_autostamp_chi
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(tdmms_autostamp_chip_transfer_action_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(tdmms_autostamp_chip_transfer_action_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(tdmms_autostamp_chip_transfer_action_node

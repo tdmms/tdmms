@@ -17,6 +17,7 @@ find_package(catkin REQUIRED COMPONENTS qt_build roscpp
   rospy
   std_msgs
   geometry_msgs
+  adv_dio
 )
 include_directories(${catkin_INCLUDE_DIRS})
 # Use this to define what the package will export (e.g. libs, headers).
@@ -55,6 +56,8 @@ file(GLOB_RECURSE QT_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} FOLLOW_SYMLINK
 ##############################################################################
 
 add_executable(tdmms_transfer_master ${QT_SOURCES} ${QT_RESOURCES_CPP} ${QT_FORMS_HPP} ${QT_MOC_HPP})
+add_dependencies(tdmms_transfer_master ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 target_link_libraries(tdmms_transfer_master ${QT_LIBRARIES} ${catkin_LIBRARIES})
 install(TARGETS tdmms_transfer_master RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
