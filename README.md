@@ -16,8 +16,7 @@ Open-source platform for aunotnomous robotic searching and assembly of van der W
 
 ### Software Requirements
 The following software components are required.
-* Ubuntu 14.04 or higher
-* ROS Indigo
+* Ubuntu 14.04 - ROS Indigo or Ubuntu 16.04 - ROS Kinetic
 * QT 4.0.0 or higher
 * HALCON12 Image processing library
 * Open CL
