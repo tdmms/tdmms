@@ -36,7 +36,7 @@ The following software components are required.
 The detailed descriptions of this system are provided in the paper;
 * "Autonomous robotic searching and assembly of two-dimensional crystals to build van der Waals superlattices", Satoru Masubuchi *et al.*, Nature Communications **9**, Article number: 1413 (2018). 
 * "Classifying optical microscope images of exfoliated graphene flakes by data-driven machine learning", Satoru Masubuchi and Tomoki Machida, npj 2D Materials and Applications volume **3**, Article number: 4 (2019) 
-* "Deep-Learning-Based Image Segmentation Integrated with Optical Microscopy for Automatically Searching for Two-Dimensional Materials", Satoru Masubuchi *et al.*, (under review)
+* "Deep-Learning-Based Image Segmentation Integrated with Optical Microscopy for Automatically Searching for Two-Dimensional Materials", Satoru Masubuchi *et al.*, **4**, Article number: 3 (2020)
 
 If the information provided helps your research, it would be appreciated if you could cite the paper in your publications. 
 
