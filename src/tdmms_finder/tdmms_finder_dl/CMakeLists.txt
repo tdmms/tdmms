@@ -54,6 +54,7 @@ file(GLOB_RECURSE QT_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} FOLLOW_SYMLINK
 ##############################################################################
 
 add_executable(tdmms_finder_dl ${QT_SOURCES} ${QT_RESOURCES_CPP} ${QT_FORMS_HPP} ${QT_MOC_HPP})
+add_dependencies(tdmms_finder_dl ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 FIND_LIBRARY(HALCON_LIBRARY halcon /opt/halcon/lib/x64-linux)
 FIND_LIBRARY(HALCONCPP_LIBRARY halconcpp /opt/halcon/lib/x64-linux)
