@@ -10,7 +10,7 @@ project(tdmms_finder_dl)
 ##############################################################################
 
 # qt_build provides the qt cmake glue, roscpp the comms for a default talker
-find_package(catkin REQUIRED COMPONENTS qt_build roscpp halcon_bridge)
+find_package(catkin REQUIRED COMPONENTS qt_build roscpp halcon_bridge adm2)
 include_directories(
   ${catkin_INCLUDE_DIRS}
   /opt/halcon/include/halconcpp
