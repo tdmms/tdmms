@@ -141,7 +141,8 @@ add_executable(tdmms_autostamp_camera_streamer_node src/autostamp_camera_streame
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(tdmms_autostamp_camera_streamer_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(tdmms_autostamp_camera_streamer_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 FIND_LIBRARY(HALCON_LIBRARY halcon /opt/halcon/lib/x64-linux)
 FIND_LIBRARY(HALCONCPP_LIBRARY halconcpp /opt/halcon/lib/x64-linux)
 
