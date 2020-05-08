@@ -25,7 +25,7 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
   QObject::connect(&qnode, SIGNAL(rosShutdown()), this, SLOT(close()));
   QObject::connect(&qnode, SIGNAL(loggingUpdated()), this,
                    SLOT(updateLoggingView()));
-  QObject::connect(&qnode, SIGNAL(areaUpdated()), this, SLOT(updateareaView()));
+  //QObject::connect(&qnode, SIGNAL(areaUpdated()), this, SLOT(updateareaView()));
   QObject::connect(ui.Button_Add, SIGNAL(clicked()), &qnode,
                    SLOT(on_Button_Add_clicked()));
   QObject::connect(ui.Button_AutoSearchArea, SIGNAL(clicked()), &qnode,
