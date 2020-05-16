@@ -50,10 +50,11 @@ file(GLOB_RECURSE QT_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} FOLLOW_SYMLINK
 add_executable(tdmms_finder_teleop ${QT_SOURCES} ${QT_RESOURCES_CPP} ${QT_FORMS_HPP} ${QT_MOC_HPP})
 add_dependencies(tdmms_finder_teleop ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
-FIND_LIBRARY(XCLIB_LIBRARY xclib /usr/local/xclib)
+#FIND_LIBRARY(XCLIB_LIBRARY xclib /usr/local/xclib)
 FIND_LIBRARY(HALCON_LIBRARY halcon /opt/halcon/lib/x64-linux)
 
-target_link_libraries(tdmms_finder_teleop ${QT_LIBRARIES} ${catkin_LIBRARIES} ${XCLIB_LIBRARY} ${HALCON_LIBRARY})
+#target_link_libraries(tdmms_finder_teleop ${QT_LIBRARIES} ${catkin_LIBRARIES} ${XCLIB_LIBRARY} ${HALCON_LIBRARY})
+target_link_libraries(tdmms_finder_teleop ${QT_LIBRARIES} ${catkin_LIBRARIES} ${HALCON_LIBRARY})
 add_dependencies(tdmms_finder_teleop ${catkin_EXPORTED_TARGETS})
 
 
