@@ -1,7 +1,7 @@
 ##############################################################################
 # Sections
 ##############################################################################
-
+find_package(Qt4 REQUIRED)
 set(QT_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../resources/images.qrc)
 set(QT_FORMS ${CMAKE_CURRENT_SOURCE_DIR}/../ui/main_window.ui)
 file(GLOB_RECURSE QT_MOC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} FOLLOW_SYMLINKS *.hpp)

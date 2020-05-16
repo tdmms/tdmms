@@ -10,7 +10,7 @@ project(tdmms_autostamp_camera_viewer_guided)
 ##############################################################################
 
 # qt_build provides the qt cmake glue, roscpp the comms for a default talker
-find_package(catkin REQUIRED COMPONENTS qt_build roscpp halcon_bridge)
+find_package(catkin REQUIRED COMPONENTS qt_build roscpp halcon_bridge tdmms_autostamp_camera_streamer)
 include_directories(
   ${catkin_INCLUDE_DIRS}
   /opt/halcon/include/halconcpp
@@ -54,6 +54,8 @@ FIND_LIBRARY(HALCON_LIBRARY halcon /opt/halcon/lib/x64-linux)
 FIND_LIBRARY(HALCONCPP_LIBRARY halconcpp /opt/halcon/lib/x64-linux)
 
 add_executable(tdmms_autostamp_camera_viewer_guided ${QT_SOURCES} ${QT_RESOURCES_CPP} ${QT_FORMS_HPP} ${QT_MOC_HPP})
+add_dependencies(tdmms_autostamp_camera_viewer_guided ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 target_link_libraries(tdmms_autostamp_camera_viewer_guided ${QT_LIBRARIES} ${catkin_LIBRARIES} ${HALCON_LIBRARY} ${HALCONCPP_LIBRARY})
 install(TARGETS tdmms_autostamp_camera_viewer_guided RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 

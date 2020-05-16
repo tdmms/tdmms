@@ -110,9 +110,11 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
- include_directories(
-    afc_5_master
-   include)
+include_directories(
+  afc_5_master
+  include
+  ${catkin_INCLUDE_DIRS}
+  )
 
 ## Declare a C++ library
  add_library(afc_5

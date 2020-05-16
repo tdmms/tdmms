@@ -147,9 +147,6 @@ include_directories(
 ## Declare a C++ executable
 # add_executable(tdmms_autostamp_flake_aligner_xy10x2_action_node src/tdmms_autostamp_flake_aligner_xy10x2_action_node.cpp)
 
-## Add cmake target dependencies of the executable
-## same as for the library above
-# add_dependencies(tdmms_autostamp_flake_aligner_xy10x2_action_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 rosbuild_prepare_qt4(QtCore QtGui QtSql QtDialog QtWidgets QtNetwork) # Add the appropriate components to the component list here
 
 file(GLOB QT_FORMS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ui/*.ui)
@@ -174,6 +171,12 @@ FIND_LIBRARY(HALCON_LIBRARY halcon /opt/halcon/lib/x64-linux)
 FIND_LIBRARY(HALCONCPP_LIBRARY halconcpp /opt/halcon/lib/x64-linux)
 
 add_executable(tdmms_autostamp_flake_aligner_xy10x2_action_node src/tdmms_autostamp_flake_aligner_xy10x2_action_node.cpp)
+
+## Add cmake target dependencies of the executable
+## same as for the library above
+add_dependencies(
+  tdmms_autostamp_flake_aligner_xy10x2_action_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 
 target_link_libraries(tdmms_autostamp_flake_aligner_xy10x2_action_node
   ${QT_LIBRARIES}

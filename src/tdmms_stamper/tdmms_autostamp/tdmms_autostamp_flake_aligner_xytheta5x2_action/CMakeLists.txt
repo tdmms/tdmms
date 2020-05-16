@@ -158,10 +158,6 @@ file(GLOB_RECURSE QT_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} FOLLOW_SYMLINK
 ## Declare a C++ executable
 # add_executable(tdmms_autostamp_flake_aligner_xytheta5x_action_node src/tdmms_autostamp_flake_aligner_xytheta5x_action_node.cpp)
 
-## Add cmake target dependencies of the executable
-## same as for the library above
-# add_dependencies(tdmms_autostamp_flake_aligner_xytheta5x_action_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(tdmms_autostamp_flake_aligner_xytheta5x_action_node
 #   ${catkin_LIBRARIES}
@@ -170,6 +166,11 @@ FIND_LIBRARY(HALCON_LIBRARY halcon /opt/halcon/lib/x64-linux)
 FIND_LIBRARY(HALCONCPP_LIBRARY halconcpp /opt/halcon/lib/x64-linux)
 
 add_executable(tdmms_autostamp_flake_aligner_xytheta5x2_action_node src/tdmms_autostamp_flake_aligner_xytheta5x2_action_node.cpp)
+
+## Add cmake target dependencies of the executable
+## same as for the library above
+add_dependencies(tdmms_autostamp_flake_aligner_xytheta5x2_action_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 
 target_link_libraries(tdmms_autostamp_flake_aligner_xytheta5x2_action_node
   ${QT_LIBRARIES}
