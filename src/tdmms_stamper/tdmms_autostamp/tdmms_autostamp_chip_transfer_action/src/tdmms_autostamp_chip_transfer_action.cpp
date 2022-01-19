@@ -123,7 +123,7 @@ class tdmms_autostamp_chip_transfer_action_class {
     }
 
     stamper_yamaha::AbsMove moveto;
-    const double stage_height = 84.150;
+    const double stage_height = 80.6;
     moveto.request.targetPose.position.x = 589.793;
     moveto.request.targetPose.position.y = 351.492;
     moveto.request.targetPose.position.z = 0;

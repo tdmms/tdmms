@@ -9,8 +9,12 @@ project(tdmms_autostamp_master)
 # Catkin
 ##############################################################################
 
+SET(mongocxx_DIR /usr/local/lib/cmake/mongocxx-3.6.2)
 # qt_build provides the qt cmake glue, roscpp the comms for a default talker
-find_package(catkin REQUIRED COMPONENTS qt_build roscpp
+find_package(
+  catkin REQUIRED COMPONENTS 
+  qt_build
+  roscpp
   actionlib
   actionlib_msgs
   message_generation
@@ -19,6 +23,8 @@ find_package(catkin REQUIRED COMPONENTS qt_build roscpp
   geometry_msgs
   halcon_bridge
   transfer_linear_yamaha
+  OpenCV
+#  mongocxx
  )
 
 include_directories(${catkin_INCLUDE_DIRS})
@@ -34,6 +40,7 @@ catkin_package(
 )
 include_directories(
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
   /opt/halcon/include/halconcpp
   /opt/halcon/include
 )

@@ -14,6 +14,7 @@
   <node pkg="stamper_yamaha" name="stamper_yamaha" type="stamper_yamaha_node" respawn="true"/>
   <node pkg="transfer_valve" name="transfer_valve" type="transfer_valve" respawn="true"/>
   <node pkg="tdmms_autostamp_flake_positioner_action" name="tdmms_autostamp_flake_positioner_action" type="tdmms_autostamp_flake_positioner_action_node" respawn="true"/>
+  <node pkg="tdmms_autostamp_flake_positioner_action_fast3" name="tdmms_autostamp_flake_positioner_action_fast3" type="tdmms_autostamp_flake_positioner_action_fast_node3" respawn="true"/>
   <node pkg="tdmms_autostamp_flake_positioner_action_fast2" name="tdmms_autostamp_flake_positioner_action_fast2" type="tdmms_autostamp_flake_positioner_action_fast_node2" respawn="true"/>
   <node pkg="tdmms_autostamp_flake_positioner_action_fast" name="tdmms_autostamp_flake_positioner_action_fast" type="tdmms_autostamp_flake_positioner_action_fast_node" respawn="true"/>
   <node pkg="tdmms_autostamp_flake_aligner_xy10x_action" name="tdmms_autostamp_flake_aligner_xy10x_action" type="tdmms_autostamp_flake_aligner_xy10x_action_node" respawn="true"/>
@@ -21,6 +22,7 @@
   <node pkg="tdmms_autostamp_flake_aligner_xy10x_fine_action" name="tdmms_autostamp_flake_aligner_xy10x_fine_action" type="tdmms_autostamp_flake_aligner_xy10x_fine_action_node" respawn="true"/>
   <node pkg="tdmms_autostamp_flake_aligner_xytheta5x_action" name="tdmms_autostamp_flake_aligner_xytheta5x_action" type="tdmms_autostamp_flake_aligner_xytheta5x_action_node" respawn="true"/>
   <node pkg="tdmms_autostamp_flake_aligner_xytheta5x2_action" name="tdmms_autostamp_flake_aligner_xytheta5x2_action" type="tdmms_autostamp_flake_aligner_xytheta5x2_action_node" respawn="true"/>
+  <node pkg="tdmms_autostamp_flake_aligner_xytheta5x3_action" name="tdmms_autostamp_flake_aligner_xytheta5x3_action" type="tdmms_autostamp_flake_aligner_xytheta5x3_action_node" respawn="true"/>
   <node pkg="tdmms_autostamp_flake_aligner_ncc_action" name="tdmms_autostamp_flake_aligner_ncc_action" type="tdmms_autostamp_flake_aligner_ncc_action_node" respawn="true"/>
   <node pkg="tdmms_autostamp_chip_transfer_action" name="tdmms_autostamp_chip_transfer_action" type="tdmms_autostamp_chip_transfer_action_node" respawn="true"/>
   <node pkg="tdmms_autostamp_stamp_action" name="tdmms_autostamp_stamp_action" type="tdmms_autostamp_stamp_action_node" respawn="true"/>

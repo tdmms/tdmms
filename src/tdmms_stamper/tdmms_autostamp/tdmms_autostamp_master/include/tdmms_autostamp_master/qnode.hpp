@@ -33,12 +33,14 @@
 #include <tdmms_autostamp_flake_positioner_action/PositionFlakeAction.h>
 #include <tdmms_autostamp_flake_positioner_action_fast/PositionFlakeFastAction.h>
 #include <tdmms_autostamp_flake_positioner_action_fast2/PositionFlakeFast2Action.h>
+#include <tdmms_autostamp_flake_positioner_action_fast3/PositionFlakeFast3Action.h>
 #include <tdmms_autostamp_chip_transfer_action/TransferChipAction.h>
 #include <tdmms_autostamp_flake_aligner_xy10x_action/AlignFlakeXY10xAction.h>
 #include <tdmms_autostamp_flake_aligner_xy10x2_action/AlignFlakeXY10x2Action.h>
 #include <tdmms_autostamp_flake_aligner_xy10x_fine_action/AlignFlakeXY10x_FineAction.h>
 #include <tdmms_autostamp_flake_aligner_xytheta5x_action/AlignFlakeXYTheta5xAction.h>
 #include <tdmms_autostamp_flake_aligner_xytheta5x2_action/AlignFlakeXYTheta5x2Action.h>
+#include <tdmms_autostamp_flake_aligner_xytheta5x3_action/AlignFlakeXYTheta5x3Action.h>
 #include <tdmms_autostamp_flake_aligner_ncc_action/AlignFlakeNCCAction.h>
 #include <tdmms_autostamp_stamp_action/StampAction.h>
 #include <tdmms_autostamp_autofocus_action/AutoFocusAction.h>
@@ -55,12 +57,22 @@ namespace tdmms_autostamp_master {
 ** Class
 *****************************************************************************/
 
+typedef struct {
+  std::string oid_chip;
+  std::string oid_image;
+  std::string oid_search;
+  int pos_x;
+  int pos_y;
+  std::string aws_uri;
+} alignInfo;
+
 class QNode : public QThread {
   Q_OBJECT
 
  public:
   QNode(int argc, char **argv);
   virtual ~QNode();
+  std::vector<alignInfo> alignInfos;
   bool init();
   bool init(const std::string &master_url, const std::string &host_url);
   void run();
@@ -88,6 +100,10 @@ class QNode : public QThread {
   QLineEdit *lineEdit_Filename;
   QLineEdit *lineEdit_Xofs;
   QLineEdit *lineEdit_Yofs;
+  QLineEdit *lineEdit_Pos_X;
+  QLineEdit *lineEdit_Pos_Y;
+  QLineEdit *lineEdit_ImageOID;
+  QLineEdit *lineEdit_ChipOID;
   QDoubleSpinBox *doubleSpinBox_Rotangle;
   QDoubleSpinBox *doubleSpinBox_LinearStage;
   QSpinBox *spinBox_PosinChiptray;
@@ -137,11 +153,13 @@ Q_SLOTS:
   bool on_LoadChip_clicked(bool check);
   bool on_AddressFlake_clicked(bool check);
   bool on_AddressFlake2_clicked(bool check);
+  bool on_AddressFlake3_clicked(bool check);
   bool on_ALignFlakeXY10x_clicked(bool check);
   bool on_AlignFlakeXY10x2_clicked(bool check);
   bool on_AlignFlakeXY10x_Fine_clicked(bool check);
   bool on_AlignFLakeTheta5x_clicked(bool check);
   bool on_AlignFlakeTheta5x2_clicked(bool check);
+  bool on_AlignFlakeTheta5x3_clicked(bool check);
   bool on_AlignFlakeNCC_clicked(bool check);
   void on_AlignFlakeTheta10x_clicked(bool check);
   bool on_Stamp_clicked(bool check);
@@ -227,6 +245,9 @@ Q_SLOTS:
       tdmms_autostamp_flake_positioner_action_fast2::PositionFlakeFast2Action>
       ac_flake_positioner_fast2;
   actionlib::SimpleActionClient<
+      tdmms_autostamp_flake_positioner_action_fast3::PositionFlakeFast3Action>
+      ac_flake_positioner_fast3;
+  actionlib::SimpleActionClient<
       tdmms_autostamp_flake_positioner_action::PositionFlakeAction>
       ac_flake_positioner;
   actionlib::SimpleActionClient<
@@ -244,6 +265,9 @@ Q_SLOTS:
   actionlib::SimpleActionClient<
       tdmms_autostamp_flake_aligner_xytheta5x2_action::AlignFlakeXYTheta5x2Action>
       ac_flake_aligner_xytheta5x2;
+  actionlib::SimpleActionClient<
+      tdmms_autostamp_flake_aligner_xytheta5x3_action::AlignFlakeXYTheta5x3Action>
+      ac_flake_aligner_xytheta5x3;
   actionlib::SimpleActionClient<
       tdmms_autostamp_flake_aligner_xy10x_fine_action::
           AlignFlakeXY10x_FineAction> ac_flake_aligner_xy10x_fine;

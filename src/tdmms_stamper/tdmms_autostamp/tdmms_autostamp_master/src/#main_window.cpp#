@@ -404,8 +404,11 @@ void MainWindow::selectionChangedSlot_stack() {
         file.open(QIODevice::WriteOnly);
         file.write(downloadedData);
         file.close();
-        cv::Mat image = cv::imread("/ramdisk/tmp_stamper.exr", cv::IMREAD_UNCHANGED);
-        cv::imwrite("/ramdisk/tmp_stamper.jpg", image * 255);
+              QFile file(tempfname);
+      file.open(QIODevice::WriteOnly);
+      file.write(downloadedData);
+      file.close();
+
       } else{
         QString tempfname = "/ramdisk/tmp_stamper.jpg";
         QFile file(tempfname);

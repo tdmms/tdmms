@@ -271,6 +271,10 @@ int QNode::SQLInsertObject(int id_image,
                            int point_x,
                            int point_y) {
   //QSqlQuery q("", db);
+  p_query->prepare("SELECT GET_LOCK(?,10)");
+  p_query->addBindValue("lock1");
+  SQLExecQuery(p_query);
+
   int id_object;
 
   p_query->prepare("SELECT MAX(idobject) FROM 2dmms_db.object");
@@ -298,6 +302,11 @@ int QNode::SQLInsertObject(int id_image,
   p_query->addBindValue(point_y);
 
   SQLExecQuery(p_query);
+
+  p_query->prepare("SELECT RELEASE_LOCK(?)");
+  p_query->addBindValue("lock1");
+  SQLExecQuery(p_query);
+  
   return id_object;
 }
 
@@ -351,6 +360,13 @@ int QNode::SQLInsertImage(int id_search,
                           bool centralized,
                           bool manual) {
   //QSqlQuery q("", db);
+
+  
+  p_query->prepare("SELECT GET_LOCK(?,10)");
+  p_query->addBindValue("lock1");
+  SQLExecQuery(p_query);
+  
+  
   int id_image;
 
   p_query->prepare("SELECT MAX(idimage) FROM 2dmms_db.image");
@@ -380,6 +396,12 @@ int QNode::SQLInsertImage(int id_search,
   p_query->addBindValue(centralized);
   p_query->addBindValue(manual);
   SQLExecQuery(p_query);
+
+  p_query->prepare("SELECT RELEASE_LOCK(?)");
+  p_query->addBindValue("lock1");
+  SQLExecQuery(p_query);
+  
+
   return id_image;
 }
 

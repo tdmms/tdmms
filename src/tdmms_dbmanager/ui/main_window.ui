@@ -14,7 +14,7 @@
    <string>QRosApp</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../tdmms_finder/tdmms_finder_dl/resources/images.qrc">
+   <iconset resource="../resources/images.qrc">
     <normaloff>:/images/icon.png</normaloff>:/images/icon.png</iconset>
   </property>
   <property name="locale">
@@ -157,7 +157,7 @@
          <number>1</number>
         </property>
         <property name="maximum">
-         <number>1000</number>
+         <number>100000</number>
         </property>
        </widget>
        <widget class="QLabel" name="label_8">

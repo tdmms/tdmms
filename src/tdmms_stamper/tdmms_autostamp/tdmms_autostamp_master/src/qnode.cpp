@@ -77,6 +77,8 @@ QNode::QNode(int argc, char **argv)
                                true),
       ac_flake_positioner_fast2("/tdmms_autostamp_flake_positioner_action_fast2",
                                true),
+      ac_flake_positioner_fast3("/tdmms_autostamp_flake_positioner_action_fast3",
+                               true),
       ac_flake_positioner("/tdmms_autostamp_flake_positioner_action", true),
       ac_chip_transfer("/tdmms_autostamp_chip_transfer_action", true),
       ac_flake_aligner_xy10x("/tdmms_autostamp_flake_aligner_xy10x_action",
@@ -87,6 +89,8 @@ QNode::QNode(int argc, char **argv)
           "/tdmms_autostamp_flake_aligner_xytheta5x_action", true),
       ac_flake_aligner_xytheta5x2(
           "/tdmms_autostamp_flake_aligner_xytheta5x2_action", true),
+      ac_flake_aligner_xytheta5x3(
+          "/tdmms_autostamp_flake_aligner_xytheta5x3_action", true),
       ac_flake_aligner_xy10x_fine(
           "/tdmms_autostamp_flake_aligner_xy10x_fine_action", true),
       ac_stamp("/tdmms_autostamp_stamp_action", true),
@@ -99,12 +103,14 @@ QNode::QNode(int argc, char **argv)
 
   ac_flake_positioner_fast.waitForServer();
   ac_flake_positioner_fast2.waitForServer();
+  ac_flake_positioner_fast3.waitForServer();
   ac_flake_positioner.waitForServer();
   ac_chip_transfer.waitForServer();
   ac_flake_aligner_xy10x.waitForServer();
   ac_flake_aligner_xy10x2.waitForServer();
   ac_flake_aligner_xytheta5x.waitForServer();
   ac_flake_aligner_xytheta5x2.waitForServer();
+  ac_flake_aligner_xytheta5x3.waitForServer();
   ac_flake_aligner_xy10x_fine.waitForServer();
   ac_stamp.waitForServer();
   ac_autofocus.waitForServer();
@@ -396,12 +402,14 @@ void QNode::on_Stop_clicked(bool check) {
   // if (ac_flake_positioner_fast2.getState() ==
   //actionlib::SimpleClientGoalState::ACTIVE) {
   ac_flake_positioner_fast2.cancelGoal();
+  ac_flake_positioner_fast3.cancelGoal();
   //skip_requested = false;
   //}
 
   //  if (ac_flake_aligner_xytheta5x2.getState() ==
   //actionlib::SimpleClientGoalState::ACTIVE) {
   ac_flake_aligner_xytheta5x2.cancelGoal();
+  ac_flake_aligner_xytheta5x3.cancelGoal();
   //  skip_requested = false;
   //}
 
@@ -711,7 +719,24 @@ bool QNode::on_AutoAlign_clicked(bool check) {
         return false;
       }
     }
-  }
+  } else if (fileVer == 3) {
+      if (!this->on_AddressFlake3_clicked(true)) {
+        if (skip_requested) {
+          skip_requested = false;
+        } else {
+          ROS_ERROR("AddressFlakeFast");
+          return false;
+        }
+      }
+      if (!this->on_AlignFlakeTheta5x3_clicked(true)) {
+        if (skip_requested) {
+          skip_requested = false;
+        } else {
+          ROS_ERROR("AddressFlakeTheta5x2");
+          return false;
+        }
+      }
+    }
 
   return true;
 }
@@ -1216,6 +1241,67 @@ bool QNode::on_AddressFlakeFast_clicked(bool check) {
   }
   return false;
 }
+bool QNode::on_AddressFlake3_clicked(bool check) {
+  if (lineEdit_Filename->text() == tr("")) {
+    return false;
+  }
+  QString filename_target;
+  filename_target = lineEdit_Filename->text();
+  int point_x_target, point_y_target;
+  std::string aws_uris_serialized;
+  std::string image_oid;
+  image_oid = lineEdit_ImageOID->text().toStdString();
+  
+  tdmms_autostamp_flake_positioner_action_fast3::PositionFlakeFast3Goal goal;
+  goal.filename_target.data = filename_target.toStdString();
+  goal.point_target.x = lineEdit_Pos_X->text().toInt();
+  goal.point_target.y = lineEdit_Pos_Y->text().toInt();
+
+  ROS_INFO("%f,%f", goal.point_target.x, goal.point_target.y);
+  std::vector<int> point_xs;
+  std::vector<int> point_ys;
+  std::vector<std::string> aws_uris;
+  
+  for(int i = 0 ; i < alignInfos.size(); i++){
+    alignInfo elem = alignInfos.at(i);
+    if(elem.oid_image == image_oid)
+    {
+      point_xs.push_back(elem.pos_x);
+      point_ys.push_back(elem.pos_y);
+      aws_uris.push_back(elem.aws_uri);
+      //printf("%d, %d, %s \n", elem.pos_x, elem.pos_y, elem.aws_uri.c_str());
+    }
+  }
+
+  std::stringstream ss;
+  goal.pos_xs.data.resize(point_xs.size());
+  goal.pos_ys.data.resize(point_ys.size());
+
+  for(int i = 0 ; i < point_xs.size(); i++){
+    goal.pos_xs.data[i] = point_xs.at(i);
+    goal.pos_ys.data[i] = point_ys.at(i);
+    ss << aws_uris.at(i) << ';';
+  }
+  goal.aws_uris.data = ss.str();
+  ac_flake_positioner_fast3.sendGoal(goal);
+  while (true) {
+    qApp->processEvents();
+    ros::Duration(0.1).sleep();
+    actionlib::SimpleClientGoalState state =
+        ac_flake_positioner_fast3.getState();
+    if (state == actionlib::SimpleClientGoalState::SUCCEEDED) {
+      return true;
+    } else if (state == actionlib::SimpleClientGoalState::PREEMPTED) {
+      ROS_WARN("Align XYtheta, preempted");
+      return false;
+    } else if (state == actionlib::SimpleClientGoalState::ABORTED) {
+      ROS_WARN("Failed to Align XYtheta, continue process..");
+      return true;
+    }
+  }
+  return false;
+}
+
 bool QNode::on_AddressFlake2_clicked(bool check) {
   if (lineEdit_Filename->text() == tr("")) {
     return false;
@@ -1224,7 +1310,7 @@ bool QNode::on_AddressFlake2_clicked(bool check) {
   unsigned long long id_image;
   int id_search;
   int id_chip;
-  
+
   filename_target = lineEdit_Filename->text();
   id_image = spinBox_ImageID->value();
   id_search = SQLSelectSearchID2(id_image);
@@ -1717,6 +1803,73 @@ bool QNode::on_AlignFLakeTheta5x_clicked(bool check) {
     ros::Duration(0.1).sleep();
     actionlib::SimpleClientGoalState state =
         ac_flake_aligner_xytheta5x.getState();
+    if (state == actionlib::SimpleClientGoalState::SUCCEEDED) {
+      return true;
+    } else if (state == actionlib::SimpleClientGoalState::PREEMPTED) {
+      ROS_WARN("Align XYtheta, preempted");
+      return false;
+    } else if (state == actionlib::SimpleClientGoalState::ABORTED) {
+      ROS_WARN("Failed to Align XYtheta, continue process..");
+      return true;
+    }
+  }
+  return false;
+}
+
+bool QNode::on_AlignFlakeTheta5x3_clicked(bool check) {
+  if (lineEdit_Filename->text() == tr("")) {
+    return false;
+  }
+
+  QString filename_target;
+  filename_target = lineEdit_Filename->text();
+  int point_x_target, point_y_target;
+  std::string aws_uris_serialized;
+  std::string image_oid;
+  image_oid = lineEdit_ImageOID->text().toStdString();
+  
+  std::vector<int> point_xs;
+  std::vector<int> point_ys;
+  std::vector<std::string> aws_uris;
+  
+  for(int i = 0 ; i < alignInfos.size(); i++){
+    alignInfo elem = alignInfos.at(i);
+    if(elem.oid_image == image_oid)
+    {
+      point_xs.push_back(elem.pos_x);
+      point_ys.push_back(elem.pos_y);
+      aws_uris.push_back(elem.aws_uri);
+      printf("%d, %d, %s \n", elem.pos_x, elem.pos_y, elem.aws_uri.c_str());
+    }
+  }
+
+  int target_x = lineEdit_Pos_X->text().toInt();
+  int target_y = lineEdit_Pos_Y->text().toInt();
+
+  int min_distance = std::pow(target_x-point_xs.at(0), 2) + std::pow(target_y-point_ys.at(0), 2);
+  int index = 0;
+  for(int i = 0 ; i < point_xs.size(); i ++) {
+    int distance = std::pow(target_x-point_xs.at(i), 2) + std::pow(target_y-point_ys.at(i), 2);
+    if(min_distance > distance){
+      index = i;
+      min_distance = distance;
+    }
+  }
+
+  tdmms_autostamp_flake_aligner_xytheta5x3_action::AlignFlakeXYTheta5x3Goal goal;
+  std::cout << aws_uris.at(index) << std::endl;
+  goal.filename_target.data = aws_uris.at(index);
+  goal.point_offset.x = lineEdit_Xofs->text().toInt();
+  goal.point_offset.y = lineEdit_Yofs->text().toInt();
+  goal.theta_rad.data =
+      static_cast<double>(doubleSpinBox_Rotangle->value() / 180 * 3.141592);
+  goal.focuspos.data = spinBox_AutoFocus_Zpos->value();
+  ac_flake_aligner_xytheta5x3.sendGoal(goal);
+   while (true) {
+    qApp->processEvents();
+    ros::Duration(0.1).sleep();
+    actionlib::SimpleClientGoalState state =
+        ac_flake_aligner_xytheta5x3.getState();
     if (state == actionlib::SimpleClientGoalState::SUCCEEDED) {
       return true;
     } else if (state == actionlib::SimpleClientGoalState::PREEMPTED) {
